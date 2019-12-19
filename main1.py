@@ -1,8 +1,12 @@
-import ABaseNode
-import APort
+from ABaseGraph import ABaseGraph
+from ABaseNode import ABaseNode
 
-a=ABaseNode('bib')
-a.id='pi'
-# p1= ABasePort('p1')
+g = ABaseGraph()
+g.add_node('node1')
+g.add_node('node2')
+g.add_port_in('node1','p1')
+g.add_port_in('node1','p2')
 
-print(a.id)
+
+
+# print(g.id)
