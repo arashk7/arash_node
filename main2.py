@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from AWidget import AWidget
 
+
 class Window(QtWidgets.QWidget):
     def __init__(self):
         super(Window, self).__init__()
@@ -9,7 +10,8 @@ class Window(QtWidgets.QWidget):
         self.awidget = AWidget(self)
 
         VBlayout = QtWidgets.QVBoxLayout(self)
-        # Add Awidget to the window
+
+        # Add awidget to the window
         VBlayout.addWidget(self.awidget)
         HBlayout = QtWidgets.QHBoxLayout()
         HBlayout.setAlignment(QtCore.Qt.AlignLeft)

@@ -70,7 +70,7 @@ class ALogger:
 
     # python logger commands
     logger = logging.getLogger('arash')
-    handler = logging.FileHandler(log_file_name)
+    handler = logging.FileHandler('logs/'+log_file_name)
 
     # Set log format here
     formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
@@ -81,24 +81,28 @@ class ALogger:
     logger.setLevel(logging.WARNING)
 
     # Print simple chatty messages
+    @staticmethod
     def print_msg(message, msg_color=MsgColors.CWHITE):
         print(msg_color+message+MsgColors.ENDC)
         if ALogger.active_logging:
             ALogger.logger.info(message)
 
     # Print important information
+    @staticmethod
     def print_info(message):
         print(MsgColors.CBLUE2 + "Info: " + message + MsgColors.ENDC)
         if ALogger.active_logging:
             ALogger.logger.info(message)
 
     # Print errors
+    @staticmethod
     def print_error(message):
         print(MsgColors.ERROR + "Error: " + message + MsgColors.ENDC)
         if ALogger.active_logging:
             ALogger.logger.error(message)
 
     # Print warnings
+    @staticmethod
     def print_warning(message):
         print(MsgColors.WARNING + "Warning: " + message + MsgColors.ENDC)
         if ALogger.active_logging:
