@@ -2,11 +2,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from AScene import AScene
 from ASkin import *
 
+# https://stackoverflow.com/questions/28349676/pyqt4-how-to-correct-qgraphicsitem-position
+
 class AWidget(QtWidgets.QGraphicsView):
     def __init__(self, parent):
         super(AWidget, self).__init__(parent)
 
         # Default skin has to be loaded here
+        # But since this program is under development, we consider to just initialize the skin and save it as default
         ASkin.init_default()
 
         self.__zoom = 0
@@ -42,9 +45,9 @@ class AWidget(QtWidgets.QGraphicsView):
             else:
                 pen.setWidth(1)
             line = self.__scene.addLine(i, -40, i, self.size().height() + 40, pen)
-            line.setActive(False)
             line.setZValue(-1)
             line.setData(0, 'grid')
+            line.setActive(False)
 
         # Draw vertical lines
         for i in range(-40, int(self.size().height() + 40), 20):
@@ -53,6 +56,6 @@ class AWidget(QtWidgets.QGraphicsView):
             else:
                 pen.setWidth(1)
             line = self.__scene.addLine(-40, i, self.size().width() + 40, i, pen)
-            line.setActive(False)
             line.setZValue(-1)
             line.setData(0, 'grid')
+            line.setActive(False)
