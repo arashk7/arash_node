@@ -26,5 +26,5 @@ if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
     window = Window()
     window.setGeometry(300, 300, 1768, 874)
-    window.showMaximized()
+    window.show()
     sys.exit(app.exec_())
