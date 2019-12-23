@@ -35,15 +35,10 @@ class AWidget(QtWidgets.QGraphicsView):
     def drawForeground(self, painter: QtGui.QPainter, rect: QtCore.QRectF):
         super(AWidget, self).drawForeground(painter, rect)
 
-    def resizeEvent(self, event: QtGui.QResizeEvent):
-        # width=event.size().width()
-        # height=event.size().height()
-        # if width<2500: width=2500
-        # if height<2000: height=2000
-        # self.__scene.setSceneRect(QtCore.QRectF(0, 0, width, height))
-
-        self.render_grid()
+    def resizeEvent(self, event:QtGui.QResizeEvent):
         self.updateSceneRect(QtCore.QRectF(0, 0, 2500, 2000))
+        self.render_grid()
+
 
     def render_grid(self):
 
@@ -76,6 +71,7 @@ class AWidget(QtWidgets.QGraphicsView):
         pen = QtGui.QPen()
 
         # sample rectangle
-        rect = QtCore.QRectF(1800, 1800, 100, 100)
+        p = self.__scene.sceneRect().center()
+        rect = QtCore.QRectF(p.x(), p.y(), 100, 100)
         r = self.__scene.addRect(rect, pen, brush)
 
