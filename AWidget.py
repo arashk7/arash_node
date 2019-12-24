@@ -16,8 +16,8 @@ class AWidget(QtWidgets.QGraphicsView):
         self.__zoom = 0
         self.__scene = AScene(self)
         self.__scene.setSceneRect(QtCore.QRectF(0, 0, 2500, 2000))
-
         self.setScene(self.__scene)
+
 
         # Setting up all the parameters regards QGraphicsView
         self.setTransformationAnchor(QtWidgets.QGraphicsView.AnchorUnderMouse)
@@ -26,13 +26,26 @@ class AWidget(QtWidgets.QGraphicsView):
         self.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
         self.setBackgroundBrush(QtGui.QBrush(ASkin.color(ARole.BACKGROUND)))
         self.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.setDragMode(True)
+        self.setDragMode(False)
         self.viewport().setCursor(QtCore.Qt.ArrowCursor)
+
+        # Active AntiAliasing
+        self.setRenderHint(QtGui.QPainter.Antialiasing, True)
+
+        # Rubber Band is redesigned to draw left mouse button
+        self.__rubber_band = QtWidgets.QRubberBand(QtWidgets.QRubberBand.Rectangle, self)
+        rubber_band_palette = QtGui.QPalette()
+        rubber_band_brush = QtGui.QBrush(ASkin.color(ARole.RUBBER_BAND))
+        rubber_band_palette.setBrush(QtGui.QPalette.Highlight, rubber_band_brush)
+        self.__rubber_band.setPalette(rubber_band_palette)
+
+        # Selected item group
+        empty_list = list()
+        self.__selected_item_group = self.__scene.createItemGroup(empty_list)
+        self.__selected_item_group.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable)
 
         # Zooming variables
         self.__zoom = 1
-        self.__num_scheduled_scalings = 0
-        self.factor = 1
 
         self.render_sample_rect()
         self.render_grid()
@@ -50,6 +63,7 @@ class AWidget(QtWidgets.QGraphicsView):
     def drawForeground(self, painter: QtGui.QPainter, rect: QtCore.QRectF):
         super(AWidget, self).drawForeground(painter, rect)
 
+    # This function is called every time the window size changed
     def resizeEvent(self, event: QtGui.QResizeEvent):
         self.updateSceneRect(QtCore.QRectF(0, 0, 2500, 2000))
 
