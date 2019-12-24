@@ -30,16 +30,12 @@ class AWidget(QtWidgets.QGraphicsView):
         self.viewport().setCursor(QtCore.Qt.ArrowCursor)
 
         # Zooming variables
-        self.__zoom=1
-        self.__num_scheduled_scalings=0
-        self.factor =1
+        self.__zoom = 1
+        self.__num_scheduled_scalings = 0
+        self.factor = 1
 
-        brush = QtGui.QBrush(QtGui.QColor(200, 50, 50))
-        pen = QtGui.QPen()
-        # sample rectangle
-        p = self.__scene.sceneRect().center()
-        rect = QtCore.QRectF(p.x(), p.y(), 100, 100)
-        r = self.__scene.addRect(rect, pen, brush)
+        self.render_sample_rect()
+        self.render_grid()
 
     # Zoom property
     # (this property is provided for the time that it is needed to access from th outside of the class)
@@ -56,7 +52,7 @@ class AWidget(QtWidgets.QGraphicsView):
 
     def resizeEvent(self, event: QtGui.QResizeEvent):
         self.updateSceneRect(QtCore.QRectF(0, 0, 2500, 2000))
-        self.render_grid()
+
 
     def render_grid(self):
 
@@ -85,10 +81,18 @@ class AWidget(QtWidgets.QGraphicsView):
             line.setData(0, 'grid')
             line.setActive(False)
 
-    # incomplete zooming
-    def fitInView(self, scale=True):
-        rect = QtCore.QRectF(self.rect())
+    # Mouse Press Event
+    def mousePressEvent(self, event: QtGui.QMouseEvent):
+        if event.button() == QtCore.Qt.LeftButton:
+            p =self.mapToScene(QtCore.QPoint(event.x(),event.y()))
+            print(str(p.x())+" "+str(p.y()))
+        super(AWidget, self).mousePressEvent(event)
 
+    # Zooming V0.1
+    def fitInView(self, scale=True):
+        rect = QtCore.QRectF(0, 0, 2500, 2000)
+
+        # self.updateSceneRect(QtCore.QRectF(0, 0, 2500, 2000))
         self.setSceneRect(rect)
 
         unity = self.transform().mapRect(QtCore.QRectF(0, 0, 1, 1))
@@ -99,50 +103,43 @@ class AWidget(QtWidgets.QGraphicsView):
                      viewrect.height() / scenerect.height())
         self.scale(factor, factor)
 
+    ###### This is the basic version of zooming ####
+    # Uing animation is recommended for smooth zooming
+    # Search for Qt smooth zooming
+    # Here is an example:
+    #         if self.__zoom > 0:
+    #             self.scale(self.factor, self.factor)
+    #             anim = QtCore.QTimeLine(200, self)
+    #             anim.setUpdateInterval(10)
+    #             anim.set
+    #             anim.valueChanged.connect(self.anim_scale)
+    #             anim.start()
+
+    #     def anim_scale(self):
+    #         factor = 1.0 + float(self.factor) / 300.0
+    #         self.scale(factor, factor)
+    ################################################
     def wheelEvent(self, event):
         if event.angleDelta().y() > 0:
-            self.factor = 1.0025
+            self.factor = 1.25
             self.__zoom += 1
 
         else:
-            self.factor = 0.008
+            self.factor = 0.80
             self.__zoom -= 1
 
         if self.__zoom > 0:
-            anim = QtCore.QTimeLine(300, self)
-            anim.setUpdateInterval(5)
-            anim.valueChanged.connect(self.anim_scale)
-            anim.start()
-
+            self.scale(self.factor, self.factor)
         elif self.__zoom == 0:
             self.fitInView()
         else:
             self.__zoom = 0
-    def anim_scale(self):
-        # factor = 1.0 + float(self.__num_scheduled_scalings) / 300.0
-        self.scale(self.factor, self.factor)
 
-    def wheelEvent1(self, event:QtGui.QWheelEvent):
+    def render_sample_rect(self):
+        # sample rectangle
+        brush = QtGui.QBrush(QtGui.QColor(200, 50, 50))
+        pen = QtGui.QPen()
 
-        num_degrees = event.angleDelta().y() / 8
-        num_steps = num_degrees / 15  # see QWheelEvent documentation
-        self.__num_scheduled_scalings += num_steps
-        # if user moved the wheel in another direction, we reset previously scheduled scaling
-        if self.__num_scheduled_scalings * num_steps < 0:
-            self.__num_scheduled_scalings = num_steps
-
-        anim = QtCore.QTimeLine(300, self)
-        anim.setUpdateInterval(5)
-        anim.valueChanged.connect(self.zoom_scaling_time)
-        anim.start()
-
-    def zoom_scaling_time(self, value):
-        factor = 1.0 + float(self.__num_scheduled_scalings) / 300.0
-        self.scale(factor, factor)
-
-    def zoom_anim_finished(self):
-        if self.__num_scheduled_scalings > 0:
-            self.__num_scheduled_scalings -= 1
-        else:
-            self.__num_scheduled_scalings += 1
-        self.sender().destroy()
+        p = self.__scene.sceneRect().center()
+        rect = QtCore.QRectF(p.x(), p.y(), 100, 100)
+        r = self.__scene.addRect(rect, pen, brush)
