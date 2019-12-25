@@ -3,11 +3,13 @@ from AScene import AScene
 from ASkin import *
 from ARubberBand import ARubberBand
 
+
 # https://stackoverflow.com/questions/28349676/pyqt4-how-to-correct-qgraphicsitem-position
 
 class AWidget(QtWidgets.QGraphicsView):
     # Rubber band
     rectChanged = QtCore.pyqtSignal(QtCore.QRect)
+
     def __init__(self, parent):
         super(AWidget, self).__init__(parent)
 
@@ -19,7 +21,6 @@ class AWidget(QtWidgets.QGraphicsView):
         self.__scene = AScene(self)
         self.__scene.setSceneRect(QtCore.QRectF(0, 0, 2500, 2000))
         self.setScene(self.__scene)
-
 
         # Setting up all the parameters regards QGraphicsView
         self.setTransformationAnchor(QtWidgets.QGraphicsView.AnchorUnderMouse)
@@ -34,15 +35,8 @@ class AWidget(QtWidgets.QGraphicsView):
         # Active AntiAliasing
         self.setRenderHint(QtGui.QPainter.Antialiasing, True)
 
-        # Rubber Band is redesigned to draw with left mouse button
-        self.__rubber_band = QtWidgets.QRubberBand(QtWidgets.QRubberBand.Rectangle, self)
-        rubber_band_palette = QtGui.QPalette()
-        rubber_band_brush = QtGui.QBrush(ASkin.color(ARole.RUBBER_BAND))
-        rubber_band_palette.setBrush(QtGui.QPalette.Highlight, rubber_band_brush)
-        self.__rubber_band.setPalette(rubber_band_palette)
-        self.origin = QtCore.QPoint()
-        self.changeRubberBand = False
-
+        # Init RubberBand
+        self.__rubber_band = ARubberBand(self, ASkin.color(ARole.RUBBER_BAND))
 
         # Selected item group
         empty_list = list()
@@ -57,13 +51,13 @@ class AWidget(QtWidgets.QGraphicsView):
 
     # Zoom property
     # (this property is provided for the time that it is needed to access from th outside of the class)
-    @property
-    def zoom(self):
-        return self.__zoom
-
-    @zoom.setter
-    def zoom(self, zoom):
-        self.__zoom = zoom
+    # @property
+    # def zoom(self):
+    #     return self.__zoom
+    #
+    # @zoom.setter
+    # def zoom(self, zoom):
+    #     self.__zoom = zoom
 
     def drawForeground(self, painter: QtGui.QPainter, rect: QtCore.QRectF):
         super(AWidget, self).drawForeground(painter, rect)
@@ -71,7 +65,6 @@ class AWidget(QtWidgets.QGraphicsView):
     # This function is called every time the window size changed
     def resizeEvent(self, event: QtGui.QResizeEvent):
         self.updateSceneRect(QtCore.QRectF(0, 0, 2500, 2000))
-
 
     def render_grid(self):
 
@@ -102,32 +95,20 @@ class AWidget(QtWidgets.QGraphicsView):
 
     # Mouse Press Event
     def mousePressEvent(self, event: QtGui.QMouseEvent):
-        if event.button() == QtCore.Qt.LeftButton:
-            p =self.mapToScene(QtCore.QPoint(event.x(),event.y()))
-            print(str(p.x())+" "+str(p.y()))
-
-            # Rubber band
-            self.setDragMode(False)
-            self.origin = event.pos()
-            self.__rubber_band.setGeometry(QtCore.QRect(self.origin, QtCore.QSize()))
-
-            self.__rubber_band.show()
-            self.rectChanged.emit(self.__rubber_band.geometry())
-            self.changeRubberBand = True
-
         super(AWidget, self).mousePressEvent(event)
+        self.__rubber_band.mouse_press_event(event)
+        if event.button() == QtCore.Qt.LeftButton:
+            p = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
+            print(str(p.x()) + " " + str(p.y()))
 
     def mouseReleaseEvent(self, event: QtGui.QMouseEvent):
+        super(AWidget, self).mouseReleaseEvent(event)
+        self.__rubber_band.mouse_release_event(event)
 
-        if event.button() == QtCore.Qt.LeftButton:
-            # Rubber band
-            self.__rubber_band.hide()
     def mouseMoveEvent(self, event: QtGui.QMouseEvent):
-        # Rubber band
-        if self.changeRubberBand:
-            self.__rubber_band.setGeometry(QtCore.QRect(self.origin, event.pos()).normalized())
-            self.rectChanged.emit(self.__rubber_band.geometry())
-            QtWidgets.QGraphicsView.mouseMoveEvent(self, event)
+        super(AWidget, self).mouseMoveEvent(event)
+        self.__rubber_band.mouse_move_event(event)
+
     # Zooming V0.1
     def fitInView(self, scale=True):
         rect = QtCore.QRectF(0, 0, 2500, 2000)
@@ -161,11 +142,11 @@ class AWidget(QtWidgets.QGraphicsView):
     ################################################
     def wheelEvent(self, event):
         if event.angleDelta().y() > 0:
-            self.factor = 1.25
+            self.factor = 1.15
             self.__zoom += 1
 
         else:
-            self.factor = 0.80
+            self.factor = 0.90
             self.__zoom -= 1
 
         if self.__zoom > 0:
