@@ -1,11 +1,13 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from AScene import AScene
 from ASkin import *
-
+from ARubberBand import ARubberBand
 
 # https://stackoverflow.com/questions/28349676/pyqt4-how-to-correct-qgraphicsitem-position
 
 class AWidget(QtWidgets.QGraphicsView):
+    # Rubber band
+    rectChanged = QtCore.pyqtSignal(QtCore.QRect)
     def __init__(self, parent):
         super(AWidget, self).__init__(parent)
 
@@ -32,12 +34,15 @@ class AWidget(QtWidgets.QGraphicsView):
         # Active AntiAliasing
         self.setRenderHint(QtGui.QPainter.Antialiasing, True)
 
-        # Rubber Band is redesigned to draw left mouse button
+        # Rubber Band is redesigned to draw with left mouse button
         self.__rubber_band = QtWidgets.QRubberBand(QtWidgets.QRubberBand.Rectangle, self)
         rubber_band_palette = QtGui.QPalette()
         rubber_band_brush = QtGui.QBrush(ASkin.color(ARole.RUBBER_BAND))
         rubber_band_palette.setBrush(QtGui.QPalette.Highlight, rubber_band_brush)
         self.__rubber_band.setPalette(rubber_band_palette)
+        self.origin = QtCore.QPoint()
+        self.changeRubberBand = False
+
 
         # Selected item group
         empty_list = list()
@@ -100,8 +105,29 @@ class AWidget(QtWidgets.QGraphicsView):
         if event.button() == QtCore.Qt.LeftButton:
             p =self.mapToScene(QtCore.QPoint(event.x(),event.y()))
             print(str(p.x())+" "+str(p.y()))
+
+            # Rubber band
+            self.setDragMode(False)
+            self.origin = event.pos()
+            self.__rubber_band.setGeometry(QtCore.QRect(self.origin, QtCore.QSize()))
+
+            self.__rubber_band.show()
+            self.rectChanged.emit(self.__rubber_band.geometry())
+            self.changeRubberBand = True
+
         super(AWidget, self).mousePressEvent(event)
 
+    def mouseReleaseEvent(self, event: QtGui.QMouseEvent):
+
+        if event.button() == QtCore.Qt.LeftButton:
+            # Rubber band
+            self.__rubber_band.hide()
+    def mouseMoveEvent(self, event: QtGui.QMouseEvent):
+        # Rubber band
+        if self.changeRubberBand:
+            self.__rubber_band.setGeometry(QtCore.QRect(self.origin, event.pos()).normalized())
+            self.rectChanged.emit(self.__rubber_band.geometry())
+            QtWidgets.QGraphicsView.mouseMoveEvent(self, event)
     # Zooming V0.1
     def fitInView(self, scale=True):
         rect = QtCore.QRectF(0, 0, 2500, 2000)
