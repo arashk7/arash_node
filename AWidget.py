@@ -9,6 +9,9 @@ from ARubberBand import ARubberBand
 class AWidget(QtWidgets.QGraphicsView):
     # Rubber band
     rectChanged = QtCore.pyqtSignal(QtCore.QRect)
+    mouse_press_event = QtCore.pyqtSignal(QtGui.QMouseEvent)
+    mouse_move_event = QtCore.pyqtSignal(QtGui.QMouseEvent)
+    mouse_release_event = QtCore.pyqtSignal(QtGui.QMouseEvent)
 
     def __init__(self, parent):
         super(AWidget, self).__init__(parent)
@@ -37,6 +40,10 @@ class AWidget(QtWidgets.QGraphicsView):
 
         # Init RubberBand
         self.__rubber_band = ARubberBand(self, ASkin.color(ARole.RUBBER_BAND))
+        # Connect all the mouse event to rubber band
+        self.mouse_press_event.connect(self.__rubber_band.mouse_press_event)
+        self.mouse_move_event.connect(self.__rubber_band.mouse_move_event)
+        self.mouse_release_event.connect(self.__rubber_band.mouse_release_event)
 
         # Selected item group
         empty_list = list()
@@ -96,18 +103,19 @@ class AWidget(QtWidgets.QGraphicsView):
     # Mouse Press Event
     def mousePressEvent(self, event: QtGui.QMouseEvent):
         super(AWidget, self).mousePressEvent(event)
-        self.__rubber_band.mouse_press_event(event)
+        self.mouse_press_event.emit(event)
+
         if event.button() == QtCore.Qt.LeftButton:
             p = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
             print(str(p.x()) + " " + str(p.y()))
 
     def mouseReleaseEvent(self, event: QtGui.QMouseEvent):
         super(AWidget, self).mouseReleaseEvent(event)
-        self.__rubber_band.mouse_release_event(event)
+        self.mouse_release_event.emit(event)
 
     def mouseMoveEvent(self, event: QtGui.QMouseEvent):
         super(AWidget, self).mouseMoveEvent(event)
-        self.__rubber_band.mouse_move_event(event)
+        self.mouse_move_event.emit(event)
 
     # Zooming V0.1
     def fitInView(self, scale=True):

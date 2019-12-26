@@ -7,37 +7,37 @@ from ASkin import *
 class ARubberBand:
     def __init__(self, widget_parent, color):
         self.__rubber_band = QtWidgets.QRubberBand(QtWidgets.QRubberBand.Rectangle, widget_parent)
-        self.parent = widget_parent
+        self.__parent = widget_parent
         # Initialize palette
         rubber_band_palette = QtGui.QPalette()
         rubber_band_brush = QtGui.QBrush(color)
         rubber_band_palette.setBrush(QtGui.QPalette.Highlight, rubber_band_brush)
         self.__rubber_band.setPalette(rubber_band_palette)
         # Store the drag position
-        self.origin = QtCore.QPoint()
+        self.__origin = QtCore.QPoint()
         # It will be True if we drag the mouse
-        self.changeRubberBand = False
+        self.__change_rubber_band = False
 
     def mouse_press_event(self, event: QtGui.QMouseEvent):
         if event.button() == QtCore.Qt.LeftButton:
             # Record the drag position
-            self.origin = event.pos()
-            self.__rubber_band.setGeometry(QtCore.QRect(self.origin, QtCore.QSize()))
+            self.__origin = event.pos()
+            self.__rubber_band.setGeometry(QtCore.QRect(self.__origin, QtCore.QSize()))
             self.__rubber_band.show()
 
             # Emit the rectangle in AWidget
-            self.parent.rectChanged.emit(self.__rubber_band.geometry())
+            self.__parent.rectChanged.emit(self.__rubber_band.geometry())
 
-            self.changeRubberBand = True
+            self.__change_rubber_band = True
 
     def mouse_release_event(self, event: QtGui.QMouseEvent):
         if event.button() == QtCore.Qt.LeftButton:
             self.__rubber_band.hide()
 
     def mouse_move_event(self, event: QtGui.QMouseEvent):
-        if self.changeRubberBand:
-            self.__rubber_band.setGeometry(QtCore.QRect(self.origin, event.pos()).normalized())
+        if self.__change_rubber_band:
+            self.__rubber_band.setGeometry(QtCore.QRect(self.__origin, event.pos()).normalized())
 
             # Emit the new rubber rectangle to AWidget
-            self.parent.rectChanged.emit(self.__rubber_band.geometry())
-            QtWidgets.QGraphicsView.mouseMoveEvent(self.parent, event)
+            self.__parent.rectChanged.emit(self.__rubber_band.geometry())
+            QtWidgets.QGraphicsView.mouseMoveEvent(self.__parent, event)
