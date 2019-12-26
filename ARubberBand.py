@@ -18,17 +18,24 @@ class ARubberBand:
         # It will be True if we drag the mouse
         self.__change_rubber_band = False
 
-    def mouse_press_event(self, event: QtGui.QMouseEvent):
+    def mouse_press_event(self, widget: QtWidgets.QGraphicsView, event: QtGui.QMouseEvent):
         if event.button() == QtCore.Qt.LeftButton:
-            # Record the drag position
-            self.__origin = event.pos()
-            self.__rubber_band.setGeometry(QtCore.QRect(self.__origin, QtCore.QSize()))
-            self.__rubber_band.show()
+            node = widget.itemAt(event.pos())
+            if not node or node.data(0) == 'grid':
 
-            # Emit the rectangle in AWidget
-            self.__parent.rectChanged.emit(self.__rubber_band.geometry())
+                # Record the drag position
+                self.__origin = event.pos()
+                self.__rubber_band.setGeometry(QtCore.QRect(self.__origin, QtCore.QSize()))
+                self.__rubber_band.show()
 
-            self.__change_rubber_band = True
+                # Emit the rectangle in AWidget
+                self.__parent.rectChanged.emit(self.__rubber_band.geometry())
+
+                self.__change_rubber_band = True
+            else:
+                self.__change_rubber_band = False
+
+
 
     def mouse_release_event(self, event: QtGui.QMouseEvent):
         if event.button() == QtCore.Qt.LeftButton:

@@ -2,14 +2,16 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from AScene import AScene
 from ASkin import *
 from ARubberBand import ARubberBand
+from ANode import ANode
 
 
 # https://stackoverflow.com/questions/28349676/pyqt4-how-to-correct-qgraphicsitem-position
 
 class AWidget(QtWidgets.QGraphicsView):
-    # Rubber band
+    # Rubber band signal
     rectChanged = QtCore.pyqtSignal(QtCore.QRect)
-    mouse_press_event = QtCore.pyqtSignal(QtGui.QMouseEvent)
+    # Mouse Signals
+    mouse_press_event = QtCore.pyqtSignal(QtWidgets.QGraphicsView, QtGui.QMouseEvent)
     mouse_move_event = QtCore.pyqtSignal(QtGui.QMouseEvent)
     mouse_release_event = QtCore.pyqtSignal(QtGui.QMouseEvent)
 
@@ -37,6 +39,11 @@ class AWidget(QtWidgets.QGraphicsView):
 
         # Active AntiAliasing
         self.setRenderHint(QtGui.QPainter.Antialiasing, True)
+        # shadow
+        shadow = QtWidgets.QGraphicsDropShadowEffect()
+        shadow.setBlurRadius(20)
+        shadow.setOffset(5)
+        self.setGraphicsEffect(shadow)
 
         # Init RubberBand
         self.__rubber_band = ARubberBand(self, ASkin.color(ARole.RUBBER_BAND))
@@ -53,8 +60,14 @@ class AWidget(QtWidgets.QGraphicsView):
         # Zooming variables
         self.__zoom = 1
 
-        self.render_sample_rect()
-        self.render_grid()
+
+        # self.render_sample_rect()
+        p = self.__scene.sceneRect().center()
+        node = ANode(QtCore.QRectF(p.x(), p.y(), 100, 100))
+        self.__scene.addItem(node)
+
+        # Draw grid
+        self.draw_grid()
 
     # Zoom property
     # (this property is provided for the time that it is needed to access from th outside of the class)
@@ -72,9 +85,10 @@ class AWidget(QtWidgets.QGraphicsView):
     # This function is called every time the window size changed
     def resizeEvent(self, event: QtGui.QResizeEvent):
         self.updateSceneRect(QtCore.QRectF(0, 0, 2500, 2000))
-
-    def render_grid(self):
-
+        super(AWidget, self).resizeEvent(event)
+    # The draw function in this app is different from Qt
+    # This draw means darw fixed object on scene (Not a rendering).
+    def draw_grid(self):
         pen = QtGui.QPen(ASkin.color(ARole.GRID))
         width = 2500
         height = 2000
@@ -103,7 +117,7 @@ class AWidget(QtWidgets.QGraphicsView):
     # Mouse Press Event
     def mousePressEvent(self, event: QtGui.QMouseEvent):
         super(AWidget, self).mousePressEvent(event)
-        self.mouse_press_event.emit(event)
+        self.mouse_press_event.emit(self,event)
 
         if event.button() == QtCore.Qt.LeftButton:
             p = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
@@ -118,7 +132,7 @@ class AWidget(QtWidgets.QGraphicsView):
         self.mouse_move_event.emit(event)
 
     # Zooming V0.1
-    def fitInView(self, scale=True):
+    def fit_in_view(self, scale=True):
         rect = QtCore.QRectF(0, 0, 2500, 2000)
 
         # self.updateSceneRect(QtCore.QRectF(0, 0, 2500, 2000))
@@ -149,18 +163,19 @@ class AWidget(QtWidgets.QGraphicsView):
     #         self.scale(factor, factor)
     ################################################
     def wheelEvent(self, event):
+        factor = 1
         if event.angleDelta().y() > 0:
-            self.factor = 1.15
+            factor = 1.15
             self.__zoom += 1
 
         else:
-            self.factor = 0.90
+            factor = 0.90
             self.__zoom -= 1
 
         if self.__zoom > 0:
-            self.scale(self.factor, self.factor)
+            self.scale(factor, factor)
         elif self.__zoom == 0:
-            self.fitInView()
+            self.fit_in_view()
         else:
             self.__zoom = 0
 

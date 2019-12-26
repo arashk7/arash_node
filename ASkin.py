@@ -16,9 +16,10 @@ class AGroup(Enum):
 class ARole(Enum):
     BACKGROUND = 'Background'
     NODE_WND = 'NodeWindow'
-    NODE_WND_CAP = 'NodeWindowCaption'
+    NODE_WND_CAP_BAR = 'NodeWindowCaptionBar'
     GRID = 'Grid'
     RUBBER_BAND = 'RubberBand'
+    SELECT_HIGHLIGHT = 'SelectHighlight'
 
 
 # This class gives us ability to define colors for different roles in different states.
@@ -33,6 +34,9 @@ class ASkin:
         ASkin.set_role_color(ARole.BACKGROUND, AGroup.NORMAL, QtGui.QColor(100, 100, 100))
         ASkin.set_role_color(ARole.GRID, AGroup.NORMAL, QtGui.QColor(70, 70, 70))
         ASkin.set_role_color(ARole.RUBBER_BAND, AGroup.NORMAL, QtGui.QColor(200, 200, 200, 80))
+        ASkin.set_role_color(ARole.SELECT_HIGHLIGHT, AGroup.NORMAL, QtGui.QColor(160, 220, 255, 100))
+        ASkin.set_role_color(ARole.NODE_WND, AGroup.NORMAL, QtGui.QColor(150, 150, 150, 150))
+        ASkin.set_role_color(ARole.NODE_WND_CAP_BAR, AGroup.NORMAL, QtGui.QColor(20, 20, 20, 250))
         ASkin.save_skin()
 
     # Load default skin. generally this function would be called at the first stage of application.
