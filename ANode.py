@@ -16,7 +16,9 @@ class ANode(QtWidgets.QGraphicsItem):
         self.__group = AGroup.NORMAL
 
     def boundingRect(self):
-        return self.__rect
+        # You will be able to edit this rectangle which affect your physical interaction with mouse
+        rect = QtCore.QRectF(self.__rect)
+        return rect
 
     def paint(self, painter: QtGui.QPainter, option: QtWidgets.QStyleOptionGraphicsItem, widget=None):
         x = self.__rect.x()
