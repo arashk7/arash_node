@@ -2,7 +2,7 @@ from ALogger import ALogger
 
 class ABaseNode:
     def __init__(self, node_id):
-        self.__id = node_id
+        self._id = node_id
         self.__title = node_id
         self.__category = 'none'
         self.__params_in = {}

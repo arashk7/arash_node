@@ -1,4 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+import math
 from AScene import AScene
 from ASkin import *
 from ARubberBand import ARubberBand
@@ -39,6 +40,7 @@ class AWidget(QtWidgets.QGraphicsView):
 
         # Active AntiAliasing
         self.setRenderHint(QtGui.QPainter.Antialiasing, True)
+
         # shadow
         shadow = QtWidgets.QGraphicsDropShadowEffect()
         shadow.setBlurRadius(20)
@@ -60,11 +62,19 @@ class AWidget(QtWidgets.QGraphicsView):
         # Zooming variables
         self.__zoom = 1
 
+        self.__press_node = None
+        self.__press_point = None
 
         # self.render_sample_rect()
         p = self.__scene.sceneRect().center()
-        node = ANode(QtCore.QRectF(p.x(), p.y(), 100, 100))
+        node = ANode('node_1', QtCore.QRectF(p.x(), p.y(), 100, 100))
         self.__scene.addItem(node)
+        # i= self.__scene.items()
+        # for i in self.__scene.items():
+        #     i.setSelected(True)
+
+        # Deselect all the Node items
+        # [i.setSelected(False) for i in self.__scene.items()]
 
         # Draw grid
         self.draw_grid()
@@ -86,6 +96,7 @@ class AWidget(QtWidgets.QGraphicsView):
     def resizeEvent(self, event: QtGui.QResizeEvent):
         self.updateSceneRect(QtCore.QRectF(0, 0, 2500, 2000))
         super(AWidget, self).resizeEvent(event)
+
     # The draw function in this app is different from Qt
     # This draw means darw fixed object on scene (Not a rendering).
     def draw_grid(self):
@@ -114,18 +125,42 @@ class AWidget(QtWidgets.QGraphicsView):
             line.setData(0, 'grid')
             line.setActive(False)
 
+    def distance(self, p1: QtCore.QPointF, p2: QtCore.QPointF):
+        dist = math.hypot(p2.x() - p1.x(), p2.y() - p1.y())
+        return dist
+
     # Mouse Press Event
     def mousePressEvent(self, event: QtGui.QMouseEvent):
         super(AWidget, self).mousePressEvent(event)
-        self.mouse_press_event.emit(self,event)
+        self.mouse_press_event.emit(self, event)
 
         if event.button() == QtCore.Qt.LeftButton:
+            self.__press_node = self.itemAt(event.pos())
+            self.__press_point = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
+
             p = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
             print(str(p.x()) + " " + str(p.y()))
 
     def mouseReleaseEvent(self, event: QtGui.QMouseEvent):
         super(AWidget, self).mouseReleaseEvent(event)
         self.mouse_release_event.emit(event)
+
+        if event.button() == QtCore.Qt.LeftButton:
+            release_node = self.itemAt(event.pos())
+            release_point = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
+
+            # If the mouse pressed on grid or any other items means all the Nodes have to be deselected
+            if not self.__press_node or self.__press_node.data(0) == 'grid':
+                if not release_node or release_node.data(0) == 'grid':
+                    # Deselect all the Node items
+                    [i.setSelected(False) for i in self.__scene.items()]
+
+            # If mouse button pressed on a node and release at the same place means the node has to be selected
+            if self.__press_node and self.__press_node.data(0) == 'node':
+                if release_node and release_node.data(0) == 'node':
+                    if self.distance(release_point, self.__press_point) < 2:
+                        # Select all the Node items
+                        [i.setSelected(True) for i in self.__scene.items()]
 
     def mouseMoveEvent(self, event: QtGui.QMouseEvent):
         super(AWidget, self).mouseMoveEvent(event)

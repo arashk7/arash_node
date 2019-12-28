@@ -10,3 +10,5 @@ class AScene(QtWidgets.QGraphicsScene):
         self.update()
         super(AScene, self).drawForeground(painter,rect)
 
+
+

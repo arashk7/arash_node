@@ -1,19 +1,29 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-# from ABaseNode import ABaseNode
+from ABaseNode import ABaseNode
 from ASkin import *
 
 
-class ANode(QtWidgets.QGraphicsItem):
+class ANode(QtWidgets.QGraphicsItem, ABaseNode):
+    def __init__(self, node_id, rect: QtCore.QRectF):
+        ABaseNode.__init__(self, node_id)
+        QtWidgets.QGraphicsItem.__init__(self, node_id=node_id)
 
-    def __init__(self, rect: QtCore.QRectF):
-        super(ANode, self).__init__()
+        self.id = node_id
         self.__rect = rect
         self.setData(0, 'node')
         self.__selected = True
+
         # Node Setting
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable)
         self.setZValue(1)
         self.__group = AGroup.NORMAL
+
+    def setSelected(self,selected):
+        self.__selected=selected
+        super(ANode,self).setSelected(selected)
+
+    def isSelected(self):
+        return self.__selected
 
     def boundingRect(self):
         # You will be able to edit this rectangle which affect your physical interaction with mouse
