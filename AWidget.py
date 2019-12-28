@@ -69,6 +69,8 @@ class AWidget(QtWidgets.QGraphicsView):
         p = self.__scene.sceneRect().center()
         node = ANode('node_1', QtCore.QRectF(p.x(), p.y(), 100, 100))
         self.__scene.addItem(node)
+        node = ANode('node_2', QtCore.QRectF(p.x()+200, p.y(), 100, 100))
+        self.__scene.addItem(node)
         # i= self.__scene.items()
         # for i in self.__scene.items():
         #     i.setSelected(True)
@@ -110,6 +112,7 @@ class AWidget(QtWidgets.QGraphicsView):
             else:
                 pen.setWidth(1)
             line = self.__scene.addLine(i, 0, i, height + 00, pen)
+            line.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable,False)
             line.setZValue(-1)
             line.setData(0, 'grid')
             line.setActive(False)
@@ -121,9 +124,11 @@ class AWidget(QtWidgets.QGraphicsView):
             else:
                 pen.setWidth(1)
             line = self.__scene.addLine(0, i, width + 0, i, pen)
+            line.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable, False)
             line.setZValue(-1)
             line.setData(0, 'grid')
             line.setActive(False)
+
 
     def distance(self, p1: QtCore.QPointF, p2: QtCore.QPointF):
         dist = math.hypot(p2.x() - p1.x(), p2.y() - p1.y())
@@ -139,7 +144,7 @@ class AWidget(QtWidgets.QGraphicsView):
             self.__press_point = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
 
             p = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
-            print(str(p.x()) + " " + str(p.y()))
+            # print(str(p.x()) + " " + str(p.y()))
 
     def mouseReleaseEvent(self, event: QtGui.QMouseEvent):
         super(AWidget, self).mouseReleaseEvent(event)
@@ -149,18 +154,41 @@ class AWidget(QtWidgets.QGraphicsView):
             release_node = self.itemAt(event.pos())
             release_point = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
 
+
             # If the mouse pressed on grid or any other items means all the Nodes have to be deselected
             if not self.__press_node or self.__press_node.data(0) == 'grid':
                 if not release_node or release_node.data(0) == 'grid':
                     # Deselect all the Node items
                     [i.setSelected(False) for i in self.__scene.items()]
 
+
+
             # If mouse button pressed on a node and release at the same place means the node has to be selected
             if self.__press_node and self.__press_node.data(0) == 'node':
                 if release_node and release_node.data(0) == 'node':
-                    if self.distance(release_point, self.__press_point) < 2:
-                        # Select all the Node items
-                        [i.setSelected(True) for i in self.__scene.items()]
+                    if self.__press_node == release_node:
+                        if self.distance(release_point, self.__press_point) < 2:
+                            # Deselect all the Node items
+                            [i.setSelected(False) for i in self.__scene.items()]
+                            release_node.setSelected(True)
+                            return
+                        else:
+                            [i.setSelected(False) for i in self.__scene.items()]
+                            return
+
+
+            # RubberBand
+            rubber_rect = self.__rubber_band.get_rect()
+            if rubber_rect.width() > 10:
+                rect = self.mapToScene(rubber_rect)
+                items = self.__scene.items(rect)
+                # [i.setSelected(True) for i in items]
+                for i in items:
+                    if i.data(0) == 'node':
+                        i.setSelected(True)
+
+                return
+                        # self.__selected_item_group.addToGroup(i)
 
     def mouseMoveEvent(self, event: QtGui.QMouseEvent):
         super(AWidget, self).mouseMoveEvent(event)

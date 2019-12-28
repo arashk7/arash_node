@@ -18,6 +18,8 @@ class ARubberBand:
         # It will be True if we drag the mouse
         self.__change_rubber_band = False
 
+    def get_rect(self):
+        return self.__rubber_band.geometry()
     def mouse_press_event(self, widget: QtWidgets.QGraphicsView, event: QtGui.QMouseEvent):
         if event.button() == QtCore.Qt.LeftButton:
             node = widget.itemAt(event.pos())

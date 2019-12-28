@@ -15,6 +15,8 @@ class ANode(QtWidgets.QGraphicsItem, ABaseNode):
 
         # Node Setting
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable)
+        self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable)
+
         self.setZValue(1)
         self.__group = AGroup.NORMAL
 
@@ -22,8 +24,10 @@ class ANode(QtWidgets.QGraphicsItem, ABaseNode):
         self.__selected=selected
         super(ANode,self).setSelected(selected)
 
+
     def isSelected(self):
         return self.__selected
+
 
     def boundingRect(self):
         # You will be able to edit this rectangle which affect your physical interaction with mouse
