@@ -3,12 +3,14 @@ import math
 from AScene import AScene
 from ASkin import *
 from ARubberBand import ARubberBand
-from ANode import ANode
+from ANodeGUI import ANodeGUI
+from AGraphNode import AGraphNode
+from AGraph import AGraph
 
 
 # https://stackoverflow.com/questions/28349676/pyqt4-how-to-correct-qgraphicsitem-position
 
-class AWidget(QtWidgets.QGraphicsView):
+class AWidget(QtWidgets.QGraphicsView, AGraph):
     # Rubber band signal
     rectChanged = QtCore.pyqtSignal(QtCore.QRect)
     # Mouse Signals
@@ -16,8 +18,10 @@ class AWidget(QtWidgets.QGraphicsView):
     mouse_move_event = QtCore.pyqtSignal(QtGui.QMouseEvent)
     mouse_release_event = QtCore.pyqtSignal(QtGui.QMouseEvent)
 
-    def __init__(self, parent):
-        super(AWidget, self).__init__(parent)
+    def __init__(self, parent, graph_id):
+        # super(AWidget, self).__init__(parent)
+        AGraph.__init__(self, graph_id=graph_id)
+        QtWidgets.QGraphicsView.__init__(self, graph_id=graph_id)
 
         # Default skin has to be loaded here
         # But since this program is under development, we consider to just initialize the skin and save it as default
@@ -61,10 +65,16 @@ class AWidget(QtWidgets.QGraphicsView):
 
         # self.render_sample_rect()
         p = self.__scene.sceneRect().center()
-        node = ANode('node_1', QtCore.QRectF(p.x(), p.y(), 100, 100))
-        self.__scene.addItem(node)
-        node = ANode('node_2', QtCore.QRectF(p.x() + 200, p.y(), 100, 100))
-        self.__scene.addItem(node)
+
+        self.add_node('node_1',p.x(), p.y())
+        self.add_node('node_2', p.x()+200, p.y())
+        for n in self.nodes.values():
+            self.__scene.addItem(n)
+        # [self.__scene.addItem(i) for i in self.nodes]
+        # node = ANode('node_1', QtCore.QRectF(p.x(), p.y(), 100, 100))
+        # self.__scene.addItem(node)
+        # node = ANode('node_1', QtCore.QRectF(p.x() + 200, p.y(), 100, 100))
+        # self.__scene.addItem(node)
         # i= self.__scene.items()
         # for i in self.__scene.items():
         #     i.setSelected(True)

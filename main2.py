@@ -7,7 +7,7 @@ class Window(QtWidgets.QWidget):
         super(Window, self).__init__()
 
         # Instantiate AWidget
-        self.awidget = AWidget(self)
+        self.awidget = AWidget(self,graph_id='graph_1')
         # self.awidget.setDisabled(True)
 
         VBlayout = QtWidgets.QVBoxLayout(self)

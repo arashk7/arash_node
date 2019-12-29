@@ -1,18 +1,17 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from ABaseNode import ABaseNode
+
 from ASkin import *
 
 
-class ANode(QtWidgets.QGraphicsItem, ABaseNode):
-    def __init__(self, node_id, rect: QtCore.QRectF):
-        ABaseNode.__init__(self, node_id)
-        QtWidgets.QGraphicsItem.__init__(self, node_id=node_id)
+class ANodeGUI(QtWidgets.QGraphicsItem):
+    def __init__(self, node_id, x=100,y=100):
+        super(ANodeGUI, self).__init__()
 
         self.id = node_id
         self.caption = node_id
-        self.__rect = rect
+        self.__rect = QtCore.QRectF(x,y,100,100)
         self.setData(0, 'node')
-        self.__selected = True
+        self.__selected = False
 
         # shadow
         shadow = QtWidgets.QGraphicsDropShadowEffect()
@@ -29,7 +28,7 @@ class ANode(QtWidgets.QGraphicsItem, ABaseNode):
 
     def setSelected(self,selected):
         self.__selected=selected
-        super(ANode,self).setSelected(selected)
+        super(ANodeGUI,self).setSelected(selected)
 
 
     def isSelected(self):

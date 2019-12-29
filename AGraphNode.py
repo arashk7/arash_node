@@ -1,9 +1,12 @@
+from PyQt5 import QtCore
 from ALogger import ALogger
+from ANodeGUI import ANodeGUI
 
-class ABaseNode:
-    def __init__(self, node_id):
+
+class AGraphNode:
+    def __init__(self, node_id, x=100, y=100):
         self._id = node_id
-        self.__title = node_id
+        self.__caption = node_id
         self.__category = 'none'
         self.__params_in = {}
         self.__params_out = {}
@@ -13,6 +16,7 @@ class ABaseNode:
         self.__num_params_out_created = 0
         self.num_ports_in_created = 0
         self.num_ports_out_created = 0
+        self.gui = ANodeGUI(node_id=node_id, x=x, y=y)
 
     # Node ID
     @property

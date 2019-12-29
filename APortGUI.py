@@ -4,10 +4,12 @@ from ABasePort import ABasePort
 from ASkin import *
 
 
-class APort(QtWidgets.QGraphicsItem, ABasePort):
+class APortGUI(QtWidgets.QGraphicsItem):
     def __init__(self, port_id):
-        APort.__init__(self, port_id)
+        super(APortGUI, self).__init__()
         self.__id = port_id
+        
+
 
 
 
