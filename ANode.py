@@ -14,6 +14,12 @@ class ANode(QtWidgets.QGraphicsItem, ABaseNode):
         self.setData(0, 'node')
         self.__selected = True
 
+        # shadow
+        shadow = QtWidgets.QGraphicsDropShadowEffect()
+        shadow.setBlurRadius(20)
+        shadow.setOffset(5)
+        self.setGraphicsEffect(shadow)
+
         # Node Setting
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable)
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable)
