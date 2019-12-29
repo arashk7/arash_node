@@ -17,6 +17,8 @@ class ARole(Enum):
     BACKGROUND = 'Background'
     NODE_WND = 'NodeWindow'
     NODE_WND_CAP_BAR = 'NodeWindowCaptionBar'
+    NODE_WND_CAP_TEXT = 'NodeWindowCaptionText'
+
     GRID = 'Grid'
     RUBBER_BAND = 'RubberBand'
     SELECT_HIGHLIGHT = 'SelectHighlight'
@@ -37,6 +39,8 @@ class ASkin:
         ASkin.set_role_color(ARole.SELECT_HIGHLIGHT, AGroup.NORMAL, QtGui.QColor(160, 220, 255, 100))
         ASkin.set_role_color(ARole.NODE_WND, AGroup.NORMAL, QtGui.QColor(150, 150, 150, 150))
         ASkin.set_role_color(ARole.NODE_WND_CAP_BAR, AGroup.NORMAL, QtGui.QColor(20, 20, 20, 250))
+        ASkin.set_role_color(ARole.NODE_WND_CAP_TEXT, AGroup.NORMAL, QtGui.QColor(200, 200, 200, 200))
+
         ASkin.save_skin()
 
     # Load default skin. generally this function would be called at the first stage of application.

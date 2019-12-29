@@ -9,6 +9,7 @@ class ANode(QtWidgets.QGraphicsItem, ABaseNode):
         QtWidgets.QGraphicsItem.__init__(self, node_id=node_id)
 
         self.id = node_id
+        self.caption = node_id
         self.__rect = rect
         self.setData(0, 'node')
         self.__selected = True
@@ -74,18 +75,16 @@ class ANode(QtWidgets.QGraphicsItem, ABaseNode):
         painter.setPen(pen)
         painter.setBrush(brush)
         painter.drawPath(path)
-        # pathb = self.scene.addPath(path, pen, brush)
-        # pathb.setParentItem(path1)
-        #
-        # # add caption text
-        # path = QPainterPath()
-        # color = QColor(200, 200, 200, 200)
-        # brush = QBrush(color)
-        # pen = QPen(color)
-        # pen.setWidth(0)
-        # font = QFont("arial", 7)
-        # path.addText(x + w / 2 - (len(self.caption) * 4), y + 12, font, str(self.caption))
-        # painter.setFont(font)
-        # painter.setPen(pen)
-        # painter.setBrush(brush)
-        # painter.drawPath(path)
+
+        # add caption text
+        path = QtGui.QPainterPath()
+        color = ASkin.color(ARole.NODE_WND_CAP_TEXT)
+        brush = QtGui.QBrush(color)
+        pen = QtGui.QPen(color)
+        pen.setWidth(0)
+        font = QtGui.QFont("arial", 7)
+        path.addText(x + 5, y + 15, font, str(self.caption))
+        painter.setFont(font)
+        painter.setPen(pen)
+        painter.setBrush(brush)
+        painter.drawPath(path)
