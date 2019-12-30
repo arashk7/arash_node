@@ -3,6 +3,7 @@ import math
 from AScene import AScene
 from ASkin import *
 from ARubberBand import ARubberBand
+from APortGUI import APortGUI
 from ANodeGUI import ANodeGUI
 from AGraphNode import AGraphNode
 from AGraph import AGraph
@@ -68,8 +69,15 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
         self.add_node('node_1',p.x(), p.y())
         self.add_node('node_2', p.x()+200, p.y())
+        self.add_port_in('node_1')
+
         for n in self.nodes.values():
-            self.__scene.addItem(n)
+            self.__scene.addItem(n.gui)
+            for p_in in n.ports_in.values():
+                self.__scene.addItem(p_in.gui)
+
+        # p = APortGUI('asd',100,100)
+        # self.__scene.addItem(p)
         # [self.__scene.addItem(i) for i in self.nodes]
         # node = ANode('node_1', QtCore.QRectF(p.x(), p.y(), 100, 100))
         # self.__scene.addItem(node)

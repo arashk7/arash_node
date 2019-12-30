@@ -1,19 +1,19 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from AGraphPort import AGraphPort
 from ASkin import *
 
 
 class ANodeGUI(QtWidgets.QGraphicsItem):
-    def __init__(self, node_id, x=100,y=100):
+    def __init__(self, graph_node, x=100, y=100):
         super(ANodeGUI, self).__init__()
 
-        self.id = node_id
-        self.caption = node_id
-        self.__rect = QtCore.QRectF(x,y,100,100)
+        self.id = graph_node.node_id
+        self.caption = graph_node.node_id
+        self.__rect = QtCore.QRectF(x, y, 100, 100)
         self.setData(0, 'node')
         self.__selected = False
 
-        # shadow
+        # Shadow Effect
         shadow = QtWidgets.QGraphicsDropShadowEffect()
         shadow.setBlurRadius(20)
         shadow.setOffset(5)
@@ -26,14 +26,30 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
         self.setZValue(1)
         self.__group = AGroup.NORMAL
 
-    def setSelected(self,selected):
-        self.__selected=selected
-        super(ANodeGUI,self).setSelected(selected)
+        step = self.__rect.width() / (len(graph_node.ports_in) + 1)
+        i = 1
+        for port in graph_node.ports_in:
+            port.gui.x = self.rect.x() + (step * i)
+            port.gui.y = self.rect.y()
+            i += 1
+        # for i in range(1, len(graph_node.ports_in) + 1):
+        #     port = AGraphPort()
+        #     anchor = AAnchor(scene=scene, parent=self, x=self.rect.x() + (step * i) - 3.5, y=self.rect.y() - 6,
+        #                      anchorType=AnchorType.INPUT)
+        #     self.inputAnchors.append(anchor)
+        #
+        # step = self.rect.width() / (len(self.nn_params_out) + 1)
+        # for i in range(1, len(self.nn_params_out) + 1):
+        #     anchor = AAnchor(scene=scene, parent=self, x=self.rect.x() + (step * i) - 3.5, y=y + self.rect.height() - 2,
+        #                      anchorType=AnchorType.OUTPUT)  # (len(node.properties_in) * anchorSize)
+        #     self.outputAnchors.append(anchor)
 
+    def setSelected(self, selected):
+        self.__selected = selected
+        super(ANodeGUI, self).setSelected(selected)
 
     def isSelected(self):
         return self.__selected
-
 
     def boundingRect(self):
         # You will be able to edit this rectangle which affect your physical interaction with mouse

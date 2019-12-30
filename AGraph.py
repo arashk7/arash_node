@@ -11,7 +11,11 @@ class AGraph:
     def __init__(self, graph_id):
         self.graph_id = graph_id
         self.nodes = {}
+        self.ports_in = {}
+        self.ports_out = {}
         self.__num_nodes_created = 0
+        self.__num_ports_in_created = 0
+        self.__num_ports_out_created = 0
         self.__num_nodes_active = 0
 
     # Add Node to the Graph
@@ -31,7 +35,7 @@ class AGraph:
                 i += 1
         # Instantiate new Node object
         node = AGraphNode(node_id, x, y)
-        self.nodes[node_id] = node.gui
+        self.nodes[node_id] = node
         self.__num_nodes_created += 1
 
     # Remove Node
@@ -53,14 +57,17 @@ class AGraph:
 
         # If user does not give the ID parameter, it will be generated ny random number
         if port_id is None:
+            i = 0
             while True:
-                port_id = 'port_' + str(randint(1, 10000))
+                port_id = 'port_' + str(self.__num_ports_in_created + i)
                 if port_id not in self.nodes[node_id].ports_in:
                     break
+                i += 1
 
         # Instantiate new Port object
-        p_in = AGraphPort(port_id)
+        p_in = AGraphPort(port_id,self.nodes[node_id])
         self.nodes[node_id].ports_in[port_id] = p_in
+
 
     # Remove Input Port
     def remove_port_in(self, node_id, port_id):
