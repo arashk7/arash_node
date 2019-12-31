@@ -9,9 +9,10 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
 
         self.id = graph_node.node_id
         self.caption = graph_node.node_id
-        self.__rect = QtCore.QRectF(x, y, 100, 100)
+        self.__rect = QtCore.QRectF(x, y, 100, 50)
         self.setData(0, 'node')
         self.__selected = False
+        self.graph_node = graph_node
 
         # Shadow Effect
         shadow = QtWidgets.QGraphicsDropShadowEffect()
@@ -26,12 +27,11 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
         self.setZValue(1)
         self.__group = AGroup.NORMAL
 
-        step = self.__rect.width() / (len(graph_node.ports_in) + 1)
-        i = 1
-        for port in graph_node.ports_in:
-            port.gui.x = self.rect.x() + (step * i)
-            port.gui.y = self.rect.y()
-            i += 1
+
+        #     port.gui.x = 1000 #+ self.rect.x()
+        # port.gui.y = 0 #self.rect.y()
+        # i += 1
+        # port.gui.update()
         # for i in range(1, len(graph_node.ports_in) + 1):
         #     port = AGraphPort()
         #     anchor = AAnchor(scene=scene, parent=self, x=self.rect.x() + (step * i) - 3.5, y=self.rect.y() - 6,
@@ -43,6 +43,15 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
         #     anchor = AAnchor(scene=scene, parent=self, x=self.rect.x() + (step * i) - 3.5, y=y + self.rect.height() - 2,
         #                      anchorType=AnchorType.OUTPUT)  # (len(node.properties_in) * anchorSize)
         #     self.outputAnchors.append(anchor)
+
+    def init_ports_locations(self):
+        step = self.__rect.width() / (len(self.graph_node.ports_in) + 1)
+        i = 1
+        # graph_node.ports_in[0]
+        for port in self.graph_node.ports_in.values():
+            port.gui.x = (step * i) + self.__rect.x()-10
+            port.gui.y = self.__rect.y()-15
+            i += 1
 
     def setSelected(self, selected):
         self.__selected = selected

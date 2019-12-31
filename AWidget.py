@@ -30,7 +30,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
         self.__zoom = 0
         self.__scene = AScene(self)
-        self.__scene.setSceneRect(QtCore.QRectF(0, 0, 2500, 2000))
+        self.__scene.setSceneRect(QtCore.QRectF(0, 0, 1500, 1000))
         self.setScene(self.__scene)
 
         # Setting up all the parameters regards QGraphicsView
@@ -69,12 +69,16 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
         self.add_node('node_1',p.x(), p.y())
         self.add_node('node_2', p.x()+200, p.y())
-        self.add_port_in('node_1')
+        self.add_port_in('node_1','port1')
+        self.add_port_in('node_1', 'port2')
+        self.add_port_in('node_2', 'port1')
 
         for n in self.nodes.values():
             self.__scene.addItem(n.gui)
+
             for p_in in n.ports_in.values():
                 self.__scene.addItem(p_in.gui)
+            
 
         # p = APortGUI('asd',100,100)
         # self.__scene.addItem(p)

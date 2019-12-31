@@ -67,6 +67,8 @@ class AGraph:
         # Instantiate new Port object
         p_in = AGraphPort(port_id,self.nodes[node_id])
         self.nodes[node_id].ports_in[port_id] = p_in
+        self.nodes[node_id].gui.init_ports_locations()
+        print('port created!')
 
 
     # Remove Input Port

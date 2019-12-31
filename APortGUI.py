@@ -13,7 +13,7 @@ class APortGUI(QtWidgets.QGraphicsItem):
         self.__node_gui = node_gui
         self.x = x
         self.y = y
-        self.__rect = QtCore.QRectF(x, y, 10, 10)
+        self.__rect = QtCore.QRectF(self.x, self.y, 20, 20)
         self.setParentItem(self.__node_gui)
 
 
@@ -24,10 +24,14 @@ class APortGUI(QtWidgets.QGraphicsItem):
     def distance(self, p1: QtCore.QPointF, p2: QtCore.QPointF):
         dist = math.hypot(p2.x() - p1.x(), p2.y() - p1.y())
         return dist
-
+    def set_pos(self,x,y):
+        self.x=x
+        self.y=y
     def paint(self, painter: QtGui.QPainter, style: QtWidgets.QStyleOptionGraphicsItem, widget=None):
-        x = self.__rect.x()
-        y = self.__rect.y()
+        # self.__rect.setX(self.x)
+        # self.__rect.setY(self.y)
+        x = self.x #.__rect.x()
+        y = self.y #__rect.y()
         w = self.__rect.width()
         h = self.__rect.height()
 
