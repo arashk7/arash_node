@@ -6,10 +6,10 @@ from ASkin import *
 class ANodeGUI(QtWidgets.QGraphicsItem):
     def __init__(self, graph_node, x=100, y=100):
         super(ANodeGUI, self).__init__()
-
+        self.pos = QtCore.QPointF(0, 0)
         self.id = graph_node.node_id
         self.caption = graph_node.node_id
-        self.__rect = QtCore.QRectF(x, y, 100, 50)
+        self.__rect = QtCore.QRectF(x, y, 150, 50)
         self.setData(0, 'node')
         self.__selected = False
         self.graph_node = graph_node
@@ -53,6 +53,13 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
             port.gui.y = self.__rect.y()-15
             i += 1
 
+        step = self.__rect.width() / (len(self.graph_node.ports_out) + 1)
+        i=1
+        for port in self.graph_node.ports_out.values():
+            port.gui.x = (step * i) + self.__rect.x()-10
+            port.gui.y = self.__rect.y()+self.__rect.height()-5
+            i += 1
+
     def setSelected(self, selected):
         self.__selected = selected
         super(ANodeGUI, self).setSelected(selected)
@@ -63,6 +70,9 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
     def boundingRect(self):
         # You will be able to edit this rectangle which affect your physical interaction with mouse
         rect = QtCore.QRectF(self.__rect)
+        p = self.scenePos() + self.__rect.center()
+        self.pos.setX(p.x())
+        self.pos.setY(p.y())
         return rect
 
     def paint(self, painter: QtGui.QPainter, option: QtWidgets.QStyleOptionGraphicsItem, widget=None):

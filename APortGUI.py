@@ -1,39 +1,44 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import math
-from qtconsole.qt import QtGui
+# from qtconsole.qt import QtGui
 
 from ASkin import *
 
 
 class APortGUI(QtWidgets.QGraphicsItem):
-    def __init__(self, port_id,node_gui, x=100, y=100):
+    def __init__(self, port_id, node_gui, x=100, y=100):
         super(APortGUI, self).__init__()
         self.__id = port_id
         self.setData(0, 'port')
         self.__node_gui = node_gui
         self.x = x
         self.y = y
-        self.__rect = QtCore.QRectF(self.x, self.y, 20, 20)
+        self.rect = QtCore.QRectF(x, y, 20, 20)
         self.setParentItem(self.__node_gui)
-
+        self.pos = QtCore.QPointF(0, 0)
 
     def boundingRect(self):
-        rect = QtCore.QRectF(self.__rect)
+        rect = QtCore.QRectF(self.rect)
+        p = self.scenePos() + QtCore.QPointF(self.x, self.y) + QtCore.QPointF(rect.width() / 2, rect.height() / 2)
+        self.pos.setX(p.x())
+        self.pos.setY(p.y())
         return rect
 
     def distance(self, p1: QtCore.QPointF, p2: QtCore.QPointF):
         dist = math.hypot(p2.x() - p1.x(), p2.y() - p1.y())
         return dist
-    def set_pos(self,x,y):
-        self.x=x
-        self.y=y
+
+    def set_pos(self, x, y):
+        self.x = x
+        self.y = y
+
     def paint(self, painter: QtGui.QPainter, style: QtWidgets.QStyleOptionGraphicsItem, widget=None):
         # self.__rect.setX(self.x)
         # self.__rect.setY(self.y)
-        x = self.x #.__rect.x()
-        y = self.y #__rect.y()
-        w = self.__rect.width()
-        h = self.__rect.height()
+        x = self.x  # .__rect.x()
+        y = self.y  # __rect.y()
+        w = self.rect.width()
+        h = self.rect.height()
 
         # main rounded rect
         path = QtGui.QPainterPath()

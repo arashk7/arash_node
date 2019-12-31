@@ -11,8 +11,8 @@ class AGraph:
     def __init__(self, graph_id):
         self.graph_id = graph_id
         self.nodes = {}
-        self.ports_in = {}
-        self.ports_out = {}
+        # self.ports_in = {}
+        # self.ports_out = {}
         self.__num_nodes_created = 0
         self.__num_ports_in_created = 0
         self.__num_ports_out_created = 0
@@ -68,7 +68,37 @@ class AGraph:
         p_in = AGraphPort(port_id,self.nodes[node_id])
         self.nodes[node_id].ports_in[port_id] = p_in
         self.nodes[node_id].gui.init_ports_locations()
-        print('port created!')
+        self.__num_ports_in_created+=1
+
+
+    # Add Output Port to the Node
+    def add_port_out(self, node_id, port_id=None):
+        # Check node ID existence
+        if node_id not in self.nodes:
+            ALogger.print_error("The node ID does not exist!")
+            return
+
+        # Port ID has to be exclusive
+        # Check dict to make sure there is no other node with ID
+        if port_id in self.nodes[node_id].ports_out:
+            ALogger.print_error("The node ID is already taken!")
+            return
+
+        # If user does not give the ID parameter, it will be generated ny random number
+        if port_id is None:
+            i = 0
+            while True:
+                port_id = 'port_' + str(self.__num_ports_out_created + i)
+                if port_id not in self.nodes[node_id].ports_out:
+                    break
+                i += 1
+
+        # Instantiate new Port object
+        p_out = AGraphPort(port_id, self.nodes[node_id])
+        self.nodes[node_id].ports_out[port_id] = p_out
+        self.nodes[node_id].gui.init_ports_locations()
+        self.__num_ports_out_created+=1
+
 
 
     # Remove Input Port

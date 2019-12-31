@@ -8,6 +8,8 @@ from ANodeGUI import ANodeGUI
 from AGraphNode import AGraphNode
 from AGraph import AGraph
 
+from ALink import ALink
+
 
 # https://stackoverflow.com/questions/28349676/pyqt4-how-to-correct-qgraphicsitem-position
 
@@ -30,7 +32,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
         self.__zoom = 0
         self.__scene = AScene(self)
-        self.__scene.setSceneRect(QtCore.QRectF(0, 0, 1500, 1000))
+        self.__scene.setSceneRect(QtCore.QRectF(0, 0, 1768, 874))
         self.setScene(self.__scene)
 
         # Setting up all the parameters regards QGraphicsView
@@ -67,19 +69,28 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         # self.render_sample_rect()
         p = self.__scene.sceneRect().center()
 
-        self.add_node('node_1',p.x(), p.y())
-        self.add_node('node_2', p.x()+200, p.y())
-        self.add_port_in('node_1','port1')
+        self.add_node('node_1', p.x(), p.y())
+        self.add_node('node_2', p.x(), p.y())
+        self.add_node('node_3', p.x(), p.y())
+        self.add_node('node_4', p.x(), p.y())
+        self.add_node('node_5', p.x(), p.y())
+        self.add_node('node_6', p.x() + 200, p.y())
+        self.add_port_in('node_1', 'port1')
         self.add_port_in('node_1', 'port2')
+        self.add_port_out('node_1', 'port1')
         self.add_port_in('node_2', 'port1')
+        self.add_port_out('node_2', 'port1')
 
         for n in self.nodes.values():
             self.__scene.addItem(n.gui)
 
             for p_in in n.ports_in.values():
                 self.__scene.addItem(p_in.gui)
-            
+            for p_out in n.ports_out.values():
+                self.__scene.addItem(p_out.gui)
 
+        self.link = ALink(QtCore.QPoint(0, 0), QtCore.QPoint(1, 1))
+        self.__scene.addItem(self.link)
         # p = APortGUI('asd',100,100)
         # self.__scene.addItem(p)
         # [self.__scene.addItem(i) for i in self.nodes]
@@ -109,6 +120,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
     def drawForeground(self, painter: QtGui.QPainter, rect: QtCore.QRectF):
         super(AWidget, self).drawForeground(painter, rect)
+        # self.link.update_line(self.nodes['node_1'].ports_out['port1'].gui,QtCore.QPoint(1000, 1000))
 
     # This function is called every time the window size changed
     def resizeEvent(self, event: QtGui.QResizeEvent):
@@ -119,8 +131,8 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
     # This draw means darw fixed object on scene (Not a rendering).
     def draw_grid(self):
         pen = QtGui.QPen(ASkin.color(ARole.GRID))
-        width = 2500
-        height = 2000
+        width = self.__scene.sceneRect().width()
+        height = self.__scene.sceneRect().height()
         # Draw horizontal lines
         for i in range(0, int(width + 0), 20):
             if i % 100 == 0:
@@ -157,6 +169,8 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         if event.button() == QtCore.Qt.LeftButton:
             self.__press_node = self.itemAt(event.pos())
             self.__press_point = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
+            self.link.show()
+            self.link.start_point = self.__press_point
 
             # p = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
             # print(str(p.x()) + " " + str(p.y()))
@@ -166,6 +180,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         self.mouse_release_event.emit(event)
 
         if event.button() == QtCore.Qt.LeftButton:
+            self.link.hide()
             release_node = self.itemAt(event.pos())
             release_point = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
 
@@ -203,10 +218,13 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
     def mouseMoveEvent(self, event: QtGui.QMouseEvent):
         super(AWidget, self).mouseMoveEvent(event)
         self.mouse_move_event.emit(event)
+        pos = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
+
+        self.link.end_point = pos
 
     # Zooming V0.1
     def fit_in_view(self, scale=True):
-        rect = QtCore.QRectF(0, 0, 2500, 2000)
+        rect = self.sceneRect()
 
         # self.updateSceneRect(QtCore.QRectF(0, 0, 2500, 2000))
         self.setSceneRect(rect)
@@ -236,7 +254,6 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
     #         self.scale(factor, factor)
     ################################################
     def wheelEvent(self, event):
-        factor = 1
         if event.angleDelta().y() > 0:
             factor = 1.15
             self.__zoom += 1
