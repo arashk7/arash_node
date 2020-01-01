@@ -4,7 +4,7 @@ import math
 
 class ALinkGUI(QtWidgets.QGraphicsItem):
     def __init__(self, link_id, start=None, end=None):
-        super().__init__()
+        super(ALinkGUI, self).__init__()
         self.id = link_id
 
         self.setData(0, 'link')
@@ -32,8 +32,8 @@ class ALinkGUI(QtWidgets.QGraphicsItem):
             self.start_point = QtCore.QPointF(self.start.pos.x(), self.start.pos.y())
             self.end_point = end
         elif isinstance(self.start, QtWidgets.QGraphicsItem) and isinstance(self.end, QtWidgets.QGraphicsItem):
-            self.start_point = QtCore.QPointF(self.start.x(), self.start.y())
-            self.end_point = QtCore.QPointF(self.end.x(), self.end.y())
+            self.start_point = QtCore.QPointF(self.start.pos.x(), self.start.pos.y())
+            self.end_point = QtCore.QPointF(self.end.pos.x(), self.end.pos.y())
         else:
             print('error')
 

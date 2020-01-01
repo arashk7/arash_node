@@ -4,16 +4,19 @@ from random import randint
 from AGraphNode import AGraphNode
 
 from AGraphPort import AGraphPort
-from ALogger import ALogger, MsgColors
+from ALogger import ALogger
+from AGraphLink import AGraphLink
 
 
 class AGraph:
     def __init__(self, graph_id):
         self.graph_id = graph_id
         self.nodes = {}
+        self.links = {}
         # self.ports_in = {}
         # self.ports_out = {}
         self.__num_nodes_created = 0
+        self.__num_links_created = 0
         self.__num_ports_in_created = 0
         self.__num_ports_out_created = 0
         self.__num_nodes_active = 0
@@ -55,7 +58,7 @@ class AGraph:
             ALogger.print_error("The node ID is already taken!")
             return
 
-        # If user does not give the ID parameter, it will be generated ny random number
+        # If user does not give the ID parameter, it will be generated
         if port_id is None:
             i = 0
             while True:
@@ -65,11 +68,10 @@ class AGraph:
                 i += 1
 
         # Instantiate new Port object
-        p_in = AGraphPort(port_id,self.nodes[node_id])
+        p_in = AGraphPort(port_id, self.nodes[node_id])
         self.nodes[node_id].ports_in[port_id] = p_in
         self.nodes[node_id].gui.init_ports_locations()
-        self.__num_ports_in_created+=1
-
+        self.__num_ports_in_created += 1
 
     # Add Output Port to the Node
     def add_port_out(self, node_id, port_id=None):
@@ -84,7 +86,7 @@ class AGraph:
             ALogger.print_error("The node ID is already taken!")
             return
 
-        # If user does not give the ID parameter, it will be generated ny random number
+        # If user does not give the ID parameter, it will be generated
         if port_id is None:
             i = 0
             while True:
@@ -97,9 +99,34 @@ class AGraph:
         p_out = AGraphPort(port_id, self.nodes[node_id])
         self.nodes[node_id].ports_out[port_id] = p_out
         self.nodes[node_id].gui.init_ports_locations()
-        self.__num_ports_out_created+=1
+        self.__num_ports_out_created += 1
 
+    # Add Link
+    def add_link(self, node_id_from, port_id_from, node_id_to, port_id_to, link_id=None):
+        # Check source and target nodes availability
+        if node_id_from not in self.nodes or node_id_to not in self.nodes:
+            ALogger.print_error("The node ID does not exist!")
+            return
+        # Check source and target ports availability
+        if port_id_from not in self.nodes[node_id_from].ports_out or \
+                        port_id_to not in self.nodes[node_id_to].ports_in:
+            ALogger.print_error("The port ID does not exist!")
+            return
 
+        # If user does not give the link ID parameter, it will be generated
+        if link_id is None:
+            i = 0
+            while True:
+                link_id = 'link_' + str(self.__num_links_created + i)
+                if link_id not in self.links:
+                    break
+                i += 1
+
+        # Instantiate new link object
+        link = AGraphLink(link_id=link_id, start=self.nodes[node_id_from].ports_out[port_id_from],
+                          end=self.nodes[node_id_to].ports_in[port_id_to])
+        self.links[link_id] = link
+        self.__num_links_created += 1
 
     # Remove Input Port
     def remove_port_in(self, node_id, port_id):

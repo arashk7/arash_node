@@ -79,16 +79,15 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         p = self.__scene.sceneRect().center()
 
         self.add_node('node_1', p.x(), p.y())
-        self.add_node('node_2', p.x(), p.y())
-        self.add_node('node_3', p.x(), p.y())
-        self.add_node('node_4', p.x(), p.y())
-        self.add_node('node_5', p.x(), p.y())
-        self.add_node('node_6', p.x() + 200, p.y())
+        self.add_node('node_2', p.x(), p.y()+300)
+
+        self.add_node('node_3', p.x() + 200, p.y())
         self.add_port_in('node_1', 'port1')
         self.add_port_in('node_1', 'port2')
         self.add_port_out('node_1', 'port1')
         self.add_port_in('node_2', 'port1')
         self.add_port_out('node_2', 'port1')
+        self.add_link('node_1', 'port1', 'node_2', 'port1')
 
         for n in self.nodes.values():
             self.__scene.addItem(n.gui)
@@ -97,9 +96,8 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                 self.__scene.addItem(p_in.gui)
             for p_out in n.ports_out.values():
                 self.__scene.addItem(p_out.gui)
-
-
-
+        for l in self.links.values():
+            self.__scene.addItem(l.gui)
         # p = APortGUI('asd',100,100)
         # self.__scene.addItem(p)
         # [self.__scene.addItem(i) for i in self.nodes]
@@ -129,7 +127,8 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
     def drawForeground(self, painter: QtGui.QPainter, rect: QtCore.QRectF):
         super(AWidget, self).drawForeground(painter, rect)
-        # self.link.update_line(self.nodes['node_1'].ports_out['port1'].gui,QtCore.QPoint(1000, 1000))
+        for l in self.links.values():
+            l.gui.update_line(l.start.gui,l.end.gui)
 
     # This function is called every time the window size changed
     def resizeEvent(self, event: QtGui.QResizeEvent):
@@ -187,7 +186,6 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         super(AWidget, self).mouseReleaseEvent(event)
         self.mouse_release_event.emit(event)
 
-
         if event.button() == QtCore.Qt.LeftButton:
 
             release_node = self.itemAt(event.pos())
@@ -227,7 +225,6 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
     def mouseMoveEvent(self, event: QtGui.QMouseEvent):
         super(AWidget, self).mouseMoveEvent(event)
         self.mouse_move_event.emit(event)
-
 
     # Zooming V0.1
     def fit_in_view(self, scale=True):
