@@ -126,6 +126,8 @@ class AGraph:
         link = AGraphLink(link_id=link_id, start=self.nodes[node_id_from].ports_out[port_id_from],
                           end=self.nodes[node_id_to].ports_in[port_id_to])
         self.links[link_id] = link
+        self.nodes[node_id_from].ports_out[port_id_from].link = link
+        self.nodes[node_id_to].ports_in[port_id_to].link = link
         self.__num_links_created += 1
 
     # Remove Input Port
