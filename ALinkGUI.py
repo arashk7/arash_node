@@ -2,9 +2,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import math
 
 
-class ALink(QtWidgets.QGraphicsItem):
-    def __init__(self, start=None, end=None):
+class ALinkGUI(QtWidgets.QGraphicsItem):
+    def __init__(self, link_id, start=None, end=None):
         super().__init__()
+        self.id = link_id
+
         self.setData(0, 'link')
         self.setZValue(1)
         self.link_type = None

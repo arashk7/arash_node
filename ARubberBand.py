@@ -5,12 +5,12 @@ from ASkin import *
 # Customized RobberBand
 # it is implemented to use skin. In future it is going to have more functionality
 class ARubberBand:
-    def __init__(self, widget_parent, color):
+    def __init__(self, widget_parent):
         self.__rubber_band = QtWidgets.QRubberBand(QtWidgets.QRubberBand.Rectangle, widget_parent)
         self.__parent = widget_parent
         # Initialize palette
         rubber_band_palette = QtGui.QPalette()
-        rubber_band_brush = QtGui.QBrush(color)
+        rubber_band_brush = QtGui.QBrush(ASkin.color(ARole.RUBBER_BAND))
         rubber_band_palette.setBrush(QtGui.QPalette.Highlight, rubber_band_brush)
         self.__rubber_band.setPalette(rubber_band_palette)
         # Store the drag position
@@ -20,6 +20,7 @@ class ARubberBand:
 
     def get_rect(self):
         return self.__rubber_band.geometry()
+
     def mouse_press_event(self, widget: QtWidgets.QGraphicsView, event: QtGui.QMouseEvent):
         if event.button() == QtCore.Qt.LeftButton:
             node = widget.itemAt(event.pos())
@@ -49,4 +50,3 @@ class ARubberBand:
 
             # Emit the new rubber rectangle to AWidget
             self.__parent.rectChanged.emit(self.__rubber_band.geometry())
-            QtWidgets.QGraphicsView.mouseMoveEvent(self.__parent, event)

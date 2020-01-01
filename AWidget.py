@@ -8,7 +8,8 @@ from ANodeGUI import ANodeGUI
 from AGraphNode import AGraphNode
 from AGraph import AGraph
 
-from ALink import ALink
+from ALinkGUI import ALinkGUI
+from ALinkDrawer import ALinkDrawer
 
 
 # https://stackoverflow.com/questions/28349676/pyqt4-how-to-correct-qgraphicsitem-position
@@ -49,11 +50,19 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         self.setRenderHint(QtGui.QPainter.Antialiasing, True)
 
         # Init RubberBand
-        self.__rubber_band = ARubberBand(self, ASkin.color(ARole.RUBBER_BAND))
+        self.__rubber_band = ARubberBand(self)
         # Connect all the mouse event to rubber band
         self.mouse_press_event.connect(self.__rubber_band.mouse_press_event)
         self.mouse_move_event.connect(self.__rubber_band.mouse_move_event)
         self.mouse_release_event.connect(self.__rubber_band.mouse_release_event)
+
+        # Init LinkDrawer
+        self.__link_drawer = ALinkDrawer()
+        self.__scene.addItem(self.__link_drawer.link)
+        # Connect events to LinkDrawer
+        self.mouse_press_event.connect(self.__link_drawer.mouse_press_event)
+        self.mouse_move_event.connect(self.__link_drawer.mouse_move_event)
+        self.mouse_release_event.connect(self.__link_drawer.mouse_release_event)
 
         # Selected item group
         empty_list = list()
@@ -89,8 +98,8 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
             for p_out in n.ports_out.values():
                 self.__scene.addItem(p_out.gui)
 
-        self.link = ALink(QtCore.QPoint(0, 0), QtCore.QPoint(1, 1))
-        self.__scene.addItem(self.link)
+
+
         # p = APortGUI('asd',100,100)
         # self.__scene.addItem(p)
         # [self.__scene.addItem(i) for i in self.nodes]
@@ -169,8 +178,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         if event.button() == QtCore.Qt.LeftButton:
             self.__press_node = self.itemAt(event.pos())
             self.__press_point = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
-            self.link.show()
-            self.link.start_point = self.__press_point
+
 
             # p = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
             # print(str(p.x()) + " " + str(p.y()))
@@ -179,8 +187,9 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         super(AWidget, self).mouseReleaseEvent(event)
         self.mouse_release_event.emit(event)
 
+
         if event.button() == QtCore.Qt.LeftButton:
-            self.link.hide()
+
             release_node = self.itemAt(event.pos())
             release_point = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
 
@@ -218,9 +227,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
     def mouseMoveEvent(self, event: QtGui.QMouseEvent):
         super(AWidget, self).mouseMoveEvent(event)
         self.mouse_move_event.emit(event)
-        pos = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
 
-        self.link.end_point = pos
 
     # Zooming V0.1
     def fit_in_view(self, scale=True):
