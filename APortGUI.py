@@ -1,21 +1,23 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import math
 # from qtconsole.qt import QtGui
+from AUtil import APortType
 
 from ASkin import *
 
 
 class APortGUI(QtWidgets.QGraphicsItem):
-    def __init__(self, port_id, node_gui, x=100, y=100):
+    def __init__(self, port_id, port_type, x=100, y=100):
         super(APortGUI, self).__init__()
         self.port_id = port_id
         self.setData(0, 'port')
-        self.__node_gui = node_gui
+        self.port_type = port_type
+
         self.x = x
         self.y = y
         self.rect = QtCore.QRectF(x, y, 20, 20)
         self.rect_collider = QtCore.QRectF(x, y, 20, 20)
-        self.setParentItem(self.__node_gui)
+        # self.setParentItem(self.__node_gui)
         self.pos = QtCore.QPointF(0, 0)
         self.draw_collider = False
 
@@ -25,13 +27,9 @@ class APortGUI(QtWidgets.QGraphicsItem):
         self.pos.setX(p.x())
         self.pos.setY(p.y())
 
-        self.rect_collider = QtCore.QRectF(self.x , self.y ,
-                                   self.rect.width(), self.rect.height())
+        self.rect_collider = QtCore.QRectF(self.x, self.y,
+                                           self.rect.width(), self.rect.height())
         return self.rect_collider
-
-    def distance(self, p1: QtCore.QPointF, p2: QtCore.QPointF):
-        dist = math.hypot(p2.x() - p1.x(), p2.y() - p1.y())
-        return dist
 
     def set_pos(self, x, y):
         self.x = x

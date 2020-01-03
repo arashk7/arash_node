@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from ALinkGUI import ALinkGUI
 from AGraphPort import AGraphPort
-
+from AUtil import APortType
 
 class ALinkDrawer:
     def __init__(self):
@@ -16,8 +16,8 @@ class ALinkDrawer:
             self.press_node = widget.itemAt(event.pos())
             if self.press_node:
                 if self.press_node.data(0) == 'port':
-                    # if self.press_node.port_type == AGraphPort.PortType.OUTPUT:
-                    print('port')
+                    if self.press_node.port_type == APortType.OUTPUT:
+                        print('port')
             pos = widget.mapToScene(QtCore.QPoint(event.x(), event.y()))
             # self.link.show()
             self.link.start_point = pos

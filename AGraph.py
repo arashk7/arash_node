@@ -6,7 +6,7 @@ from AGraphNode import AGraphNode
 from AGraphPort import AGraphPort
 from ALogger import ALogger
 from AGraphLink import AGraphLink
-
+from AUtil import APortType
 
 class AGraph:
     def __init__(self, graph_id):
@@ -68,7 +68,7 @@ class AGraph:
                 i += 1
 
         # Instantiate new Port object
-        p_in = AGraphPort(port_id, AGraphPort.PortType.INPUT, self.nodes[node_id])
+        p_in = AGraphPort(port_id, APortType.INPUT, self.nodes[node_id])
         self.nodes[node_id].ports_in[port_id] = p_in
         self.nodes[node_id].gui.init_ports_locations()
         self.__num_ports_in_created += 1
@@ -96,7 +96,7 @@ class AGraph:
                 i += 1
 
         # Instantiate new Port object
-        p_out = AGraphPort(port_id, AGraphPort.PortType.OUTPUT, self.nodes[node_id])
+        p_out = AGraphPort(port_id, APortType.OUTPUT, self.nodes[node_id])
         self.nodes[node_id].ports_out[port_id] = p_out
         self.nodes[node_id].gui.init_ports_locations()
         self.__num_ports_out_created += 1
