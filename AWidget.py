@@ -98,16 +98,6 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                 self.__scene.addItem(p_out.gui)
         for l in self.links.values():
             self.__scene.addItem(l.gui)
-        # p = APortGUI('asd',100,100)
-        # self.__scene.addItem(p)
-        # [self.__scene.addItem(i) for i in self.nodes]
-        # node = ANode('node_1', QtCore.QRectF(p.x(), p.y(), 100, 100))
-        # self.__scene.addItem(node)
-        # node = ANode('node_1', QtCore.QRectF(p.x() + 200, p.y(), 100, 100))
-        # self.__scene.addItem(node)
-        # i= self.__scene.items()
-        # for i in self.__scene.items():
-        #     i.setSelected(True)
 
         # Deselect all the Node items
         # [i.setSelected(False) for i in self.__scene.items()]
@@ -178,7 +168,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
             self.__press_node = self.itemAt(event.pos())
             self.__press_point = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
             if self.__press_node and self.__press_node.data(0) == 'port':
-                print('port')
+                # print('port')
                 self.__link_drawer.link.show()
 
             # p = self.mapToScene(QtCore.QPoint(event.x(), event.y()))

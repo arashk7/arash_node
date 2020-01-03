@@ -49,15 +49,15 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
         i = 1
         # graph_node.ports_in[0]
         for port in self.graph_node.ports_in.values():
-            port.gui.x = (step * i) + self.rect.x()-10
-            port.gui.y = self.rect.y()-15
+            port.gui.x=((step * i) + self.rect.x() - 10)
+            port.gui.y=(self.rect.y() - 15)
             i += 1
 
         step = self.rect.width() / (len(self.graph_node.ports_out) + 1)
-        i=1
+        i = 1
         for port in self.graph_node.ports_out.values():
-            port.gui.x = (step * i) + self.rect.x()-10
-            port.gui.y = self.rect.y()+self.rect.height()-5
+            port.gui.x=((step * i) + self.rect.x() - 10)
+            port.gui.y=(self.rect.y() + self.rect.height() - 5)
             i += 1
 
     def setSelected(self, selected):

@@ -8,7 +8,7 @@ from ASkin import *
 class APortGUI(QtWidgets.QGraphicsItem):
     def __init__(self, port_id, node_gui, x=100, y=100):
         super(APortGUI, self).__init__()
-        self.__id = port_id
+        self.port_id = port_id
         self.setData(0, 'port')
         self.__node_gui = node_gui
         self.x = x
