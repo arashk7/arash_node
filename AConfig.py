@@ -1,0 +1,3 @@
+
+class AConfig:
+    pass

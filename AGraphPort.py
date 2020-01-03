@@ -11,6 +11,7 @@ class AGraphPort:
         self.port_type: self.PortType = port_type
         self.gui = APortGUI(port_id=port_id, port_type=port_type)
         self.gui.setParentItem(node.gui)
+        self.gui.node_id = node.node_id
 
     def is_connected(self):
         if self.link:

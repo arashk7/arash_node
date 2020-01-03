@@ -6,7 +6,7 @@ from AGraphNode import AGraphNode
 from AGraphPort import AGraphPort
 from ALogger import ALogger
 from AGraphLink import AGraphLink
-from AUtil import APortType
+from AUtil import APortType,ACache
 
 class AGraph:
     def __init__(self, graph_id):
@@ -40,6 +40,7 @@ class AGraph:
         node = AGraphNode(node_id, x, y)
         self.nodes[node_id] = node
         self.__num_nodes_created += 1
+        return node
 
     # Remove Node
     def remove_node(self, node_id):
@@ -70,8 +71,10 @@ class AGraph:
         # Instantiate new Port object
         p_in = AGraphPort(port_id, APortType.INPUT, self.nodes[node_id])
         self.nodes[node_id].ports_in[port_id] = p_in
+        ACache.input_ports_gui[port_id+'_'+node_id]=p_in.gui
         self.nodes[node_id].gui.init_ports_locations()
         self.__num_ports_in_created += 1
+        return p_in
 
     # Add Output Port to the Node
     def add_port_out(self, node_id, port_id=None):
@@ -98,8 +101,10 @@ class AGraph:
         # Instantiate new Port object
         p_out = AGraphPort(port_id, APortType.OUTPUT, self.nodes[node_id])
         self.nodes[node_id].ports_out[port_id] = p_out
+        ACache.output_ports_gui[port_id + '_' + node_id] = p_out.gui
         self.nodes[node_id].gui.init_ports_locations()
         self.__num_ports_out_created += 1
+        return p_out
 
     # Add Link
     def add_link(self, node_id_from, port_id_from, node_id_to, port_id_to, link_id=None):
@@ -129,6 +134,7 @@ class AGraph:
         self.nodes[node_id_from].ports_out[port_id_from].link = link
         self.nodes[node_id_to].ports_in[port_id_to].link = link
         self.__num_links_created += 1
+        return link
 
     # Remove Input Port
     def remove_port_in(self, node_id, port_id):

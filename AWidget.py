@@ -58,6 +58,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
         # Init LinkDrawer
         self.__link_drawer = ALinkDrawer()
+        self.widget = self
         self.__scene.addItem(self.__link_drawer.link)
         # Connect events to LinkDrawer
         self.mouse_press_event.connect(self.__link_drawer.mouse_press_event)
@@ -82,11 +83,19 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         self.add_node('node_2', p.x(), p.y() + 300)
 
         self.add_node('node_3', p.x() + 200, p.y())
+        self.add_node('node_4', p.x() - 200, p.y())
+        self.add_port_in('node_4', 'port1')
+        self.add_port_out('node_4', 'port1')
+        self.add_node('node_5', p.x() - 200, p.y()-300)
+        self.add_port_in('node_5', 'port1')
+        self.add_port_out('node_5', 'port1')
+
         self.add_port_in('node_1', 'port1')
         self.add_port_in('node_1', 'port2')
         self.add_port_out('node_1', 'port1')
         self.add_port_in('node_2', 'port1')
         self.add_port_out('node_2', 'port1')
+        self.add_port_in('node_3', 'port1')
         self.add_link('node_1', 'port1', 'node_2', 'port1')
 
         for n in self.nodes.values():
@@ -114,7 +123,8 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
     # @zoom.setter
     # def zoom(self, zoom):
     #     self.__zoom = zoom
-
+    def add_to_scene(self,item):
+        self.__scene.addItem(item)
     def drawForeground(self, painter: QtGui.QPainter, rect: QtCore.QRectF):
         super(AWidget, self).drawForeground(painter, rect)
         for l in self.links.values():
@@ -169,7 +179,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
             self.__press_point = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
             if self.__press_node and self.__press_node.data(0) == 'port':
                 # print('port')
-                self.__link_drawer.link.show()
+                pass
 
             # p = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
             # print(str(p.x()) + " " + str(p.y()))

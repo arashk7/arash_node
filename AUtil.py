@@ -7,6 +7,11 @@ class APortType:
     OUTPUT = 1
 
 
+class ACache:
+    input_ports_gui = {}
+    output_ports_gui = {}
+
+
 class AMath:
     @staticmethod
     def distance(p1: QtCore.QPointF, p2: QtCore.QPointF):
