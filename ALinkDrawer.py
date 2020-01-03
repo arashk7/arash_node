@@ -12,7 +12,7 @@ class ALinkDrawer:
         self.widget = widget
         if event.button() == QtCore.Qt.LeftButton:
             pos = widget.mapToScene(QtCore.QPoint(event.x(), event.y()))
-            self.link.show()
+            # self.link.show()
             self.link.start_point = pos
 
 

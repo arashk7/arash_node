@@ -9,7 +9,7 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
         self.pos = QtCore.QPointF(0, 0)
         self.id = graph_node.node_id
         self.caption = graph_node.node_id
-        self.__rect = QtCore.QRectF(x, y, 150, 50)
+        self.rect = QtCore.QRectF(x, y, 150, 50)
         self.setData(0, 'node')
         self.__selected = False
         self.graph_node = graph_node
@@ -45,19 +45,19 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
         #     self.outputAnchors.append(anchor)
 
     def init_ports_locations(self):
-        step = self.__rect.width() / (len(self.graph_node.ports_in) + 1)
+        step = self.rect.width() / (len(self.graph_node.ports_in) + 1)
         i = 1
         # graph_node.ports_in[0]
         for port in self.graph_node.ports_in.values():
-            port.gui.x = (step * i) + self.__rect.x()-10
-            port.gui.y = self.__rect.y()-15
+            port.gui.x = (step * i) + self.rect.x()-10
+            port.gui.y = self.rect.y()-15
             i += 1
 
-        step = self.__rect.width() / (len(self.graph_node.ports_out) + 1)
+        step = self.rect.width() / (len(self.graph_node.ports_out) + 1)
         i=1
         for port in self.graph_node.ports_out.values():
-            port.gui.x = (step * i) + self.__rect.x()-10
-            port.gui.y = self.__rect.y()+self.__rect.height()-5
+            port.gui.x = (step * i) + self.rect.x()-10
+            port.gui.y = self.rect.y()+self.rect.height()-5
             i += 1
 
     def setSelected(self, selected):
@@ -69,18 +69,17 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
 
     def boundingRect(self):
         # You will be able to edit this rectangle which affect your physical interaction with mouse
-        rect = QtCore.QRectF(self.__rect)
-        p = self.scenePos() + self.__rect.center()
+        rect = QtCore.QRectF(self.rect)
+        p = self.scenePos() + self.rect.center()
         self.pos.setX(p.x())
         self.pos.setY(p.y())
         return rect
 
     def paint(self, painter: QtGui.QPainter, option: QtWidgets.QStyleOptionGraphicsItem, widget=None):
-        x = self.__rect.x()
-        y = self.__rect.y()
-        w = self.__rect.width()
-        h = self.__rect.height()
-
+        x = self.rect.x()
+        y = self.rect.y()
+        w = self.rect.width()
+        h = self.rect.height()
         # Highlighting rounded rectangle
         if self.__selected:
             path = QtGui.QPainterPath()

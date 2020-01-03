@@ -79,7 +79,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         p = self.__scene.sceneRect().center()
 
         self.add_node('node_1', p.x(), p.y())
-        self.add_node('node_2', p.x(), p.y()+300)
+        self.add_node('node_2', p.x(), p.y() + 300)
 
         self.add_node('node_3', p.x() + 200, p.y())
         self.add_port_in('node_1', 'port1')
@@ -128,7 +128,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
     def drawForeground(self, painter: QtGui.QPainter, rect: QtCore.QRectF):
         super(AWidget, self).drawForeground(painter, rect)
         for l in self.links.values():
-            l.gui.update_line(l.start.gui,l.end.gui)
+            l.gui.update_line(l.start.gui, l.end.gui)
 
     # This function is called every time the window size changed
     def resizeEvent(self, event: QtGui.QResizeEvent):
@@ -177,7 +177,9 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         if event.button() == QtCore.Qt.LeftButton:
             self.__press_node = self.itemAt(event.pos())
             self.__press_point = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
-
+            if self.__press_node and self.__press_node.data(0) == 'port':
+                print('port')
+                self.__link_drawer.link.show()
 
             # p = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
             # print(str(p.x()) + " " + str(p.y()))

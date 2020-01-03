@@ -14,15 +14,20 @@ class APortGUI(QtWidgets.QGraphicsItem):
         self.x = x
         self.y = y
         self.rect = QtCore.QRectF(x, y, 20, 20)
+        self.rect_collider = QtCore.QRectF(x, y, 20, 20)
         self.setParentItem(self.__node_gui)
         self.pos = QtCore.QPointF(0, 0)
+        self.draw_collider = False
 
     def boundingRect(self):
-        rect = QtCore.QRectF(self.rect)
-        p = self.scenePos() + QtCore.QPointF(self.x, self.y) + QtCore.QPointF(rect.width() / 2, rect.height() / 2)
+        p = self.scenePos() + QtCore.QPointF(self.x, self.y) + QtCore.QPointF(self.rect.width() / 2,
+                                                                              self.rect.height() / 2)
         self.pos.setX(p.x())
         self.pos.setY(p.y())
-        return rect
+
+        self.rect_collider = QtCore.QRectF(self.x , self.y ,
+                                   self.rect.width(), self.rect.height())
+        return self.rect_collider
 
     def distance(self, p1: QtCore.QPointF, p2: QtCore.QPointF):
         dist = math.hypot(p2.x() - p1.x(), p2.y() - p1.y())
@@ -31,6 +36,9 @@ class APortGUI(QtWidgets.QGraphicsItem):
     def set_pos(self, x, y):
         self.x = x
         self.y = y
+
+    def mousePressEvent(self, event: QtWidgets.QGraphicsSceneMouseEvent):
+        pass
 
     def paint(self, painter: QtGui.QPainter, style: QtWidgets.QStyleOptionGraphicsItem, widget=None):
         # self.__rect.setX(self.x)
@@ -51,3 +59,8 @@ class APortGUI(QtWidgets.QGraphicsItem):
         painter.setPen(pen)
         painter.setBrush(brush)
         painter.drawPath(path)
+
+        if self.draw_collider:
+            brush = QtGui.QBrush(QtGui.QColor(250, 250, 250, 50))
+            painter.setBrush(brush)
+            painter.drawRect(self.rect_collider)
