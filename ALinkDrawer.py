@@ -19,7 +19,7 @@ class ALinkDrawer:
             if self.press_port:
                 if self.press_port.data(0) == 'port':
                     if self.press_port.port_type == APortType.OUTPUT:
-                        print('port')
+
                         # pos = widget.mapToScene(QtCore.QPoint(self.press_node.x, self.press_node.y))
                         pos = QtCore.QPoint(self.press_port.pos.x(), self.press_port.pos.y())
                         self.link.show()

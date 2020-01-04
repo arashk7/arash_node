@@ -86,7 +86,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         self.add_node('node_4', p.x() - 200, p.y())
         self.add_port_in('node_4', 'port1')
         self.add_port_out('node_4', 'port1')
-        self.add_node('node_5', p.x() - 200, p.y()-300)
+        self.add_node('node_5', p.x() - 200, p.y() - 300)
         self.add_port_in('node_5', 'port1')
         self.add_port_out('node_5', 'port1')
 
@@ -123,8 +123,9 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
     # @zoom.setter
     # def zoom(self, zoom):
     #     self.__zoom = zoom
-    def add_to_scene(self,item):
+    def add_to_scene(self, item):
         self.__scene.addItem(item)
+
     def drawForeground(self, painter: QtGui.QPainter, rect: QtCore.QRectF):
         super(AWidget, self).drawForeground(painter, rect)
         for l in self.links.values():
@@ -181,8 +182,14 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                 # print('port')
                 pass
 
-            # p = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
-            # print(str(p.x()) + " " + str(p.y()))
+                # p = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
+                # print(str(p.x()) + " " + str(p.y()))
+
+    # def anim_scale(self,value):
+    #     factor = value+0.5
+    #     self.scale(factor,factor)
+    #     print(value)
+    #     pass
 
     def mouseReleaseEvent(self, event: QtGui.QMouseEvent):
         super(AWidget, self).mouseReleaseEvent(event)
@@ -192,6 +199,14 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
             release_node = self.itemAt(event.pos())
             release_point = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
+
+            if self.__press_node and release_node:
+                if self.__press_node == release_node:
+                    pass
+                    # anim = QtCore.QTimeLine(200, self)
+                    # anim.setUpdateInterval(10)
+                    # anim.valueChanged.connect(self.anim_scale)
+                    # anim.start()
 
             # If the mouse pressed on grid or any other items means all the Nodes have to be deselected
             if not self.__press_node or self.__press_node.data(0) == 'grid':
@@ -210,6 +225,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                             [i.update() for i in self.__scene.items()]
                             release_node.setSelected(True)
                             release_node.update()
+                            print('ok')
                             return
 
             # RubberBand
