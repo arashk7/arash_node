@@ -4,7 +4,7 @@ from AUtil import APortType
 
 class AGraphPort:
     def __init__(self, port_id, port_type, node):
-        self.__id = port_id
+        self.port_id = port_id
         self.caption = port_id
         self.__node = node
         self.link = None

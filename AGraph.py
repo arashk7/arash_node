@@ -55,8 +55,8 @@ class AGraph:
 
         # Port ID has to be exclusive
         # Check dict to make sure there is no other node with ID
-        if port_id in self.nodes[node_id].ports_in:
-            ALogger.print_error("The node ID is already taken!")
+        if self.nodes[node_id].is_port_in_exist(port_id=port_id):
+            ALogger.print_error("The port ID is already taken!")
             return
 
         # If user does not give the ID parameter, it will be generated
@@ -70,7 +70,7 @@ class AGraph:
 
         # Instantiate new Port object
         p_in = AGraphPort(port_id, APortType.INPUT, self.nodes[node_id])
-        self.nodes[node_id].ports_in[port_id] = p_in
+        self.nodes[node_id].add_port_in(p_in)
         ACache.input_ports_gui[port_id+'_'+node_id]=p_in.gui
         self.nodes[node_id].gui.init_ports_locations()
         self.__num_ports_in_created += 1
@@ -84,9 +84,9 @@ class AGraph:
             return
 
         # Port ID has to be exclusive
-        # Check dict to make sure there is no other node with ID
-        if port_id in self.nodes[node_id].ports_out:
-            ALogger.print_error("The node ID is already taken!")
+        # Check dict to make sure there is no other port with ID
+        if self.nodes[node_id].is_port_out_exist(port_id=port_id):
+            ALogger.print_error("The port ID is already taken!")
             return
 
         # If user does not give the ID parameter, it will be generated
@@ -100,7 +100,7 @@ class AGraph:
 
         # Instantiate new Port object
         p_out = AGraphPort(port_id, APortType.OUTPUT, self.nodes[node_id])
-        self.nodes[node_id].ports_out[port_id] = p_out
+        self.nodes[node_id].add_port_out(p_out)
         ACache.output_ports_gui[port_id + '_' + node_id] = p_out.gui
         self.nodes[node_id].gui.init_ports_locations()
         self.__num_ports_out_created += 1
