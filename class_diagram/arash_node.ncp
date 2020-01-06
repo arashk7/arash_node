@@ -15,6 +15,19 @@
         <Member type="Property">public string category { get; set; }</Member>
         <Member type="Property">public list_AGraphParam params_in { get; set; }</Member>
         <Member type="Property">public list_AGraphParam params_out { get; set; }</Member>
+        <Member type="Property">public list_AGraphPort ports_in { get; set; }</Member>
+        <Member type="Property">public list_AGraphPort ports_out { get; set; }</Member>
+        <Member type="Property">public ANodeGUI gui { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>AGraphPort</Name>
+        <Access>Public</Access>
+        <Location left="469" top="126" />
+        <Size width="162" height="130" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public string port_id { get; set; }</Member>
+        <Member type="Property">public string caption { get; set; }</Member>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>
