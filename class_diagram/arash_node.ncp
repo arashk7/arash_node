@@ -5,11 +5,16 @@
     <Language>CSharp</Language>
     <Entities>
       <Entity type="Class">
-        <Name>NewClass</Name>
+        <Name>AGraphNode</Name>
         <Access>Public</Access>
-        <Location left="253" top="127" />
+        <Location left="253" top="126" />
         <Size width="162" height="216" />
         <Collapsed>False</Collapsed>
+        <Member type="Property">string node_id { get; set; }</Member>
+        <Member type="Property">public string caption { get; set; }</Member>
+        <Member type="Property">public string category { get; set; }</Member>
+        <Member type="Property">public list_AGraphParam params_in { get; set; }</Member>
+        <Member type="Property">public list_AGraphParam params_out { get; set; }</Member>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>
