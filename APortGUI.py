@@ -19,7 +19,7 @@ class APortGUI(QtWidgets.QGraphicsItem):
         self.rect_collider = QtCore.QRectF(x, y, 20, 20)
         # self.setParentItem(self.__node_gui)
         self.pos = QtCore.QPointF(0, 0)
-        self.draw_collider = True
+        self.draw_collider = False
 
     def boundingRect(self):
         p = self.scenePos() + QtCore.QPointF(self.x, self.y) + QtCore.QPointF(self.rect.width() / 2,

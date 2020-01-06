@@ -11,6 +11,9 @@ class ACache:
     input_ports_gui = {}
     output_ports_gui = {}
 
+    # copied nodes cache
+    agraphnode_list = {}
+
 
 class AMath:
     @staticmethod

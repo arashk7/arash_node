@@ -10,7 +10,7 @@ from AGraph import AGraph
 
 from ALinkGUI import ALinkGUI
 from ALinkDrawer import ALinkDrawer
-
+from AKeyboardEvent import AKeyboardEvent
 
 # https://stackoverflow.com/questions/28349676/pyqt4-how-to-correct-qgraphicsitem-position
 
@@ -21,6 +21,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
     mouse_press_event = QtCore.pyqtSignal(QtWidgets.QGraphicsView, QtGui.QMouseEvent)
     mouse_move_event = QtCore.pyqtSignal(QtGui.QMouseEvent)
     mouse_release_event = QtCore.pyqtSignal(QtGui.QMouseEvent)
+    key_press_event = QtCore.pyqtSignal(QtGui.QKeyEvent)
 
     def __init__(self, parent, graph_id):
         # super(AWidget, self).__init__(parent)
@@ -33,7 +34,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
         self.__zoom = 0
         self.__scene = AScene(self)
-        self.__scene.setSceneRect(QtCore.QRectF(0, 0, 1768, 874))
+        self.__scene.setSceneRect(QtCore.QRectF(0, 0, 2000, 1500))
         self.setScene(self.__scene)
 
         # Setting up all the parameters regards QGraphicsView
@@ -64,6 +65,10 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         self.mouse_press_event.connect(self.__link_drawer.mouse_press_event)
         self.mouse_move_event.connect(self.__link_drawer.mouse_move_event)
         self.mouse_release_event.connect(self.__link_drawer.mouse_release_event)
+
+        # Keyboard event
+        self.__key_event = AKeyboardEvent()
+        self.key_press_event.connect(self.__key_event.key_press_event)
 
         # Selected item group
         empty_list = list()
@@ -125,6 +130,11 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
     #     self.__zoom = zoom
     def add_to_scene(self, item):
         self.__scene.addItem(item)
+
+    def keyPressEvent(self, event):
+        super(AWidget, self).keyPressEvent(event)
+        self.key_press_event.emit(event)
+
 
     def drawForeground(self, painter: QtGui.QPainter, rect: QtCore.QRectF):
         super(AWidget, self).drawForeground(painter, rect)
