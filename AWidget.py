@@ -73,7 +73,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         # Selected item group
         empty_list = list()
         self.__selected_item_group = self.__scene.createItemGroup(empty_list)
-        self.__selected_item_group.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable)
+        # self.__selected_item_group.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable)
 
         # Zooming variables
         self.__zoom = 1
