@@ -1,0 +1,2 @@
+#stop an item from transformation
+node.gui.setFlag(QtWidgets.QGraphicsItem.ItemIgnoresTransformations, True)

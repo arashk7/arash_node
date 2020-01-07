@@ -60,7 +60,6 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         # Init LinkDrawer
         self.__link_drawer = ALinkDrawer()
         self.widget = self
-        self.__scene.addItem(self.__link_drawer.link)
         # Connect events to LinkDrawer
         self.mouse_press_event.connect(self.__link_drawer.mouse_press_event)
         self.mouse_move_event.connect(self.__link_drawer.mouse_move_event)
@@ -84,7 +83,8 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         # self.render_sample_rect()
         p = self.__scene.sceneRect().center()
 
-        self.add_node('node_1', p.x(), p.y())
+        node = self.add_node('node_1', p.x(), p.y())
+
         self.add_node('node_2', p.x(), p.y() + 300)
 
         self.add_node('node_3', p.x() + 200, p.y())
@@ -110,9 +110,9 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                 self.__scene.addItem(p_in.gui)
             for p_out in n.ports_out.values():
                 self.__scene.addItem(p_out.gui)
-        for l in self.links.values():
-            self.__scene.addItem(l.gui)
 
+
+        self.loaded = False
         # Deselect all the Node items
         # [i.setSelected(False) for i in self.__scene.items()]
 
@@ -128,23 +128,48 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
     # @zoom.setter
     # def zoom(self, zoom):
     #     self.__zoom = zoom
+
+
     def add_to_scene(self, item):
         self.__scene.addItem(item)
+
+
+    def onLoad(self):
+        if not self.loaded:
+
+            print('load')
+
+
+            for l in self.links.values():
+                self.__scene.addItem(l.gui)
+            self.__scene.addItem(self.__link_drawer.link)
+
+            self.loaded = True
+
+
 
     def keyPressEvent(self, event):
         super(AWidget, self).keyPressEvent(event)
         self.key_press_event.emit(event)
 
 
+
+
     def drawForeground(self, painter: QtGui.QPainter, rect: QtCore.QRectF):
+
         super(AWidget, self).drawForeground(painter, rect)
+        self.onLoad()
         for l in self.links.values():
             l.gui.update_line(l.start.gui, l.end.gui)
 
+
+
     # This function is called every time the window size changed
     def resizeEvent(self, event: QtGui.QResizeEvent):
-        self.updateSceneRect(QtCore.QRectF(0, 0, 2500, 2000))
+
+        self.updateSceneRect(QtCore.QRectF(0, 0, self.__scene.width(), self.__scene.height()))
         super(AWidget, self).resizeEvent(event)
+
 
     # The draw function in this app is different from Qt
     # This draw means darw fixed object on scene (Not a rendering).
