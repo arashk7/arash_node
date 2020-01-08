@@ -3,7 +3,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class AKeyboardEvent:
     def __init__(self):
-        pass
+        print('init keyboard')
 
     def key_press_event(self, event):
         # if type(event) == QtGui.QKeyEvent:

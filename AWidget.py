@@ -12,6 +12,7 @@ from ALinkGUI import ALinkGUI
 from ALinkDrawer import ALinkDrawer
 from AKeyboardEvent import AKeyboardEvent
 
+
 # https://stackoverflow.com/questions/28349676/pyqt4-how-to-correct-qgraphicsitem-position
 
 class AWidget(QtWidgets.QGraphicsView, AGraph):
@@ -111,13 +112,19 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
             for p_out in n.ports_out.values():
                 self.__scene.addItem(p_out.gui)
 
-
         self.loaded = False
         # Deselect all the Node items
         # [i.setSelected(False) for i in self.__scene.items()]
 
         # Draw grid
         self.draw_grid()
+
+        anim = QtCore.QTimeLine(500, self)
+        anim.setUpdateInterval(1)
+        anim.finished.connect(self.load_links)
+        anim.start()
+
+
 
     # Zoom property
     # (this property is provided for the time that it is needed to access from th outside of the class)
@@ -129,47 +136,39 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
     # def zoom(self, zoom):
     #     self.__zoom = zoom
 
-
     def add_to_scene(self, item):
         self.__scene.addItem(item)
 
-
-    def onLoad(self):
-        if not self.loaded:
-
-            print('load')
-
-
-            for l in self.links.values():
-                self.__scene.addItem(l.gui)
+    def load_drawer_links(self):
+        if self.__link_drawer.link not in self.__scene.items():
             self.__scene.addItem(self.__link_drawer.link)
+            print('load drawer')
 
-            self.loaded = True
-
-
+    def load_links(self):
+        for l in self.links.values():
+            self.__scene.addItem(l.gui)
+            print('load links')
 
     def keyPressEvent(self, event):
+        self.load_drawer_links()
+
         super(AWidget, self).keyPressEvent(event)
         self.key_press_event.emit(event)
-
-
-
 
     def drawForeground(self, painter: QtGui.QPainter, rect: QtCore.QRectF):
 
         super(AWidget, self).drawForeground(painter, rect)
-        self.onLoad()
+        # self.onLoad()
         for l in self.links.values():
             l.gui.update_line(l.start.gui, l.end.gui)
-
-
 
     # This function is called every time the window size changed
     def resizeEvent(self, event: QtGui.QResizeEvent):
 
+
+
         self.updateSceneRect(QtCore.QRectF(0, 0, self.__scene.width(), self.__scene.height()))
         super(AWidget, self).resizeEvent(event)
-
 
     # The draw function in this app is different from Qt
     # This draw means darw fixed object on scene (Not a rendering).

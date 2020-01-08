@@ -5,6 +5,8 @@ from AUtil import APortType, AMath, ACache
 
 
 class ALinkDrawer:
+
+
     def __init__(self):
         self.link = ALinkGUI('link_drawer', QtCore.QPoint(0, 0), QtCore.QPoint(1, 1))
         self.widget = None
