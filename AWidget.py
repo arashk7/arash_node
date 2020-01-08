@@ -215,7 +215,13 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
             if self.__press_node and self.__press_node.data(0) == 'port':
                 # print('port')
                 pass
-
+        elif event.button() == QtCore.Qt.MidButton:
+            self.setDragMode(True)
+            self.viewport().setCursor(QtCore.Qt.ClosedHandCursor)
+            self.original_event = event
+            handmade_event = QtGui.QMouseEvent(QtCore.QEvent.MouseButtonPress, QtCore.QPointF(event.pos()),
+                                               QtCore.Qt.LeftButton, event.buttons(), QtCore.Qt.KeyboardModifiers())
+            QtWidgets.QGraphicsView.mousePressEvent(self, handmade_event)
                 # p = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
                 # print(str(p.x()) + " " + str(p.y()))
 
@@ -273,6 +279,15 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                         i.update()
 
                 return
+        elif event.button() == QtCore.Qt.MidButton:
+
+            self.viewport().setCursor(QtCore.Qt.ArrowCursor)
+            handmade_event = QtGui.QMouseEvent(QtCore.QEvent.MouseButtonRelease, QtCore.QPointF(event.pos()),
+                                               QtCore.Qt.LeftButton, event.buttons(), QtCore.Qt.KeyboardModifiers())
+            QtWidgets.QGraphicsView.mouseReleaseEvent(self, handmade_event)
+
+            self.setDragMode(False)
+            self.__scene.update()
 
     def mouseMoveEvent(self, event: QtGui.QMouseEvent):
         super(AWidget, self).mouseMoveEvent(event)
