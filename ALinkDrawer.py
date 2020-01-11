@@ -7,15 +7,17 @@ from AUtil import APortType, AMath, ACache
 class ALinkDrawer:
 
 
-    def __init__(self):
+    def __init__(self,widget):
         self.link = ALinkGUI('link_drawer', QtCore.QPoint(0, 0), QtCore.QPoint(1, 1))
-        self.widget = None
+        self.widget = widget
         self.link.hide()
         self.press_port = None
         self.end_port = None
 
+
+
     def mouse_press_event(self, widget: QtWidgets.QGraphicsView, event: QtGui.QMouseEvent):
-        self.widget = widget
+        # self.widget = widget
         if event.button() == QtCore.Qt.LeftButton:
             self.press_port = widget.itemAt(event.pos())
             if self.press_port:

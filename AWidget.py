@@ -59,8 +59,8 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         self.mouse_release_event.connect(self.__rubber_band.mouse_release_event)
 
         # Init LinkDrawer
-        self.__link_drawer = ALinkDrawer()
-        self.__link_drawer.widget = self
+        self.__link_drawer = ALinkDrawer(self)
+        # self.__link_drawer.widget = self
         # Connect events to LinkDrawer
         self.mouse_press_event.connect(self.__link_drawer.mouse_press_event)
         self.mouse_move_event.connect(self.__link_drawer.mouse_move_event)
@@ -124,6 +124,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         anim.finished.connect(self.load_links)
         anim.start()
 
+
     # Zoom property
     # (this property is provided for the time that it is needed to access from th outside of the class)
     # @property
@@ -138,14 +139,25 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         menu = QtWidgets.QMenu(self)
 
         # cut_action = menu.addAction("Cut")
-        select_action = menu.addAction("select")
+        delete_action = menu.addAction("Delete")
         copy_action = menu.addAction("Copy")
         paste_action = menu.addAction("Paste")
 
         # quit_action = menu.addAction("quit")
         action = menu.exec_(self.mapToGlobal(event.pos()))
-        if action == select_action:
-            self.window().close()
+        if action == delete_action:
+            for n in self.nodes.values():
+                if n.gui.isSelected():
+                    print(n.node_id)
+                    n.gui.hide()
+                    self.__scene.removeItem(n.gui)
+                    d = dict(self.nodes)
+                    del d[n.node_id]
+                    self.nodes = d
+                    self.__scene.update()
+                    self.update()
+
+
         elif action == copy_action:
             ACache.agraphnode_list = list()
             for n in self.nodes.values():
@@ -182,7 +194,6 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
     def keyPressEvent(self, event):
         self.load_drawer_links()
-
         super(AWidget, self).keyPressEvent(event)
         self.key_press_event.emit(event)
 
