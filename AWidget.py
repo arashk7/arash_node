@@ -11,8 +11,8 @@ from AGraph import AGraph
 from ALinkGUI import ALinkGUI
 from ALinkDrawer import ALinkDrawer
 from AKeyboardEvent import AKeyboardEvent
-
-
+from AUtil import ACache
+import copy
 # https://stackoverflow.com/questions/28349676/pyqt4-how-to-correct-qgraphicsitem-position
 
 class AWidget(QtWidgets.QGraphicsView, AGraph):
@@ -60,7 +60,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
         # Init LinkDrawer
         self.__link_drawer = ALinkDrawer()
-        self.widget = self
+        self.__link_drawer.widget = self
         # Connect events to LinkDrawer
         self.mouse_press_event.connect(self.__link_drawer.mouse_press_event)
         self.mouse_move_event.connect(self.__link_drawer.mouse_move_event)
@@ -124,8 +124,6 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         anim.finished.connect(self.load_links)
         anim.start()
 
-
-
     # Zoom property
     # (this property is provided for the time that it is needed to access from th outside of the class)
     # @property
@@ -135,6 +133,39 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
     # @zoom.setter
     # def zoom(self, zoom):
     #     self.__zoom = zoom
+
+    def contextMenuEvent(self, event):
+        menu = QtWidgets.QMenu(self)
+
+        # cut_action = menu.addAction("Cut")
+        select_action = menu.addAction("select")
+        copy_action = menu.addAction("Copy")
+        paste_action = menu.addAction("Paste")
+
+        # quit_action = menu.addAction("quit")
+        action = menu.exec_(self.mapToGlobal(event.pos()))
+        if action == select_action:
+            self.window().close()
+        elif action == copy_action:
+            ACache.agraphnode_list = list()
+            for n in self.nodes.values():
+                if n.gui.isSelected():
+                    ACache.agraphnode_list.append(n)
+                    print(n.node_id)
+            pass
+        elif action == paste_action:
+            # node_list = list()
+            # for n in ACache.agraphnode_list:
+            #     node_list.append(copy.copy(n))
+            for n in ACache.agraphnode_list:
+                nn = self.copy_node(n)
+                self.__scene.addItem(nn.gui)
+                [i.gui.setSelected(False) for i in self.nodes.values()]
+                print(nn.node_id)
+                # self.__scene.addItem(n)
+
+            print('paste')
+            pass
 
     def add_to_scene(self, item):
         self.__scene.addItem(item)
@@ -164,8 +195,6 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
     # This function is called every time the window size changed
     def resizeEvent(self, event: QtGui.QResizeEvent):
-
-
 
         self.updateSceneRect(QtCore.QRectF(0, 0, self.__scene.width(), self.__scene.height()))
         super(AWidget, self).resizeEvent(event)
@@ -222,8 +251,8 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
             handmade_event = QtGui.QMouseEvent(QtCore.QEvent.MouseButtonPress, QtCore.QPointF(event.pos()),
                                                QtCore.Qt.LeftButton, event.buttons(), QtCore.Qt.KeyboardModifiers())
             QtWidgets.QGraphicsView.mousePressEvent(self, handmade_event)
-                # p = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
-                # print(str(p.x()) + " " + str(p.y()))
+            # p = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
+            # print(str(p.x()) + " " + str(p.y()))
 
     # def anim_scale(self,value):
     #     factor = value+0.5
