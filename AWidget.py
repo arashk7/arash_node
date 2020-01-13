@@ -193,7 +193,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
             print('load links')
 
     def keyPressEvent(self, event):
-
+        self.load_drawer_links()
         self.key_press_event.emit(event)
         super(AWidget, self).keyPressEvent(event)
 
@@ -202,7 +202,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         for l in self.links.values():
             l.gui.update_line(l.start.gui, l.end.gui)
 
-        self.__link_drawer.link.update_line(self.__link_drawer.press_port,self.__link_drawer.link.end_point)
+        # self.__link_drawer.link.update_line(self.__link_drawer.press_port,self.__link_drawer.link.end_point)
 
         super(AWidget, self).drawForeground(painter, rect)
         # self.onLoad()
@@ -213,7 +213,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
         self.updateSceneRect(QtCore.QRectF(0, 0, self.__scene.width(), self.__scene.height()))
         super(AWidget, self).resizeEvent(event)
-        self.load_drawer_links()
+
     # The draw function in this app is different from Qt
     # This draw means darw fixed object on scene (Not a rendering).
     def draw_grid(self):
