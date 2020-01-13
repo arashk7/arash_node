@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from ALinkGUI import ALinkGUI
 from AGraphPort import AGraphPort
+from AGraphLink import AGraphLink
 from AUtil import APortType, AMath, ACache
 
 
@@ -9,7 +10,9 @@ class ALinkDrawer:
 
     def __init__(self,widget):
         self.link = ALinkGUI('link_drawer', QtCore.QPoint(0, 0), QtCore.QPoint(1, 1))
+        # self.link = AGraphLink('link_drawer',)
         self.widget = widget
+
         self.link.hide()
         self.press_port = None
         self.end_port = None
@@ -23,7 +26,7 @@ class ALinkDrawer:
             if self.press_port:
                 if self.press_port.data(0) == 'port':
                     if self.press_port.port_type == APortType.OUTPUT:
-
+                        print('1')
                         # pos = widget.mapToScene(QtCore.QPoint(self.press_node.x, self.press_node.y))
                         pos = QtCore.QPoint(self.press_port.pos.x(), self.press_port.pos.y())
                         self.link.show()
@@ -50,6 +53,7 @@ class ALinkDrawer:
             else:
                 self.link.end_point = pos
                 self.end_port = None
+
 
     def mouse_release_event(self, event: QtGui.QMouseEvent):
         if event.button() == QtCore.Qt.LeftButton:

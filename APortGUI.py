@@ -35,8 +35,7 @@ class APortGUI(QtWidgets.QGraphicsItem):
         self.x = x
         self.y = y
 
-    def mousePressEvent(self, event: QtWidgets.QGraphicsSceneMouseEvent):
-        pass
+
 
     def paint(self, painter: QtGui.QPainter, style: QtWidgets.QStyleOptionGraphicsItem, widget=None):
         # self.__rect.setX(self.x)
