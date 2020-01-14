@@ -7,17 +7,14 @@ from AUtil import APortType, AMath, ACache
 
 class ALinkDrawer:
 
-
-    def __init__(self,widget):
-        self.link = ALinkGUI('link_drawer', QtCore.QPoint(0, 0), QtCore.QPoint(1, 1))
+    def __init__(self, widget):
+        self.link = ALinkGUI('link_drawer')
         # self.link = AGraphLink('link_drawer',)
         self.widget = widget
 
         self.link.hide()
         self.press_port = None
         self.end_port = None
-
-
 
     def mouse_press_event(self, widget: QtWidgets.QGraphicsView, event: QtGui.QMouseEvent):
         # self.widget = widget
@@ -28,13 +25,13 @@ class ALinkDrawer:
                     if self.press_port.port_type == APortType.OUTPUT:
                         print('1')
                         # pos = widget.mapToScene(QtCore.QPoint(self.press_node.x, self.press_node.y))
-                        pos = QtCore.QPoint(self.press_port.pos.x(), self.press_port.pos.y())
+                        pos = QtCore.QPointF(self.press_port.pos.x(), self.press_port.pos.y())
                         self.link.show()
                         self.link.start_point = pos
 
     def mouse_move_event(self, event: QtGui.QMouseEvent):
         if self.link.isVisible():
-            pos = self.widget.mapToScene(QtCore.QPoint(event.x(), event.y()))
+            pos = self.widget.mapToScene(event.pos())
             mind = 100
             closest_port = None
             for p in ACache.input_ports_gui.values():
@@ -54,6 +51,7 @@ class ALinkDrawer:
                 self.link.end_point = pos
                 self.end_port = None
 
+            self.link.update_line(self.press_port, pos)
 
     def mouse_release_event(self, event: QtGui.QMouseEvent):
         if event.button() == QtCore.Qt.LeftButton:
@@ -61,7 +59,7 @@ class ALinkDrawer:
                 if self.end_port:
                     print(self.end_port.port_id)
                     link = self.widget.add_link(self.press_port.node_id, self.press_port.port_id,
-                                         self.end_port.node_id, self.end_port.port_id)
+                                                self.end_port.node_id, self.end_port.port_id)
                     self.widget.add_to_scene(link.gui)
 
             self.link.hide()

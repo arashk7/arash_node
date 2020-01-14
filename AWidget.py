@@ -112,6 +112,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
             for p_out in n.ports_out.values():
                 self.__scene.addItem(p_out.gui)
 
+        self.__scene.addItem(self.__link_drawer.link)
         self.loaded = False
         # Deselect all the Node items
         # [i.setSelected(False) for i in self.__scene.items()]
@@ -123,6 +124,9 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         anim.setUpdateInterval(1)
         anim.finished.connect(self.load_links)
         anim.start()
+
+        # self.line = ALinkGUI('link_test')
+        # self.__scene.addItem(self.line)
 
 
     # Zoom property
@@ -183,9 +187,10 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         self.__scene.addItem(item)
 
     def load_drawer_links(self):
-        if self.__link_drawer.link not in self.__scene.items():
-            self.__scene.addItem(self.__link_drawer.link)
-            print('load drawer')
+        pass
+        # if self.__link_drawer.link not in self.__scene.items():
+        #     self.__scene.addItem(self.__link_drawer.link)
+        #     print('load drawer')
 
     def load_links(self):
         for l in self.links.values():
@@ -193,7 +198,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
             print('load links')
 
     def keyPressEvent(self, event):
-        self.load_drawer_links()
+        # self.load_drawer_links()
         self.key_press_event.emit(event)
         super(AWidget, self).keyPressEvent(event)
 
@@ -202,7 +207,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         for l in self.links.values():
             l.gui.update_line(l.start.gui, l.end.gui)
 
-        # self.__link_drawer.link.update_line(self.__link_drawer.press_port,self.__link_drawer.link.end_point)
+
 
         super(AWidget, self).drawForeground(painter, rect)
         # self.onLoad()
@@ -336,7 +341,10 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
     def mouseMoveEvent(self, event: QtGui.QMouseEvent):
         super(AWidget, self).mouseMoveEvent(event)
         self.mouse_move_event.emit(event)
-
+        # self.line.start = QtCore.QPointF(100,100)
+        # self.line.end = self.mapToScene(event.pos())
+        # self.line.update_line(start=QtCore.QPointF(100,100),end=self.mapToScene(event.pos()))
+        # self.__link_drawer.link.update_line(start=self.__link_drawer.link.start,end=self.mapToScene(event.pos()))
     # Zooming V0.1
     def fit_in_view(self, scale=True):
         rect = self.sceneRect()

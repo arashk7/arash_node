@@ -3,7 +3,7 @@ import math
 
 
 class ALinkGUI(QtWidgets.QGraphicsItem):
-    def __init__(self, link_id, start=None, end=None):
+    def __init__(self, link_id, start=QtCore.QPointF(0, 0), end=QtCore.QPointF(1, 1)):
         super(ALinkGUI, self).__init__()
         self.id = link_id
 
@@ -16,40 +16,59 @@ class ALinkGUI(QtWidgets.QGraphicsItem):
 
         self.start = start
         self.end = end
-
-        self.update_line(start, end)
+        # self.update_line(start, end)
 
     def update_line(self, start=None, end=None):
         # check exact type of the object "if type(o) is str:"
         # check whether instance or subclass of our type "isinstance(..,..)"
-        if isinstance(self.start, QtCore.QPoint) and isinstance(self.end, QtCore.QPoint):
-            self.start_point = start
-            self.end_point = end
-        elif isinstance(self.start, QtCore.QPoint) and isinstance(self.end, QtWidgets.QGraphicsItem):
-            self.start_point = start
-            self.end_point = QtCore.QPointF(self.end.x(), self.end.y())
-        elif isinstance(self.start, QtWidgets.QGraphicsItem) and isinstance(self.end, QtCore.QPoint):
-            self.start_point = QtCore.QPointF(self.start.pos.x(), self.start.pos.y())
-            self.end_point = end
-        elif isinstance(self.start, QtWidgets.QGraphicsItem) and isinstance(self.end, QtWidgets.QGraphicsItem):
-            self.start_point = QtCore.QPointF(self.start.pos.x(), self.start.pos.y())
-            self.end_point = QtCore.QPointF(self.end.pos.x(), self.end.pos.y())
+        if start and end:
+            if isinstance(start, QtCore.QPointF) and isinstance(end, QtCore.QPointF):
+                self.start_point = start
+                self.end_point = end
+            elif isinstance(start, QtCore.QPointF) and isinstance(end, QtWidgets.QGraphicsItem):
+                self.start_point = start
+                self.end_point = QtCore.QPointF(end.x(), end.y())
+            elif isinstance(start, QtWidgets.QGraphicsItem) and isinstance(end, QtCore.QPointF):
+                self.start_point = QtCore.QPointF(start.pos.x(), start.pos.y())
+                self.end_point = end
+            elif isinstance(start, QtWidgets.QGraphicsItem) and isinstance(end, QtWidgets.QGraphicsItem):
+                self.start_point = QtCore.QPointF(start.pos.x(), start.pos.y())
+                self.end_point = QtCore.QPointF(end.pos.x(), end.pos.y())
+            else:
+                print('error in updating line gui 1')
         else:
-            print('error')
+
+            if isinstance(self.start, QtCore.QPointF) and isinstance(self.end, QtCore.QPointF):
+                self.start_point = self.start
+                self.end_point = self.end
+            elif isinstance(self.start, QtCore.QPointF) and isinstance(self.end, QtWidgets.QGraphicsItem):
+                self.start_point = self.start
+                self.end_point = QtCore.QPointF(self.end.x(), self.end.y())
+            elif isinstance(self.start, QtWidgets.QGraphicsItem) and isinstance(self.end, QtCore.QPointF):
+                self.start_point = QtCore.QPointF(self.start.pos.x(), self.start.pos.y())
+                self.end_point = self.end
+            elif isinstance(self.start, QtWidgets.QGraphicsItem) and isinstance(self.end, QtWidgets.QGraphicsItem):
+                self.start_point = QtCore.QPointF(self.start.pos.x(), self.start.pos.y())
+                self.end_point = QtCore.QPointF(self.end.pos.x(), self.end.pos.y())
+            else:
+                print('error in updating line gui 2')
 
     def paint(self, painter: QtGui.QPainter, QStyleOptionGraphicsItem, widget=None):
+
         self.draw_bezier_curve(painter, self.start_point, self.end_point)
 
-
     def boundingRect(self):
-        start = self.start_point
-        end = self.end_point
-        ex = max([start.x(), end.x()])
-        ey = max([start.y(), end.y()])
-        sx = min([start.x(), end.x()])
-        sy = min([start.y(), end.y()])
-        w = ex - sx
-        h = ey - sy
+        if self.start_point and self.end_point:
+            start = self.start_point
+            end = self.end_point
+            ex = max([start.x(), end.x()])
+            ey = max([start.y(), end.y()])
+            sx = min([start.x(), end.x()])
+            sy = min([start.y(), end.y()])
+            w = ex - sx
+            h = ey - sy
+        else:
+            sx = sy = w = h = 1
 
         return QtCore.QRectF(sx, sy, w, h)
 
