@@ -12,6 +12,7 @@ from ALinkGUI import ALinkGUI
 from ALinkDrawer import ALinkDrawer
 from AKeyboardEvent import AKeyboardEvent
 from AUtil import ACache
+
 import copy
 # https://stackoverflow.com/questions/28349676/pyqt4-how-to-correct-qgraphicsitem-position
 
@@ -91,6 +92,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         self.add_node('node_3', p.x() + 200, p.y())
         self.add_node('node_4', p.x() - 200, p.y())
         self.add_port_in('node_4', 'port1')
+
         self.add_port_out('node_4', 'port1')
         self.add_node('node_5', p.x() - 200, p.y() - 300)
         self.add_port_in('node_5', 'port1')
@@ -102,7 +104,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         self.add_port_in('node_2', 'port1')
         self.add_port_out('node_2', 'port1')
         self.add_port_in('node_3', 'port1')
-        self.add_link('node_1', 'port1', 'node_2', 'port1')
+
 
         for n in self.nodes.values():
             self.__scene.addItem(n.gui)
@@ -112,21 +114,29 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
             for p_out in n.ports_out.values():
                 self.__scene.addItem(p_out.gui)
 
-        self.__scene.addItem(self.__link_drawer.link)
+        link = self.add_link('node_1', 'port1', 'node_2', 'port1')
+
+        self.__scene.addItem(link.gui)
         self.loaded = False
         # Deselect all the Node items
         # [i.setSelected(False) for i in self.__scene.items()]
 
         # Draw grid
         self.draw_grid()
-
-        anim = QtCore.QTimeLine(500, self)
-        anim.setUpdateInterval(1)
-        anim.finished.connect(self.load_links)
-        anim.start()
+        # self.load_links()
+        # anim = QtCore.QTimeLine(500, self)
+        # anim.setUpdateInterval(1)
+        # anim.finished.connect(self.load_links)
+        # anim.start()
 
         # self.line = ALinkGUI('link_test')
+        # self.line.update_line(start = QtCore.QPointF(1000,1000),end = QtCore.QPointF(1100,1100))
         # self.__scene.addItem(self.line)
+
+        # self.drawer = ALinkDrawer2(self)
+        # self.mouse_press_event.connect(self.drawer.mouse_press_event)
+        # self.mouse_move_event.connect(self.drawer.mouse_move_event)
+        # self.mouse_release_event.connect(self.drawer.mouse_release_event)
 
 
     # Zoom property
@@ -183,6 +193,8 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
             print('paste')
             pass
 
+    def get_scene(self):
+        return self.__scene
     def add_to_scene(self, item):
         self.__scene.addItem(item)
 
@@ -205,7 +217,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
     def drawForeground(self, painter: QtGui.QPainter, rect: QtCore.QRectF):
         for l in self.links.values():
-            l.gui.update_line(l.start.gui, l.end.gui)
+            l.gui.update_line(l.start.gui.pos, l.end.gui.pos)
 
 
 
@@ -263,7 +275,10 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
             self.__press_point = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
             if self.__press_node and self.__press_node.data(0) == 'port':
                 # print('port')
+                # self.__press_node.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable,False)
                 pass
+            # else:
+            #     self.__press_node.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable)
         elif event.button() == QtCore.Qt.MidButton:
             self.setDragMode(True)
             self.viewport().setCursor(QtCore.Qt.ClosedHandCursor)
@@ -343,7 +358,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         self.mouse_move_event.emit(event)
         # self.line.start = QtCore.QPointF(100,100)
         # self.line.end = self.mapToScene(event.pos())
-        # self.line.update_line(start=QtCore.QPointF(100,100),end=self.mapToScene(event.pos()))
+        # self.line.update_line(start=QtCore.QPointF(1000,1000),end=self.mapToScene(event.pos()))
         # self.__link_drawer.link.update_line(start=self.__link_drawer.link.start,end=self.mapToScene(event.pos()))
     # Zooming V0.1
     def fit_in_view(self, scale=True):

@@ -6,7 +6,7 @@ class Window(QtWidgets.QWidget):
     def __init__(self):
         super(Window, self).__init__()
 
-        # Instantiate AWidget
+        # Instantiate AWidgeNo data returned (timeout while sending data).t
         self.awidget = AWidget(self,graph_id='graph_1')
         AConfig.awidget=self.awidget
         # self.awidget.setDisabled(True)

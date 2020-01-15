@@ -68,6 +68,7 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
         return self.__selected
 
     def boundingRect(self):
+
         # You will be able to edit this rectangle which affect your physical interaction with mouse
         rect = QtCore.QRectF(self.rect)
         p = self.scenePos() + self.rect.center()

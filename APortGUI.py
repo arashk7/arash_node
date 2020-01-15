@@ -11,13 +11,14 @@ class APortGUI(QtWidgets.QGraphicsItem):
         super(APortGUI, self).__init__()
         self.port_id = port_id
         self.setData(0, 'port')
+        self.setZValue(1)
         self.port_type = port_type
         self.node_id = None
         self.x = x
         self.y = y
         self.rect = QtCore.QRectF(x, y, 20, 20)
         self.rect_collider = QtCore.QRectF(x, y, 20, 20)
-        # self.setParentItem(self.__node_gui)
+
         self.pos = QtCore.QPointF(0, 0)
         self.draw_collider = False
 

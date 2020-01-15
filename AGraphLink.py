@@ -5,4 +5,4 @@ class AGraphLink:
 
         self.start = start
         self.end = end
-        self.gui = ALinkGUI(link_id=link_id, start=start.gui, end=end.gui)
+        self.gui = ALinkGUI(link_id=link_id, start=start.gui.pos, end=end.gui.pos)

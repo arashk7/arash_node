@@ -16,7 +16,7 @@ class ALinkGUI(QtWidgets.QGraphicsItem):
 
         self.start = start
         self.end = end
-        # self.update_line(start, end)
+        self.update_line(start, end)
 
     def update_line(self, start=None, end=None):
         # check exact type of the object "if type(o) is str:"
