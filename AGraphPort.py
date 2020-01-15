@@ -6,7 +6,7 @@ class AGraphPort:
     def __init__(self, port_id, port_type, node):
         self.port_id = port_id
         self.caption = port_id
-        self.__node = node
+        self.node = node
         self.link = None
         self.port_type: self.PortType = port_type
         self.gui = APortGUI(port_id=port_id, port_type=port_type)

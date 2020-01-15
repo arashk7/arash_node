@@ -14,6 +14,8 @@ from AKeyboardEvent import AKeyboardEvent
 from AUtil import ACache
 
 import copy
+
+
 # https://stackoverflow.com/questions/28349676/pyqt4-how-to-correct-qgraphicsitem-position
 
 class AWidget(QtWidgets.QGraphicsView, AGraph):
@@ -105,7 +107,6 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         self.add_port_out('node_2', 'port1')
         self.add_port_in('node_3', 'port1')
 
-
         for n in self.nodes.values():
             self.__scene.addItem(n.gui)
 
@@ -138,7 +139,6 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         # self.mouse_move_event.connect(self.drawer.mouse_move_event)
         # self.mouse_release_event.connect(self.drawer.mouse_release_event)
 
-
     # Zoom property
     # (this property is provided for the time that it is needed to access from th outside of the class)
     # @property
@@ -163,6 +163,14 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
             for n in self.nodes.values():
                 if n.gui.isSelected():
                     print(n.node_id)
+                    for l in self.links.values():
+                        if l.start.node.node_id == n.node_id or l.end.node.node_id == n.node_id:
+                            l.gui.hide()
+                            self.__scene.removeItem(l.gui)
+                            temp_list = dict(self.links)
+                            del temp_list[l.link_id]
+                            self.links = temp_list
+
                     n.gui.hide()
                     self.__scene.removeItem(n.gui)
                     d = dict(self.nodes)
@@ -195,6 +203,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
     def get_scene(self):
         return self.__scene
+
     def add_to_scene(self, item):
         self.__scene.addItem(item)
 
@@ -214,16 +223,12 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         self.key_press_event.emit(event)
         super(AWidget, self).keyPressEvent(event)
 
-
     def drawForeground(self, painter: QtGui.QPainter, rect: QtCore.QRectF):
         for l in self.links.values():
             l.gui.update_line(l.start.gui.pos, l.end.gui.pos)
 
-
-
         super(AWidget, self).drawForeground(painter, rect)
         # self.onLoad()
-
 
     # This function is called every time the window size changed
     def resizeEvent(self, event: QtGui.QResizeEvent):
@@ -360,6 +365,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         # self.line.end = self.mapToScene(event.pos())
         # self.line.update_line(start=QtCore.QPointF(1000,1000),end=self.mapToScene(event.pos()))
         # self.__link_drawer.link.update_line(start=self.__link_drawer.link.start,end=self.mapToScene(event.pos()))
+
     # Zooming V0.1
     def fit_in_view(self, scale=True):
         rect = self.sceneRect()

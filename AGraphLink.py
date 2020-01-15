@@ -1,7 +1,7 @@
 from ALinkGUI import ALinkGUI
 class AGraphLink:
     def __init__(self, link_id, start=None, end=None):
-        self.id = link_id
+        self.link_id = link_id
 
         self.start = start
         self.end = end
