@@ -28,6 +28,7 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
         self.__group = AGroup.NORMAL
 
 
+
         #     port.gui.x = 1000 #+ self.rect.x()
         # port.gui.y = 0 #self.rect.y()
         # i += 1
@@ -123,6 +124,10 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
         pen = QtGui.QPen(color)
         pen.setWidth(0)
         font = QtGui.QFont("arial", 7)
+
+        # br = QtGui.QFontMetrics(font).boundingRect(self.caption)
+        # print(str(br.width()))
+
         path.addText(x + 5, y + 15, font, str(self.caption))
         painter.setFont(font)
         painter.setPen(pen)

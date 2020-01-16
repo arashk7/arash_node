@@ -91,7 +91,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
         self.add_node('node_2', p.x(), p.y() + 300)
 
-        self.add_node('node_3', p.x() + 200, p.y())
+        self.add_node('node_33333', p.x() + 200, p.y())
         self.add_node('node_4', p.x() - 200, p.y())
         self.add_port_in('node_4', 'port1')
 
@@ -105,7 +105,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         self.add_port_out('node_1', 'port1')
         self.add_port_in('node_2', 'port1')
         self.add_port_out('node_2', 'port1')
-        self.add_port_in('node_3', 'port1')
+        self.add_port_in('node_33333', 'port1')
 
         for n in self.nodes.values():
             self.__scene.addItem(n.gui)
@@ -164,6 +164,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                 if n.gui.isSelected():
                     print(n.node_id)
                     for l in self.links.values():
+
                         if l.start.node.node_id == n.node_id or l.end.node.node_id == n.node_id:
                             l.gui.hide()
                             self.__scene.removeItem(l.gui)
