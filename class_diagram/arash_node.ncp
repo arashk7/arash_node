@@ -24,10 +24,15 @@
         <Name>AGraphPort</Name>
         <Access>Public</Access>
         <Location left="469" top="126" />
-        <Size width="162" height="130" />
+        <Size width="162" height="196" />
         <Collapsed>False</Collapsed>
-        <Member type="Property">public string port_id { get; set; }</Member>
+        <Member type="Property">public AGraphNode node { get; set; }</Member>
         <Member type="Property">public string caption { get; set; }</Member>
+        <Member type="Property">public string port_id { get; set; }</Member>
+        <Member type="Property">public APortType port_type { get; set; }</Member>
+        <Member type="Property">public AGraphLink link { get; set; }</Member>
+        <Member type="Property">public APortGUI gui { get; set; }</Member>
+        <Member type="Method">public bool is_connected()</Member>
         <Modifier>None</Modifier>
       </Entity>
     </Entities>
