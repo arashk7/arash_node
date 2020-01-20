@@ -35,6 +35,42 @@
         <Member type="Method">public bool is_connected()</Member>
         <Modifier>None</Modifier>
       </Entity>
+      <Entity type="Class">
+        <Name>AGraphLink</Name>
+        <Access>Public</Access>
+        <Location left="675" top="126" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Property">public string link_id { get; set; }</Member>
+        <Member type="Property">public AGraphPort start { get; set; }</Member>
+        <Member type="Property">public AGraphPort end { get; set; }</Member>
+        <Member type="Property">public ALinkGUI gui { get; set; }</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>ALogger</Name>
+        <Access>Public</Access>
+        <Location left="253" top="384" />
+        <Size width="162" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">Py.logging logging</Member>
+        <Member type="Field">Py.logging.fileHandler handler</Member>
+        <Member type="Property">public bool active_logging { get; set; }</Member>
+        <Member type="Property">public string log_file_name { get; set; }</Member>
+        <Member type="Method">public static void print_msg()</Member>
+        <Member type="Method">public static void print_info()</Member>
+        <Member type="Method">public static void print_error()</Member>
+        <Member type="Method">public static void print_warning()</Member>
+        <Modifier>Static</Modifier>
+      </Entity>
+      <Entity type="Enum">
+        <Name>MsgColors</Name>
+        <Access>Public</Access>
+        <Location left="253" top="629" />
+        <Size width="162" height="78" />
+        <Collapsed>False</Collapsed>
+        <Value>many_items</Value>
+      </Entity>
     </Entities>
     <Relationships />
   </ProjectItem>
