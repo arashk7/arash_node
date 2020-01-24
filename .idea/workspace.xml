@@ -11,14 +11,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main2.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main2.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="6" column="37" lean-forward="false" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+            <state relative-caret-position="102">
+              <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ALinkGUI.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ALinkGUI.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -33,10 +43,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ALogger.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ALogger.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ALogger.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1122">
+            <state relative-caret-position="478">
               <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
               <folding />
             </state>
@@ -46,7 +56,7 @@
       <file leaf-file-name="AGraph.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AGraph.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1233">
+            <state relative-caret-position="918">
               <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
               <folding />
             </state>
@@ -56,7 +66,7 @@
       <file leaf-file-name="AWidget.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AWidget.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2839">
+            <state relative-caret-position="-1491">
               <caret line="167" column="0" lean-forward="false" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
@@ -70,16 +80,6 @@
                 <marker date="1579346474420" expanded="true" signature="11547:11565" ph="..." />
                 <marker date="1579346474420" expanded="true" signature="14344:14362" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AConfig.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AConfig.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -108,24 +108,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="APortGUI.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/APortGUI.py">
+      <file leaf-file-name="AGraphNode.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AGraphNode.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding>
-                <marker date="1579089737587" expanded="true" signature="1215:1237" ph="..." />
-              </folding>
+            <state relative-caret-position="136">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AGraphNode.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AGraphNode.py">
+      <file leaf-file-name="ANodeGUI.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ANodeGUI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="255">
+              <caret line="23" column="11" lean-forward="true" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="59" />
+              <folding>
+                <marker date="1579346474418" expanded="true" signature="189:893" ph="..." />
+                <marker date="1579346474418" expanded="true" signature="2873:2896" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -176,15 +177,15 @@
         <option value="$PROJECT_DIR$/AKeyboardEvent.py" />
         <option value="$PROJECT_DIR$/AGraph.py" />
         <option value="$PROJECT_DIR$/ALinkDrawer2.py" />
-        <option value="$PROJECT_DIR$/ALinkGUI.py" />
         <option value="$PROJECT_DIR$/APortGUI.py" />
         <option value="$PROJECT_DIR$/ALinkDrawer.py" />
         <option value="$PROJECT_DIR$/AGraphPort.py" />
         <option value="$PROJECT_DIR$/AGraphLink.py" />
-        <option value="$PROJECT_DIR$/main2.py" />
         <option value="$PROJECT_DIR$/AConfig.py" />
         <option value="$PROJECT_DIR$/ANodeGUI.py" />
         <option value="$PROJECT_DIR$/AWidget.py" />
+        <option value="$PROJECT_DIR$/main2.py" />
+        <option value="$PROJECT_DIR$/ALinkGUI.py" />
       </list>
     </option>
   </component>
@@ -209,8 +210,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -222,6 +221,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -340,7 +341,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="D:\ProgramData\Python36\python.exe" />
+      <option name="SDK_HOME" value="E:\ProgramData\Anaconda3\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -396,12 +397,12 @@
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1293" height="693" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24939272" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2534413" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -555,61 +556,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ALinkDrawer2.py" />
-    <entry file="file://$PROJECT_DIR$/ALinkGUI.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="10" column="23" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ALinkDrawer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="40" column="36" lean-forward="false" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
-          <folding>
-            <marker date="1579089737583" expanded="true" signature="204:1837" ph="..." />
-            <marker date="1579089737583" expanded="true" signature="659:690" ph="..." />
-            <marker date="1579089737583" expanded="true" signature="1876:1894" ph="..." />
-            <marker date="1579089737583" expanded="true" signature="2898:2916" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ANodeGUI.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1802">
-          <caret line="108" column="23" lean-forward="false" selection-start-line="108" selection-start-column="23" selection-end-line="108" selection-end-column="23" />
-          <folding>
-            <marker date="1579346474418" expanded="true" signature="189:893" ph="..." />
-            <marker date="1579346474418" expanded="true" signature="2873:2896" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AWidget.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2839">
-          <caret line="167" column="0" lean-forward="false" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-            <marker date="1579346474420" expanded="true" signature="545:8485" ph="..." />
-            <marker date="1579346474420" expanded="true" signature="949:3587" ph="..." />
-            <marker date="1579346474420" expanded="true" signature="6202:6560" ph="..." />
-            <marker date="1579346474420" expanded="true" signature="8263:8284" ph="..." />
-            <marker date="1579346474420" expanded="true" signature="8584:8603" ph="..." />
-            <marker date="1579346474420" expanded="true" signature="9941:9960" ph="..." />
-            <marker date="1579346474420" expanded="true" signature="10120:10138" ph="..." />
-            <marker date="1579346474420" expanded="true" signature="11547:11565" ph="..." />
-            <marker date="1579346474420" expanded="true" signature="14344:14362" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AGraphNode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -651,21 +601,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main2.py">
+    <entry file="file://$PROJECT_DIR$/AGraph.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="6" column="37" lean-forward="false" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+        <state relative-caret-position="918">
+          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ALogger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AWidget.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1491">
+          <caret line="167" column="0" lean-forward="false" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
+            <marker date="1579346474420" expanded="true" signature="545:8485" ph="..." />
+            <marker date="1579346474420" expanded="true" signature="949:3587" ph="..." />
+            <marker date="1579346474420" expanded="true" signature="6202:6560" ph="..." />
+            <marker date="1579346474420" expanded="true" signature="8263:8284" ph="..." />
+            <marker date="1579346474420" expanded="true" signature="8584:8603" ph="..." />
+            <marker date="1579346474420" expanded="true" signature="9941:9960" ph="..." />
+            <marker date="1579346474420" expanded="true" signature="10120:10138" ph="..." />
+            <marker date="1579346474420" expanded="true" signature="11547:11565" ph="..." />
+            <marker date="1579346474420" expanded="true" signature="14344:14362" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AGraph.py">
+    <entry file="file://$PROJECT_DIR$/AGraphNode.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1233">
-          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+        <state relative-caret-position="136">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ANodeGUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="23" column="11" lean-forward="true" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="59" />
+          <folding>
+            <marker date="1579346474418" expanded="true" signature="189:893" ph="..." />
+            <marker date="1579346474418" expanded="true" signature="2873:2896" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -677,11 +663,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ALogger.py">
+    <entry file="file://$PROJECT_DIR$/ALinkGUI.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+        <state relative-caret-position="102">
+          <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

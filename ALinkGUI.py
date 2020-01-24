@@ -18,6 +18,9 @@ class ALinkGUI(QtWidgets.QGraphicsItem):
         self.end = end
         self.update_line(start, end)
 
+        self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable,False)
+        self.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable,False)
+
     def update_line(self, start=None, end=None):
         # check exact type of the object "if type(o) is str:"
         # check whether instance or subclass of our type "isinstance(..,..)"
@@ -79,6 +82,11 @@ class ALinkGUI(QtWidgets.QGraphicsItem):
     def draw_bezier_curve(self, painter: QtGui.QPainter, start, end):
         path = QtGui.QPainterPath()
         path.moveTo(start.x(), start.y())
+
+        dist_p = end - start
+
+        # dist_y = (end.y() - start.y())
+        # p1
         # path.quadTo(30, 30, 30, 200)
         mx1 = (end.x() + start.x()) / 2
         my1 = (end.y() + start.y()) / 2
@@ -90,13 +98,53 @@ class ALinkGUI(QtWidgets.QGraphicsItem):
         # dx2 = (end.x()-start.x())/4-end.x()
         # dy2 = (end.y()-start.y())/4-end.y()
         # dx = (end.x()-start.x())/4
-        dist = self.distance(start, end) / 4
-        dist = 100 if dist > 100 else dist
+        # dist = self.distance(start, end) / 4
+        # dist = 100 #if dist > 100 else dist
+        dist_x = end.x() - start.x()
+        dist_y = end.y() - start.y()
 
-        path.cubicTo(start.x(), start.y(), start.x(), start.y() + dist, mx1, my1)
-        # path.cubicTo(start.x(), start.y() + d, start.x(), my1, mx1, my1)
+        if dist_y > 0:
+            path.cubicTo(start.x(), start.y(), start.x(), start.y() + dist_y / 2, mx1, my1)
+            path.cubicTo(mx2, my2, end.x(), end.y() - dist_y / 2, end.x(), end.y())
+        else:
+            dist = dist_y
+            if abs(dist_y)>abs(dist_x/2):
+                dist = -abs(dist_x/2)
+
+            p2_x = start.x()
+            p2_y = start.y() - dist / 2
+
+            p3_x = start.x() + dist_x / 4
+            p3_y = start.y() - dist / 2
+
+            p4_x = (end.x() + start.x()) / 2
+            p4_y = start.y() - dist / 2
+
+            p5_x = (end.x() + start.x()) / 2
+            p5_y = start.y()
+
+            p6_x = (end.x() + start.x()) / 2
+            p6_y = end.y()
+
+            p7_x = (end.x() + start.x()) / 2
+            p7_y = end.y() + dist / 2
+
+            p8_x = end.x() - dist_x / 4
+            p8_y = end.y() + dist / 2
+
+            p9_x = end.x()
+            p9_y = end.y() + dist / 2
+
+            path.cubicTo(start.x(), start.y(), p2_x, p2_y, p3_x, p3_y)
+            path.cubicTo(p3_x, p3_y, p4_x, p4_y, p5_x, p5_y)
+
+            path.lineTo(p6_x, p6_y)
+
+            path.cubicTo(p6_x, p6_y, p7_x, p7_y, p8_x, p8_y)
+            path.cubicTo(p8_x, p8_y, p9_x, p9_y, end.x(), end.y())
+        # path.cubicTo(start.x(), start.y(), p1_x, p1_y, mx1, my1)
         # path.cubicTo(mx2, my2, end.x(), my2, end.x(), end.y() - d)
-        path.cubicTo(mx2, my2, end.x(), end.y() - dist, end.x(), end.y())
+
         # else:
         #     path.cubicTo(start.x(), start.y(), mx1, start.y(), mx1, my1)
         #     path.cubicTo(mx2, my2, mx2, end.y(), end.x(), end.y())

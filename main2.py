@@ -2,13 +2,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from AWidget import AWidget
 from AConfig import AConfig
 
+
 class Window(QtWidgets.QWidget):
     def __init__(self):
         super(Window, self).__init__()
 
         # Instantiate AWidgeNo data returned (timeout while sending data).t
-        self.awidget = AWidget(self,graph_id='graph_1')
-        AConfig.awidget=self.awidget
+        self.awidget = AWidget(self, graph_id='graph_1')
+        AConfig.awidget = self.awidget
         # self.awidget.setDisabled(True)
 
         VBlayout = QtWidgets.QVBoxLayout(self)
