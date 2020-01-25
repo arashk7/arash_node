@@ -254,6 +254,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
             line.setZValue(-1)
             line.setData(0, 'grid')
             line.setActive(False)
+            line.setEnabled(False)
 
         # Draw vertical lines
         for i in range(0, int(height + 00), 20):

@@ -8,7 +8,7 @@ class ALinkGUI(QtWidgets.QGraphicsItem):
         self.id = link_id
 
         self.setData(0, 'link')
-        self.setZValue(1)
+        self.setZValue(0)
         self.link_type = None
 
         self.start_point = None
@@ -18,8 +18,7 @@ class ALinkGUI(QtWidgets.QGraphicsItem):
         self.end = end
         self.update_line(start, end)
 
-        self.setFlag(QtWidgets.QGraphicsItem.ItemIsSelectable,False)
-        self.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable,False)
+        self.setEnabled(False)
 
     def update_line(self, start=None, end=None):
         # check exact type of the object "if type(o) is str:"

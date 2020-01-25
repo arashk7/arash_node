@@ -24,7 +24,7 @@ class ARubberBand:
     def mouse_press_event(self, widget: QtWidgets.QGraphicsView, event: QtGui.QMouseEvent):
         if event.button() == QtCore.Qt.LeftButton:
             node = widget.itemAt(event.pos())
-            if not node or node.data(0) == 'grid':
+            if not node or node.data(0) == 'grid' or node.data(0) == 'link':
 
                 # Record the drag position
                 self.__origin = event.pos()
