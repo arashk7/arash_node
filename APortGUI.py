@@ -7,9 +7,10 @@ from ASkin import *
 
 
 class APortGUI(QtWidgets.QGraphicsItem):
-    def __init__(self, port_id, port_type, x=100, y=100):
+    def __init__(self, port ,port_id, port_type, x=100, y=100):
         super(APortGUI, self).__init__()
         self.port_id = port_id
+        self.port = port
         self.setData(0, 'port')
         self.setZValue(1)
         self.port_type = port_type

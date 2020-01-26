@@ -26,6 +26,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
     mouse_move_event = QtCore.pyqtSignal(QtGui.QMouseEvent)
     mouse_release_event = QtCore.pyqtSignal(QtGui.QMouseEvent)
     key_press_event = QtCore.pyqtSignal(QtGui.QKeyEvent)
+    key_release_event = QtCore.pyqtSignal(QtGui.QKeyEvent)
 
     def __init__(self, parent, graph_id):
         # super(AWidget, self).__init__(parent)
@@ -72,6 +73,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         # Keyboard event
         self.__key_event = AKeyboardEvent()
         self.key_press_event.connect(self.__key_event.key_press_event)
+        self.key_release_event.connect(self.__key_event.key_release_event)
 
         # Selected item group
         empty_list = list()
@@ -224,6 +226,9 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         self.key_press_event.emit(event)
         super(AWidget, self).keyPressEvent(event)
 
+    def keyReleaseEvent(self, event: QtGui.QKeyEvent):
+        self.key_release_event.emit(event)
+        super(AWidget, self).keyReleaseEvent(event)
     def drawForeground(self, painter: QtGui.QPainter, rect: QtCore.QRectF):
         for l in self.links.values():
             l.gui.update_line(l.start.gui.pos, l.end.gui.pos)
@@ -281,9 +286,22 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
             self.__press_node = self.itemAt(event.pos())
             self.__press_point = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
             if self.__press_node and self.__press_node.data(0) == 'port':
-                # print('port')
+                if self.__key_event.key == QtCore.Qt.Key_Alt:
+                    # self.links[self.__press_node.port.link.link_id]
+                    # self.__press_node
+                    # print(self.__press_node.parentItem().port_id)
+                    # l.gui.hide()
+                    # self.__scene.removeItem(l.gui)
+                    l = self.__press_node.port.link
+                    if l:
+                        l.gui.hide()
+                        self.__scene.removeItem(l.gui)
+                        temp_list = dict(self.links)
+                        del temp_list[l.link_id]
+                        self.links = temp_list
+                        self.__press_node.port.link = None
                 # self.__press_node.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable,False)
-                pass
+                    pass
             # else:
             #     self.__press_node.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable)
         elif event.button() == QtCore.Qt.MidButton:

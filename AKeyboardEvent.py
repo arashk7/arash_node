@@ -4,8 +4,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class AKeyboardEvent:
     def __init__(self):
         print('init keyboard')
+        self.key = None
 
     def key_press_event(self, event):
+        self.key = event.key()
         # if event == QtGui.QKeyEvent.KeyPress:
         # if event.modifiers() & QtCore.Qt.ControlModifier:
         #     if event.key() == QtCore.Qt.Key_C:
@@ -23,3 +25,8 @@ class AKeyboardEvent:
 
         # print('key_pressed')
         pass
+
+    def key_release_event(self,event):
+        self.key = None
+
+
