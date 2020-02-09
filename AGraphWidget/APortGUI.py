@@ -1,9 +1,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import math
 # from qtconsole.qt import QtGui
-from ArashWidget.AUtil import APortType
+from AGraphWidget.AUtil import APortType
 
-from ArashWidget.ASkin import *
+from AGraphWidget.ASkin import *
 
 
 class APortGUI(QtWidgets.QGraphicsItem):

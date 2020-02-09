@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from ArashWidget.AGraphPort import AGraphPort
-from ArashWidget.ASkin import *
+from AGraphWidget.AGraphPort import AGraphPort
+from AGraphWidget.ASkin import *
 
 
 class ANodeGUI(QtWidgets.QGraphicsItem):

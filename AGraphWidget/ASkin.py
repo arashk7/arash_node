@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import xml.etree.cElementTree as ET
 from enum import Enum
-from ArashWidget.ALogger import ALogger
+from AGraphWidget.ALogger import ALogger
 
 
 # Group Enumerator that demonstrate all the states of the different roles

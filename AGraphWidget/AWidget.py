@@ -1,17 +1,17 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import math
-from ArashWidget.AScene import AScene
-from ArashWidget.ASkin import *
-from ArashWidget.ARubberBand import ARubberBand
-from ArashWidget.APortGUI import APortGUI
-from ArashWidget.ANodeGUI import ANodeGUI
-from ArashWidget.AGraphNode import AGraphNode
-from ArashWidget.AGraph import AGraph
+from AGraphWidget.AScene import AScene
+from AGraphWidget.ASkin import *
+from AGraphWidget.ARubberBand import ARubberBand
+from AGraphWidget.APortGUI import APortGUI
+from AGraphWidget.ANodeGUI import ANodeGUI
+from AGraphWidget.AGraphNode import AGraphNode
+from AGraphWidget.AGraph import AGraph
 
-from ArashWidget.ALinkGUI import ALinkGUI
-from ArashWidget.ALinkDrawer import ALinkDrawer
-from ArashWidget.AKeyboardEvent import AKeyboardEvent
-from ArashWidget.AUtil import ACache
+from AGraphWidget.ALinkGUI import ALinkGUI
+from AGraphWidget.ALinkDrawer import ALinkDrawer
+from AGraphWidget.AKeyboardEvent import AKeyboardEvent
+from AGraphWidget.AUtil import ACache
 
 import copy
 

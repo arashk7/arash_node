@@ -1,4 +1,4 @@
-from ArashWidget.ALinkGUI import ALinkGUI
+from AGraphWidget.ALinkGUI import ALinkGUI
 class AGraphLink:
     def __init__(self, link_id, start=None, end=None):
         self.link_id = link_id

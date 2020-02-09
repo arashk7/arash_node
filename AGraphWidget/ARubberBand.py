@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from ArashWidget.ASkin import *
+from AGraphWidget.ASkin import *
 
 
 # Customized RobberBand

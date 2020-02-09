@@ -1,5 +1,5 @@
-from ArashWidget.APortGUI import APortGUI
-from ArashWidget.AUtil import APortType
+from AGraphWidget.APortGUI import APortGUI
+from AGraphWidget.AUtil import APortType
 
 
 class AGraphPort:
