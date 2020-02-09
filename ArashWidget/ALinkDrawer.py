@@ -1,8 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from ALinkGUI import ALinkGUI
-from AGraphPort import AGraphPort
-from AGraphLink import AGraphLink
-from AUtil import APortType, AMath, ACache
+from ArashWidget.ALinkGUI import ALinkGUI
+from ArashWidget.AGraphPort import AGraphPort
+from ArashWidget.AGraphLink import AGraphLink
+from ArashWidget.AUtil import APortType, AMath, ACache
 
 
 class ALinkDrawer:

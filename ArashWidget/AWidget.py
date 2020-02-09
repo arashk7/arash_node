@@ -1,17 +1,17 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import math
-from AScene import AScene
-from ASkin import *
-from ARubberBand import ARubberBand
-from APortGUI import APortGUI
-from ANodeGUI import ANodeGUI
-from AGraphNode import AGraphNode
-from AGraph import AGraph
+from ArashWidget.AScene import AScene
+from ArashWidget.ASkin import *
+from ArashWidget.ARubberBand import ARubberBand
+from ArashWidget.APortGUI import APortGUI
+from ArashWidget.ANodeGUI import ANodeGUI
+from ArashWidget.AGraphNode import AGraphNode
+from ArashWidget.AGraph import AGraph
 
-from ALinkGUI import ALinkGUI
-from ALinkDrawer import ALinkDrawer
-from AKeyboardEvent import AKeyboardEvent
-from AUtil import ACache
+from ArashWidget.ALinkGUI import ALinkGUI
+from ArashWidget.ALinkDrawer import ALinkDrawer
+from ArashWidget.AKeyboardEvent import AKeyboardEvent
+from ArashWidget.AUtil import ACache
 
 import copy
 
@@ -36,6 +36,12 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         # Default skin has to be loaded here
         # But since this program is under development, we consider to just initialize the skin and save it as default
         ASkin.init_default()
+
+        # Save skin in skins directory
+        # ASkin.save_skin()
+
+        # Load skin from skins directory
+        # ASkin.load_skin()
 
         self.__zoom = 0
         self.__scene = AScene(self)
@@ -229,6 +235,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
     def keyReleaseEvent(self, event: QtGui.QKeyEvent):
         self.key_release_event.emit(event)
         super(AWidget, self).keyReleaseEvent(event)
+
     def drawForeground(self, painter: QtGui.QPainter, rect: QtCore.QRectF):
         for l in self.links.values():
             l.gui.update_line(l.start.gui.pos, l.end.gui.pos)
@@ -300,10 +307,10 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                         del temp_list[l.link_id]
                         self.links = temp_list
                         self.__press_node.port.link = None
-                # self.__press_node.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable,False)
+                        # self.__press_node.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable,False)
                     pass
-            # else:
-            #     self.__press_node.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable)
+                    # else:
+                    #     self.__press_node.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable)
         elif event.button() == QtCore.Qt.MidButton:
             self.setDragMode(True)
             self.viewport().setCursor(QtCore.Qt.ClosedHandCursor)

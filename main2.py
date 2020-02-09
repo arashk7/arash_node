@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from AWidget import AWidget
-from AConfig import AConfig
+from ArashWidget.AWidget import AWidget
+from ArashWidget.AConfig import AConfig
 
 
 class Window(QtWidgets.QWidget):

@@ -1,12 +1,12 @@
 from PyQt5 import QtCore
 from random import randint
 
-from AGraphNode import AGraphNode
+from ArashWidget.AGraphNode import AGraphNode
 
-from AGraphPort import AGraphPort
-from ALogger import ALogger
-from AGraphLink import AGraphLink
-from AUtil import APortType, ACache
+from ArashWidget.AGraphPort import AGraphPort
+from ArashWidget.ALogger import ALogger
+from ArashWidget.AGraphLink import AGraphLink
+from ArashWidget.AUtil import APortType, ACache
 
 
 class AGraph:

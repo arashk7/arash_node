@@ -1,7 +1,7 @@
 from PyQt5 import QtCore
-from ALogger import ALogger
-from ANodeGUI import ANodeGUI
-from AGraphPort import AGraphPort
+from ArashWidget.ALogger import ALogger
+from ArashWidget.ANodeGUI import ANodeGUI
+from ArashWidget.AGraphPort import AGraphPort
 
 
 class AGraphNode:
