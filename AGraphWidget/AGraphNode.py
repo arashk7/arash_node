@@ -8,7 +8,7 @@ class AGraphNode:
     def __init__(self, node_id, x=100, y=100):
         self.__node_id = node_id
         self.__caption = node_id
-        self.__category = 'none'
+        self.category = 'none'
         self.__params_in = {}
         self.__params_out = {}
         self.__ports_in = {}

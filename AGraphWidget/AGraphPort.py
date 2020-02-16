@@ -8,6 +8,7 @@ class AGraphPort:
         self.caption = port_id
         self.node = node
         self.link = None
+        self.data_type = None
         self.port_type: self.PortType = port_type
         self.gui = APortGUI(port=self, port_id=port_id, port_type=port_type)
         self.gui.setParentItem(node.gui)

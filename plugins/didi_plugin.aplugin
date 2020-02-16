@@ -1,0 +1,9 @@
+[Core]
+Name = didi_plugin
+Module = did_plugin
+
+[Documentation]
+Author = Ahmad
+Version = 0.1
+Website = http://lotsofplugins.com
+Description = My first plugin

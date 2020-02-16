@@ -1,0 +1,9 @@
+[Core]
+Name = Plugin One
+Module = pluginOne
+
+[Documentation]
+Author = Ahmad
+Version = 0.1
+Website = http://lotsofplugins.com
+Description = My first plugin

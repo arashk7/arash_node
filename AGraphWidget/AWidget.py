@@ -95,7 +95,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         # self.render_sample_rect()
         p = self.__scene.sceneRect().center()
 
-        node = self.add_node('node_1', p.x(), p.y())
+        node = self.add_node(node_id='node_1', x=p.x(), y=p.y())
 
         self.add_node('node_2', p.x(), p.y() + 300)
 
