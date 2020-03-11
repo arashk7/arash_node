@@ -1,5 +1,6 @@
 from AGraphWidget.APlugin import APlugin
 from yapsy.IPlugin import IPlugin
+
 class didi_plugin(APlugin,IPlugin):
     def __init__(self):
         self.node_id= 'LSTM'

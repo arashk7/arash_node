@@ -3,11 +3,12 @@ from AGraphWidget.AWidget import AWidget
 from AGraphWidget.AConfig import AConfig
 from APlugin.AToolManager import AToolManager
 from AGraphWidget.AUtil import ASharedItems
+
 class Window(QtWidgets.QWidget):
     def __init__(self):
         super(Window, self).__init__()
 
-        # Instantiate AWidget No data returned (timeout while sending data).t
+        # Instantiate AWinode.ports_indget No data returned (timeout while sending data).t
         self.awidget = AWidget(self, graph_id='graph_1')
         ASharedItems.awidget = self.awidget
 

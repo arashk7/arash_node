@@ -14,6 +14,7 @@ class ACache:
     # copied nodes cache
     agraphnode_list = {}
 
+
 class ASharedItems:
     awidget = None
 

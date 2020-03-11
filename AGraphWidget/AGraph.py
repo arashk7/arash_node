@@ -85,6 +85,15 @@ class AGraph:
 
         self.nodes[node_id] = node
         self.__num_nodes_created += 1
+
+        for _port in node.ports_in.values():
+            ACache.input_ports_gui[_port.port_id + '_' + node_id] = _port.gui
+            self.__num_ports_in_created += 1
+            print('port '+ _port.port_id +' added to '+ node.node_id)
+        for _port in node.ports_out.values():
+            ACache.output_ports_gui[_port.port_id + '_' + node_id] = _port.gui
+            self.__num_ports_out_created += 1
+        self.nodes[node_id].gui.init_ports_locations()
         return node
 
     # Remove Node
