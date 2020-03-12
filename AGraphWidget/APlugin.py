@@ -4,16 +4,16 @@ from AGraphWidget.AUtil import ASharedItems
 
 
 class APlugin(AGraphNode.AGraphNode):
-    def __init__(self, node_id='', x=0, y=0):
-        AGraphNode.AGraphNode.__init__(self, node_id=node_id, x=x, y=y)
-        self.awidget: AWidget = ASharedItems.awidget
+    def __init__(self, node_id, node_type='', x=0, y=0):
+        AGraphNode.AGraphNode.__init__(self, node_id=node_id,node_type=node_type, x=x, y=y)
+
+
 
     def run(self):
         print('update')
         pass
 
     def init(self):
-        # self.awidget = awidget
         print('init')
         pass
 

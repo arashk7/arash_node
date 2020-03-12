@@ -6,7 +6,6 @@ from AGraphWidget.AUtil import APortType, AMath, ACache
 
 
 class ALinkDrawer:
-
     def __init__(self, widget):
         self.link = ALinkGUI('link_drawer')
         # self.link.update_line(start=QtCore.QPointF(1000, 1000), end=QtCore.QPointF(1100, 1100))
@@ -32,7 +31,7 @@ class ALinkDrawer:
                         pos = QtCore.QPointF(self.press_port.pos.x(), self.press_port.pos.y())
                         widget.get_scene().removeItem(self.link)
                         del self.link
-                        self.link = ALinkGUI('link_drawer',start=pos,end = pos)
+                        self.link = ALinkGUI('link_drawer', start=pos, end=pos)
                         widget.get_scene().addItem(self.link)
                         # self.link.show()
                         # self.link.start_point = pos
@@ -65,7 +64,7 @@ class ALinkDrawer:
                 self.link.end_point = pos
                 self.end_port = None
 
-                self.link.update_line(self.link.start_point,self.link.end_point)
+                self.link.update_line(self.link.start_point, self.link.end_point)
 
     def mouse_release_event(self, event: QtGui.QMouseEvent):
         if event.button() == QtCore.Qt.LeftButton:

@@ -5,9 +5,10 @@ from AGraphWidget.AGraphPort import AGraphPort
 
 
 class AGraphNode:
-    def __init__(self, node_id, x=100, y=100):
+    def __init__(self, node_id,node_type='', x=100, y=100):
         self.__node_id = node_id
         self.__caption = node_id
+        self.node_type = node_type
         self.category = 'none'
         self.__params_in = {}
         self.__params_out = {}
@@ -46,7 +47,7 @@ class AGraphNode:
 
     @node_id.setter
     def node_id(self, node_id):
-        if len(node_id) < 3:
+        if len(node_id) < 0:
             ALogger.print_error('The length of the ID must be more than 3 characters!')
             return
         else:

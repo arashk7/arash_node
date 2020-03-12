@@ -127,7 +127,8 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
 
         # br = QtGui.QFontMetrics(font).boundingRect(self.caption)
         # print(str(br.width()))
-
+        self.caption = self.graph_node.node_id
+        self.id = self.graph_node.node_id
         path.addText(x + 5, y + 15, font, str(self.caption))
         painter.setFont(font)
         painter.setPen(pen)

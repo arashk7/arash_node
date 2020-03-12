@@ -59,7 +59,7 @@ class AGraph:
                     break
                 i += 1
         # Instantiate new Node object
-        node = AGraphNode(node_id, x, y)
+        node = AGraphNode(node_id,'void', x, y)
         self.nodes[node_id] = node
         self.__num_nodes_created += 1
         return node
@@ -76,7 +76,7 @@ class AGraph:
         if node_id is '':
             i = 0
             while True:
-                node_id = 'node_' + str(self.__num_nodes_created + i)
+                node_id = node.node_type+'_' + str(self.__num_nodes_created + i)
                 if node_id not in self.nodes:
                     break
                 i += 1
@@ -87,10 +87,14 @@ class AGraph:
         self.__num_nodes_created += 1
 
         for _port in node.ports_in.values():
+            _port.node_id = node_id
+            _port.gui.node_id = node_id
             ACache.input_ports_gui[_port.port_id + '_' + node_id] = _port.gui
             self.__num_ports_in_created += 1
             print('port '+ _port.port_id +' added to '+ node.node_id)
         for _port in node.ports_out.values():
+            _port.node_id = node_id
+            _port.gui.node_id = node_id
             ACache.output_ports_gui[_port.port_id + '_' + node_id] = _port.gui
             self.__num_ports_out_created += 1
         self.nodes[node_id].gui.init_ports_locations()
