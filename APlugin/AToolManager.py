@@ -2,7 +2,6 @@ from yapsy.PluginManager import PluginManager
 # from APlugin import APlugin
 from AGraphWidget.APlugin import APlugin
 
-
 class AToolManager:
     def __init__(self, awidget):
         # Load the plugins from the plugin directory.
@@ -16,13 +15,14 @@ class AToolManager:
 
         # Loop round the plugins and print their names.
         for plugin in self.manager.getAllPlugins():
-            plugin.plugin_object.print_name()
+            plugin.plugin_object.init_plugin()
             self.items.append(plugin.plugin_object)
-        print(len(self.items))
+        # print(len(self.items))
 
     def inset_to_widget(self, item):
+
         node = self.awidget.add_full_node(item)
-        node.init()
+        node.init_node()
         self.awidget.scene().addItem(node.gui)
 
         # node= APlugin(self.awidget,'ttttt',1000,1000)

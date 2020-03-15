@@ -1,0 +1,9 @@
+[Core]
+Name = Conv2D
+Module = Conv2D
+
+[Documentation]
+Author = Ahmad Karambakhsh
+Version = 0.1
+Website = a-karambakhsh.ir
+Description = 2D Convolutional layer

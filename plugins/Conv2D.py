@@ -12,12 +12,15 @@ class PluginOne(APlugin, IPlugin):
         self.y = 100
         APlugin.__init__(self, node_id=self.node_id,node_type=self.node_type, x=self.x, y=self.y)
 
-        self.add_port_in(AGraphPort.AGraphPort('port_1', AGraphPort.APortType.INPUT, self))
-        self.add_port_in(AGraphPort.AGraphPort('port_2', AGraphPort.APortType.INPUT, self))
-        self.add_port_out(AGraphPort.AGraphPort('port_1', AGraphPort.APortType.OUTPUT, self))
+        self.add_in_port('port_1')
+        self.add_in_port('port_2')
+        self.add_out_port('port_1')
+        self.ports_in['port_1'].value = 5
 
-    def print_name(self):
-        print("This is plugin " + self.node_id)
+    def init_plugin(self):
+        print("Init plugin " + self.node_type)
 
-    def init_ports(self):
-        pass
+
+    def init_node(self):
+        print('Added node: ', self.node_id)
+
