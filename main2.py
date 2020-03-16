@@ -17,7 +17,7 @@ class Window(QtWidgets.QWidget):
         tm.inset_to_widget(tm.items[0])
         tm.inset_to_widget(tm.items[1])
         tm.inset_to_widget(tm.items[2])
-        # tm.inset_to_widget(tm.items[2])
+        tm.inset_to_widget(tm.items[2])
 
         # self.awidget.setDisabled(True)
 
