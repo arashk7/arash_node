@@ -3,7 +3,7 @@ from yapsy.PluginManager import PluginManager
 from AGraphWidget.APlugin import APlugin
 
 
-class AToolManager:
+class APluginManager:
     def __init__(self, awidget):
         # Load the plugins from the plugin directory.
         self.manager = PluginManager()
