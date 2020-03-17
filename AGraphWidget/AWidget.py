@@ -132,6 +132,11 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
         # Draw grid
         self.draw_grid()
+
+        # Accept Drop
+        self.setAcceptDrops(True)
+
+
         # self.load_links()
         # anim = QtCore.QTimeLine(500, self)
         # anim.setUpdateInterval(1)
@@ -156,6 +161,17 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
     # @zoom.setter
     # def zoom(self, zoom):
     #     self.__zoom = zoom
+
+    def dragEnterEvent(self, event):
+        if event.mimeData().hasText():
+            event.acceptProposedAction()
+        print('drag')
+
+    def dropEvent(self, event):
+        pos = event.pos()
+        text = event.mimeData().text()
+        print(text)
+        event.acceptProposedAction()
 
     def contextMenuEvent(self, event):
         menu = QtWidgets.QMenu(self)
