@@ -3,14 +3,12 @@ from yapsy.IPlugin import IPlugin
 from AGraphWidget import AGraphPort
 
 
-class PluginOne(APlugin, IPlugin):
-    def __init__(self):
+class Conv2D(APlugin, IPlugin):
+    def __init__(self, x=0, y=0):
         # APlugin.__init__(self)
         self.node_id = ''
         self.node_type = 'Conv2D'
-        self.x = 100
-        self.y = 100
-        APlugin.__init__(self, node_id=self.node_id,node_type=self.node_type, x=self.x, y=self.y)
+        APlugin.__init__(self, node_id=self.node_id, node_type=self.node_type, x=x, y=y)
 
         self.add_in_port('port_1')
         self.add_in_port('port_2')
@@ -20,7 +18,5 @@ class PluginOne(APlugin, IPlugin):
     def init_plugin(self):
         print("Init plugin " + self.node_type)
 
-
     def init_node(self):
         print('Added node: ', self.node_id)
-

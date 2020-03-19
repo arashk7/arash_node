@@ -11,7 +11,7 @@ from AGraphWidget.AGraph import AGraph
 from AGraphWidget.ALinkGUI import ALinkGUI
 from AGraphWidget.ALinkDrawer import ALinkDrawer
 from AGraphWidget.AKeyboardEvent import AKeyboardEvent
-from AGraphWidget.AUtil import ACache
+from AGraphWidget.AUtil import ACache, ASharedItems
 
 import copy
 
@@ -164,13 +164,22 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
     def dragEnterEvent(self, event):
         if event.mimeData().hasText():
-            event.acceptProposedAction()
-        print('drag')
+            print("event accepted")
+            event.accept()
+        else:
+            print("event rejected")
+            event.ignore()
+
+    def dragMoveEvent(self, e):
+        e.accept()
 
     def dropEvent(self, event):
         pos = event.pos()
         text = event.mimeData().text()
-        print(text)
+        ind = int(text)
+        # ASharedItems.aPluginManager.items[ind].set_position(500,500)
+        spos = self.mapToScene(QtCore.QPoint(pos.x(), pos.y()))
+        ASharedItems.aPluginManager.inset_to_widget(ASharedItems.aPluginManager.items[ind], spos.x(), spos.y())
         event.acceptProposedAction()
 
     def contextMenuEvent(self, event):

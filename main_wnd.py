@@ -6,11 +6,14 @@ from AGraphWidget.AUtil import ASharedItems
 
 
 class DraggableLabel(QtWidgets.QLabel):
-    # def __init__(self, parent, text,image):
-    #     super(QtWidgets.QLabel, self).__init__(parent,image)
+    def __init__(self, text, item_id):
+        super(QtWidgets.QLabel, self).__init__(text)
+        self.item_id = item_id
+
     #     self.setText(text)
     #     self.setAcceptDrops(True)
     #     self.show()
+
 
     def mousePressEvent(self, event):
         if event.button() == QtCore.Qt.LeftButton:
@@ -23,7 +26,7 @@ class DraggableLabel(QtWidgets.QLabel):
             return
         drag = QtGui.QDrag(self)
         mimedata = QtCore.QMimeData()
-        mimedata.setText(self.text())
+        mimedata.setText(self.item_id)
         drag.setMimeData(mimedata)
         pixmap = QtGui.QPixmap(self.size())
         painter = QtGui.QPainter(pixmap)
@@ -31,7 +34,7 @@ class DraggableLabel(QtWidgets.QLabel):
         painter.end()
         drag.setPixmap(pixmap)
         drag.setHotSpot(event.pos())
-        drag.exec_(QtCore.Qt.CopyAction | QtCore.Qt.MoveAction)
+        drag.exec_(QtCore.Qt.CopyAction)
 
 
 class Window(QtWidgets.QMainWindow):
@@ -40,40 +43,33 @@ class Window(QtWidgets.QMainWindow):
 
         # Instantiate AWinode.ports_indget No data returned (timeout while sending data).t
         self.awidget = AWidget(self, graph_id='graph_1')
+
         uic.loadUi('ui/mainForm.ui', self)
         self.setCentralWidget(self.awidget)
 
         self.toolBox = self.findChild(QtWidgets.QToolBox, 'toolBox')
         page1 = QtWidgets.QWidget(self)
+
         self.toolBox.addItem(page1, 'page_test')
         page1.setLayout(QtWidgets.QVBoxLayout())
-        label1 = DraggableLabel('testttt')
-        # self.setAcceptDrops(True)
-
-        # pal = label1.palette()
-        # pal.setColor(QtGui.QPalette.Window, QtGui.QColor(200, 200, 200))
-        # label1.setPalette(pal)
-        # label1.setAutoFillBackground(True)
-        label2 = QtWidgets.QLabel('test_label')
-        page1.layout().addWidget(label1)
-        page1.layout().addWidget(label2)
         page1.layout().setAlignment(QtCore.Qt.AlignTop)
         page1.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
 
-        # spacer = QtWidgets.QSpacerItem(10, 10, QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        # empty = QtWidgets.QWidget()
-        # empty.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
-        # spacer = self.findChild(QtWidgets.QSpacerItem,'verticalSpacer')
-        # page1.layout().addItem(spacer)
-
-        ASharedItems.awidget = self.awidget
+        label1 = DraggableLabel('testttt', 1)
+        #
+        page1.layout().addWidget(label1)
 
         pm = APluginManager(self.awidget)
         pm.load_dir()
-        pm.inset_to_widget(pm.items[0])
-        pm.inset_to_widget(pm.items[1])
-        pm.inset_to_widget(pm.items[2])
-        pm.inset_to_widget(pm.items[2])
+        ASharedItems.aPluginManager = pm
+        for i in range(len(pm.items)):
+            label = DraggableLabel(pm.items[i].node_type, str(i))
+            page1.layout().addWidget(label)
+            # pm.inset_to_widget(item=item)
+            # pm.inset_to_widget(pm.items[0])
+            # pm.inset_to_widget(pm.items[1])
+            # pm.inset_to_widget(pm.items[2])
+            # pm.inset_to_widget(pm.items[2])
 
 
 if __name__ == '__main__':

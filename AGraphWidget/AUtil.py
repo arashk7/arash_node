@@ -17,6 +17,7 @@ class ACache:
 
 class ASharedItems:
     awidget = None
+    aPluginManager = None
 
 
 class AMath:

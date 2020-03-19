@@ -20,8 +20,10 @@ class APluginManager:
             self.items.append(plugin.plugin_object)
             # print(len(self.items))
 
-    def inset_to_widget(self, item):
-        new_item = (type(item))()
+    def inset_to_widget(self, item,x,y):
+
+        new_item = (type(item))(x,y)
+
         node = self.awidget.add_full_node(new_item)
         node.init_node()
         self.awidget.scene().addItem(node.gui)

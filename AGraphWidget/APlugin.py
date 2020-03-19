@@ -13,6 +13,12 @@ class APlugin(AGraphNode.AGraphNode):
     def add_out_port(self, port_name):
         self.add_port_out(port=AGraphPort.AGraphPort(port_name, AGraphPort.APortType.OUTPUT, self))
 
+    def set_position(self,x,y):
+        self.gui.rect.setX( x)
+        self.gui.rect.setY(y)
+        self.gui.setX(x)
+        self.gui.setY(y)
+
 
     def edit_run(self):
         print('edit run')
