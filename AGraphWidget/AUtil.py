@@ -7,10 +7,16 @@ class APortType:
     OUTPUT = 1
 
 
+class AParamType:
+    INPUT = 0
+    OUTPUT = 1
+
+
 class ACache:
     input_ports_gui = {}
     output_ports_gui = {}
-
+    input_params_gui = {}
+    output_params_gui = {}
     # copied nodes cache
     agraphnode_list = {}
 

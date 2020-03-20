@@ -102,6 +102,9 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         self.add_node('node_33333', p.x() + 200, p.y())
         self.add_node('node_4', p.x() - 200, p.y())
         self.add_port_in('node_4', 'port1')
+        self.add_param_in('node_4','param1')
+        self.add_param_out('node_4', 'param1')
+        self.add_param_in('node_4', 'param2')
 
         self.add_port_out('node_4', 'port1')
         self.add_node('node_5', p.x() - 200, p.y() - 300)

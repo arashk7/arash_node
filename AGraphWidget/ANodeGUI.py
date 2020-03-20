@@ -61,6 +61,23 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
             port.gui.y=(self.rect.y() + self.rect.height() - 5)
             i += 1
 
+    def init_params_locations(self):
+        init_step = 10
+        step = 30
+        i = 1
+        # graph_node.ports_in[0]
+        for param in self.graph_node.params_in.values():
+            param.gui.x=(self.rect.x() - 15)
+            param.gui.y=init_step+((step * i) + self.rect.y() - 10)
+            i += 1
+        self.rect.setHeight(self.rect.height()+(step/2)*(i-1))
+
+        i = 1
+        for param in self.graph_node.params_out.values():
+            param.gui.x=(self.rect.x() + self.rect.width() - 5)
+            param.gui.y=init_step+((step * i) + self.rect.y() - 10)
+            i += 1
+
     def setSelected(self, selected):
         self.__selected = selected
         super(ANodeGUI, self).setSelected(selected)

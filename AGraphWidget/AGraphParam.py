@@ -1,17 +1,17 @@
-from AGraphWidget.APortGUI import APortGUI
-from AGraphWidget.AUtil import APortType
+from AGraphWidget.AParamGUI import AParamGUI
+from AGraphWidget.AUtil import AParamType
 
 
-class AGraphPort:
-    def __init__(self, port_id, port_type, node):
-        self.port_id = port_id
-        self.caption = port_id
+class AGraphParam:
+    def __init__(self, param_id, param_type, node):
+        self.param_id = param_id
+        self.caption = param_id
         self.node = node
         self.link = None
         self.data_type = None
         self.__value = None
-        self.port_type = port_type
-        self.gui = APortGUI(port=self, port_id=port_id, port_type=port_type)
+        self.param_type = param_type
+        self.gui = AParamGUI(param=self, param_id=param_id, param_type=param_type)
         self.gui.setParentItem(node.gui)
         self.gui.node_id = node.node_id
 
@@ -20,7 +20,7 @@ class AGraphPort:
             return True
         return False
 
-    # port value
+    # param value
     @property
     def value(self):
         return self.__value
@@ -28,11 +28,11 @@ class AGraphPort:
     def value(self,new_value):
         self.__value = new_value
 
-    # Port ID
+    # param ID
     @property
     def id(self):
         return self.__id
 
     @id.setter
-    def id(self, port_id):
-        self.__id = port_id
+    def id(self, param_id):
+        self.__id = param_id

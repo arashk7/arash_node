@@ -40,6 +40,25 @@ class AGraphNode:
             return True
         return False
 
+    # Adding param to the node
+    def add_param_in(self,param):
+        self.__params_in[param.param_id] = param
+
+    # Check dict to make sure there is no other param with the param_id
+    def is_param_in_exist(self, param_id):
+        if param_id in self.__params_in:
+            return True
+        return False
+
+    # Adding param to the entry node
+    def add_param_out(self, param):
+        self.__params_out[param.param_id] = param
+
+    # Check dict to make sure there is no other param with param_id
+    def is_param_out_exist(self, param_id):
+        if param_id in self.__params_out:
+            return True
+        return False
     # Node ID
     @property
     def node_id(self):
@@ -53,12 +72,22 @@ class AGraphNode:
         else:
             self.__node_id = node_id
 
-    # Entry ports getter
+    # Entry ports property
     @property
     def ports_in(self):
         return self.__ports_in
 
-    # Output ports getter
+    # Output ports property
     @property
     def ports_out(self):
         return self.__ports_out
+
+    # Input params property
+    @property
+    def params_in(self):
+        return self.__params_in
+
+    # Output params property
+    @property
+    def params_out(self):
+        return self.__params_out

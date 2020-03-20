@@ -4,9 +4,10 @@ from random import randint
 from AGraphWidget.AGraphNode import AGraphNode
 
 from AGraphWidget.AGraphPort import AGraphPort
+from AGraphWidget.AGraphParam import AGraphParam
 from AGraphWidget.ALogger import ALogger
 from AGraphWidget.AGraphLink import AGraphLink
-from AGraphWidget.AUtil import APortType, ACache
+from AGraphWidget.AUtil import APortType, AParamType, ACache
 
 
 class AGraph:
@@ -20,6 +21,8 @@ class AGraph:
         self.__num_links_created = 0
         self.__num_ports_in_created = 0
         self.__num_ports_out_created = 0
+        self.__num_params_in_created = 0
+        self.__num_params_out_created = 0
         self.__num_nodes_active = 0
 
     def copy_node(self, node: AGraphNode):
@@ -59,7 +62,7 @@ class AGraph:
                     break
                 i += 1
         # Instantiate new Node object
-        node = AGraphNode(node_id,'void', x, y)
+        node = AGraphNode(node_id, 'void', x, y)
         self.nodes[node_id] = node
         self.__num_nodes_created += 1
         return node
@@ -76,14 +79,13 @@ class AGraph:
         if node_id is '':
             i = 0
             while True:
-                node_id = node.node_type+'_' + str(self.__num_nodes_created + i)
+                node_id = node.node_type + '_' + str(self.__num_nodes_created + i)
                 if node_id not in self.nodes:
                     break
                 i += 1
         # Set node name
         # new_node = AGraphNode(node_id)
-        node.node_id=node_id
-
+        node.node_id = node_id
 
         for _port in node.ports_in.values():
             _port.node_id = node_id
@@ -164,6 +166,66 @@ class AGraph:
         ACache.output_ports_gui[port_id + '_' + node_id] = p_out.gui
         self.nodes[node_id].gui.init_ports_locations()
         self.__num_ports_out_created += 1
+        return p_out
+
+    # Add Input Parameter to the Node
+    def add_param_in(self, node_id, param_id=None):
+        # Check node ID existence
+        if node_id not in self.nodes:
+            ALogger.print_error("The node ID does not exist!")
+            return
+
+        # Port ID has to be exclusive
+        # Check dict to make sure there is no other node with ID
+        if self.nodes[node_id].is_param_in_exist(param_id=param_id):
+            ALogger.print_error("The param ID is already taken!")
+            return
+
+        # If user does not give the ID parameter, it will be generated
+        if param_id is None:
+            i = 0
+            while True:
+                param_id = 'param_' + str(self.__num_params_in_created + i)
+                if param_id not in self.nodes[node_id].param_in:
+                    break
+                i += 1
+
+        # Instantiate new Port object
+        p_in = AGraphParam(param_id, AParamType.INPUT, self.nodes[node_id])
+        self.nodes[node_id].add_param_in(p_in)
+        ACache.input_params_gui[param_id + '_' + node_id] = p_in.gui
+        self.nodes[node_id].gui.init_params_locations()
+        self.__num_params_in_created += 1
+        return p_in
+
+    # Add Output Param to the Node
+    def add_param_out(self, node_id, param_id=None):
+        # Check node ID existence
+        if node_id not in self.nodes:
+            ALogger.print_error("The node ID does not exist!")
+            return
+
+        # Port ID has to be exclusive
+        # Check dict to make sure there is no other port with ID
+        if self.nodes[node_id].is_param_out_exist(param_id=param_id):
+            ALogger.print_error("The param ID is already taken!")
+            return
+
+        # If user does not give the ID parameter, it will be generated
+        if param_id is None:
+            i = 0
+            while True:
+                param_id = 'param_' + str(self.__num_params_out_created + i)
+                if param_id not in self.nodes[node_id].params_out:
+                    break
+                i += 1
+
+        # Instantiate new Port object
+        p_out = AGraphParam(param_id, AParamType.OUTPUT, self.nodes[node_id])
+        self.nodes[node_id].add_param_out(p_out)
+        ACache.output_params_gui[param_id + '_' + node_id] = p_out.gui
+        self.nodes[node_id].gui.init_params_locations()
+        self.__num_params_out_created += 1
         return p_out
 
     # Add Link
