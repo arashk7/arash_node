@@ -441,7 +441,7 @@
      <x>0</x>
      <y>0</y>
      <width>1200</width>
-     <height>22</height>
+     <height>18</height>
     </rect>
    </property>
   </widget>
@@ -455,10 +455,10 @@
      <item>
       <widget class="QToolBox" name="toolBox">
        <property name="autoFillBackground">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="frameShape">
-        <enum>QFrame::Box</enum>
+        <enum>QFrame::NoFrame</enum>
        </property>
        <property name="frameShadow">
         <enum>QFrame::Plain</enum>
@@ -471,8 +471,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>69</width>
-          <height>631</height>
+          <width>52</width>
+          <height>654</height>
          </rect>
         </property>
         <attribute name="label">
@@ -1377,8 +1377,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>69</width>
-          <height>631</height>
+          <width>98</width>
+          <height>28</height>
          </rect>
         </property>
         <attribute name="label">
