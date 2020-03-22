@@ -87,6 +87,7 @@ class AGraph:
         # new_node = AGraphNode(node_id)
         node.node_id = node_id
 
+        #Add ports
         for _port in node.ports_in.values():
             _port.node_id = node_id
             _port.gui.node_id = node_id
@@ -99,8 +100,22 @@ class AGraph:
             ACache.output_ports_gui[_port.port_id + '_' + node_id] = _port.gui
             self.__num_ports_out_created += 1
 
+        # Add params
+        for _param in node.params_in.values():
+            _param.node_id = node_id
+            _param.gui.node_id = node_id
+            ACache.input_params_gui[_param.param_id + '_' + node_id] = _param.gui
+            self.__num_params_in_created += 1
+            # print('port '+ _port.port_id +' added to '+ node.node_id)
+        for _param in node.params_out.values():
+            _param.node_id = node_id
+            _param.gui.node_id = node_id
+            ACache.output_params_gui[_param.param_id + '_' + node_id] = _param.gui
+            self.__num_params_out_created += 1
+
         self.nodes[node_id] = node
         self.__num_nodes_created += 1
+        self.nodes[node_id].gui.init_params_locations()
         self.nodes[node_id].gui.init_ports_locations()
         return node
 

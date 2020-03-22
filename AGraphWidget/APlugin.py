@@ -1,5 +1,5 @@
 from AGraphWidget import AGraphNode, AUtil, AGraph
-from AGraphWidget import AGraphPort, AWidget
+from AGraphWidget import AGraphPort, AGraphParam, AWidget
 from AGraphWidget.AUtil import ASharedItems
 
 
@@ -12,6 +12,13 @@ class APlugin(AGraphNode.AGraphNode):
 
     def add_out_port(self, port_name):
         self.add_port_out(port=AGraphPort.AGraphPort(port_name, AGraphPort.APortType.OUTPUT, self))
+
+    def add_in_param(self, param_name):
+        self.add_param_in(param=AGraphParam.AGraphParam(param_name, AGraphParam.AParamType.INPUT, self))
+
+    def add_out_param(self, param_name):
+        self.add_param_out(param=AGraphParam.AGraphParam(param_name, AGraphParam.AParamType.OUTPUT, self))
+
 
     def set_position(self,x,y):
         self.gui.rect.setX( x)

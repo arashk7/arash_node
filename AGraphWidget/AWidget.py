@@ -45,7 +45,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
         self.__zoom = 0
         self.__scene = AScene(self)
-        self.__scene.setSceneRect(QtCore.QRectF(0, 0, 2000, 1500))
+        self.__scene.setSceneRect(QtCore.QRectF(0, 0, 5000, 3500))
         self.setScene(self.__scene)
 
         # Setting up all the parameters regards QGraphicsView

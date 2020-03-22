@@ -1,6 +1,5 @@
 from yapsy.PluginManager import PluginManager
-# from APlugin import APlugin
-from AGraphWidget.APlugin import APlugin
+import os
 
 
 class APluginManager:
@@ -11,18 +10,30 @@ class APluginManager:
         self.items = list()
 
     def load_dir(self, directory='plugins'):
-        self.manager.setPluginPlaces(["plugins"])
+        # make a list of plugin categories
+        plg_cats = []
+        dir_items = os.listdir(directory)
+        for item in dir_items:
+            path = directory + '/'+item
+            if os.path.isdir(path) == True:
+                if item[0] != '_':
+                    plg_cats.append(path)
+
+        self.manager.setPluginPlaces(plg_cats)
         self.manager.collectPlugins()
 
         # Loop round the plugins and print their names.
         for plugin in self.manager.getAllPlugins():
             plugin.plugin_object.init_plugin()
+            # print(plugin.path)
+            # print(plugin.cat)
             self.items.append(plugin.plugin_object)
+
             # print(len(self.items))
 
-    def inset_to_widget(self, item,x,y):
+    def inset_to_widget(self, item, x, y):
 
-        new_item = (type(item))(x,y)
+        new_item = (type(item))(x, y)
 
         node = self.awidget.add_full_node(new_item)
         node.init_node()
