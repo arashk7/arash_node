@@ -48,23 +48,47 @@ class Window(QtWidgets.QMainWindow):
         self.setCentralWidget(self.awidget)
 
         self.toolBox = self.findChild(QtWidgets.QToolBox, 'toolBox')
-        page1 = QtWidgets.QWidget(self)
-
-        self.toolBox.addItem(page1, 'page_test')
-        page1.setLayout(QtWidgets.QVBoxLayout())
-        page1.layout().setAlignment(QtCore.Qt.AlignTop)
-        page1.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
-
-        label1 = DraggableLabel('testttt', 1)
+        # page1 = QtWidgets.QWidget(self)
         #
-        page1.layout().addWidget(label1)
+        # page = self.toolBox.addItem(page1, 'page_test')
+        #
+        # if page:
+        #     print('ok')
+        # else:
+        #     print('nok')
+        # page1.setLayout(QtWidgets.QVBoxLayout())
+        # page1.layout().setAlignment(QtCore.Qt.AlignTop)
+        # page1.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
+        #
+        # label1 = DraggableLabel('testttt', 1)
+        # #
+        # page1.layout().addWidget(label1)
+        # w=self.toolBox.findChild(QtWidgets.QWidget,'page_2')
+
+        # if w:
+        #     print('ok')
+        # else:
+        #     print('nok')
 
         pm = APluginManager(self.awidget)
         pm.load_dir()
         ASharedItems.aPluginManager = pm
+        pages=dict()
+
         for i in range(len(pm.items)):
-            label = DraggableLabel(pm.items[i].node_type, str(i))
-            page1.layout().addWidget(label)
+            if pm.items[i].category not in pages:
+                pages[pm.items[i].category] = QtWidgets.QWidget(self)
+                self.toolBox.addItem(pages[pm.items[i].category], pm.items[i].category)
+                pages[pm.items[i].category].setLayout(QtWidgets.QVBoxLayout())
+                pages[pm.items[i].category].layout().setAlignment(QtCore.Qt.AlignTop)
+                pages[pm.items[i].category].setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
+                label = DraggableLabel(pm.items[i].node_type, str(i))
+                pages[pm.items[i].category].layout().addWidget(label)
+            else:
+                label = DraggableLabel(pm.items[i].node_type, str(i))
+                pages[pm.items[i].category].layout().addWidget(label)
+
+
             # pm.inset_to_widget(item=item)
             # pm.inset_to_widget(pm.items[0])
             # pm.inset_to_widget(pm.items[1])

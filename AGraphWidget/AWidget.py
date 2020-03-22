@@ -95,40 +95,43 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         # self.render_sample_rect()
         p = self.__scene.sceneRect().center()
 
-        node = self.add_node(node_id='node_1', x=p.x(), y=p.y())
+        # node = self.add_node(node_id='node_1', x=p.x(), y=p.y())
+        #
+        # self.add_node('node_2', p.x(), p.y() + 300)
+        #
+        # self.add_node('node_33333', p.x() + 200, p.y())
+        # self.add_node('node_4', p.x() - 200, p.y())
+        # self.add_port_in('node_4', 'port1')
+        # self.add_param_in('node_4','param1')
+        # self.add_param_out('node_4', 'param1')
+        # self.add_param_in('node_4', 'param2')
+        #
+        # self.add_port_out('node_4', 'port1')
+        # self.add_node('node_5', p.x() - 200, p.y() - 300)
+        # self.add_port_in('node_5', 'port1')
+        # self.add_port_out('node_5', 'port1')
+        #
+        # self.add_port_in('node_1', 'port1')
+        # self.add_port_in('node_1', 'port2')
+        # self.add_port_out('node_1', 'port1')
+        # self.add_port_in('node_2', 'port1')
+        # self.add_port_out('node_2', 'port1')
+        # self.add_port_in('node_33333', 'port1')
 
-        self.add_node('node_2', p.x(), p.y() + 300)
+        # for n in self.nodes.values():
+        #     self.__scene.addItem(n.gui)
+        #
+        #     for p_in in n.ports_in.values():
+        #         self.__scene.addItem(p_in.gui)
+        #     for p_out in n.ports_out.values():
+        #         self.__scene.addItem(p_out.gui)
+        #
+        # link = self.add_link('node_1', 'port1', 'node_2', 'port1')
+        #
+        # self.__scene.addItem(link.gui)
 
-        self.add_node('node_33333', p.x() + 200, p.y())
-        self.add_node('node_4', p.x() - 200, p.y())
-        self.add_port_in('node_4', 'port1')
-        self.add_param_in('node_4','param1')
-        self.add_param_out('node_4', 'param1')
-        self.add_param_in('node_4', 'param2')
 
-        self.add_port_out('node_4', 'port1')
-        self.add_node('node_5', p.x() - 200, p.y() - 300)
-        self.add_port_in('node_5', 'port1')
-        self.add_port_out('node_5', 'port1')
 
-        self.add_port_in('node_1', 'port1')
-        self.add_port_in('node_1', 'port2')
-        self.add_port_out('node_1', 'port1')
-        self.add_port_in('node_2', 'port1')
-        self.add_port_out('node_2', 'port1')
-        self.add_port_in('node_33333', 'port1')
-
-        for n in self.nodes.values():
-            self.__scene.addItem(n.gui)
-
-            for p_in in n.ports_in.values():
-                self.__scene.addItem(p_in.gui)
-            for p_out in n.ports_out.values():
-                self.__scene.addItem(p_out.gui)
-
-        link = self.add_link('node_1', 'port1', 'node_2', 'port1')
-
-        self.__scene.addItem(link.gui)
         self.loaded = False
         # Deselect all the Node items
         # [i.setSelected(False) for i in self.__scene.items()]

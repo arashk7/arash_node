@@ -19,15 +19,25 @@ class APluginManager:
                 if item[0] != '_':
                     plg_cats.append(path)
 
-        self.manager.setPluginPlaces(plg_cats)
-        self.manager.collectPlugins()
+        for pl in plg_cats:
+            self.manager.setPluginPlaces([pl])
+            self.manager.collectPlugins()
+            cat = pl.split('/')[1]
+            print(cat)
+            # Loop round the plugins and add them to item list
+            for plugin in self.manager.getAllPlugins():
+                plugin.plugin_object.init_plugin()
+                plugin.plugin_object.category = cat
+                self.items.append(plugin.plugin_object)
 
-        # Loop round the plugins and print their names.
-        for plugin in self.manager.getAllPlugins():
-            plugin.plugin_object.init_plugin()
-            # print(plugin.path)
-            # print(plugin.cat)
-            self.items.append(plugin.plugin_object)
+
+        # # Loop round the plugins and print their names.
+        # for plugin in self.manager.getAllPlugins():
+        #     plugin.plugin_object.init_plugin()
+        #     # print(plugin.path)
+        #     plugin.category='test'
+        #     print(plugin.category)
+        #     self.items.append(plugin.plugin_object)
 
             # print(len(self.items))
 
