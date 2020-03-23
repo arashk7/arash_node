@@ -17,15 +17,18 @@ class ALinkDrawer:
         self.press_port = None
         self.end_port = None
         self.is_drag = False
+        self.key = None
 
     def mouse_press_event(self, widget: QtWidgets.QGraphicsView, event: QtGui.QMouseEvent):
+        if self.key == QtCore.Qt.Key_Alt:
+            return
         # self.widget = widget
         if event.button() == QtCore.Qt.LeftButton:
             self.press_port = widget.itemAt(event.pos())
             if self.press_port:
                 if self.press_port.data(0) == 'port':
                     if self.press_port.port_type == APortType.OUTPUT:
-                        print('1')
+
                         self.press_port.parentItem().setFlag(QtWidgets.QGraphicsItem.ItemIsMovable, False)
                         # pos = widget.mapToScene(QtCore.QPoint(self.press_node.x, self.press_node.y))
                         pos = QtCore.QPointF(self.press_port.pos.x(), self.press_port.pos.y())
@@ -36,6 +39,7 @@ class ALinkDrawer:
                         # self.link.show()
                         # self.link.start_point = pos
                         self.is_drag = True
+                        self.end_port = None
                 else:
                     self.press_port.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable)
 
@@ -47,6 +51,7 @@ class ALinkDrawer:
             # print(str(pos.x()))
             mind = 100
             closest_port = None
+
             for p in ACache.input_ports_gui.values():
                 if p.parentItem() is not self.press_port.parentItem():
                     d = AMath.distance(pos, p.pos)
@@ -70,10 +75,17 @@ class ALinkDrawer:
         if event.button() == QtCore.Qt.LeftButton:
             if self.is_drag:
                 if self.end_port:
-                    print(self.end_port.port_id)
+
                     link = self.widget.add_link(self.press_port.node_id, self.press_port.port_id,
-                                                self.end_port.node_id, self.end_port.port_id)
+                                            self.end_port.node_id, self.end_port.port_id)
                     self.widget.add_to_scene(link.gui)
+
 
                 self.link.hide()
                 self.is_drag = False
+
+    def key_press_event(self, event):
+        self.key = event.key()
+
+    def key_release_event(self,event):
+        self.key = None

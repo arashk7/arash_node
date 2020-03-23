@@ -7,7 +7,8 @@ class AGraphPort:
         self.port_id = port_id
         self.caption = port_id
         self.node = node
-        self.link = None
+        self.links = dict()
+
         self.data_type = None
         self.__value = None
         self.port_type = port_type

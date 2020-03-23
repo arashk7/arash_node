@@ -87,7 +87,7 @@ class AGraph:
         # new_node = AGraphNode(node_id)
         node.node_id = node_id
 
-        #Add ports
+        # Add ports
         for _port in node.ports_in.values():
             _port.node_id = node_id
             _port.gui.node_id = node_id
@@ -268,8 +268,8 @@ class AGraph:
         link = AGraphLink(link_id=link_id, start=self.nodes[node_id_from].ports_out[port_id_from],
                           end=self.nodes[node_id_to].ports_in[port_id_to])
         self.links[link_id] = link
-        self.nodes[node_id_from].ports_out[port_id_from].link = link
-        self.nodes[node_id_to].ports_in[port_id_to].link = link
+        self.nodes[node_id_from].ports_out[port_id_from].links[link_id] = link
+        self.nodes[node_id_to].ports_in[port_id_to].links[link_id] = link
         self.__num_links_created += 1
         return link
 

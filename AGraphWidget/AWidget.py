@@ -75,6 +75,8 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         self.mouse_press_event.connect(self.__link_drawer.mouse_press_event)
         self.mouse_move_event.connect(self.__link_drawer.mouse_move_event)
         self.mouse_release_event.connect(self.__link_drawer.mouse_release_event)
+        self.key_press_event.connect(self.__link_drawer.key_press_event)
+        self.key_release_event.connect(self.__link_drawer.key_release_event)
 
         # Keyboard event
         self.__key_event = AKeyboardEvent()
@@ -330,16 +332,21 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                     # print(self.__press_node.parentItem().port_id)
                     # l.gui.hide()
                     # self.__scene.removeItem(l.gui)
-                    l = self.__press_node.port.link
-                    if l:
+                    links = dict(self.__press_node.port.links)
+                    for key in links:
+                        l = links[key]
                         l.gui.hide()
                         self.__scene.removeItem(l.gui)
                         temp_list = dict(self.links)
                         del temp_list[l.link_id]
                         self.links = temp_list
-                        self.__press_node.port.link = None
+
+                        l.start.links.pop(key)
+                        l.end.links.pop(key)
+                        # del l
+                    # self.__press_node.port.link=list()
                         # self.__press_node.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable,False)
-                    pass
+
                     # else:
                     #     self.__press_node.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable)
         elif event.button() == QtCore.Qt.MidButton:
