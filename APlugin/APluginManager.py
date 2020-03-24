@@ -20,6 +20,7 @@ class APluginManager:
                     plg_cats.append(path)
 
         for pl in plg_cats:
+            self.manager = PluginManager()
             self.manager.setPluginPlaces([pl])
             self.manager.collectPlugins()
             cat = pl.split('/')[1]
