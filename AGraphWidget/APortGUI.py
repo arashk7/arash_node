@@ -7,7 +7,7 @@ from AGraphWidget.ASkin import *
 
 
 class APortGUI(QtWidgets.QGraphicsItem):
-    def __init__(self, port ,port_id, port_type, x=100, y=100):
+    def __init__(self, port, port_id, port_type, x=100, y=100):
         super(APortGUI, self).__init__()
         self.port_id = port_id
         self.port = port
@@ -23,6 +23,17 @@ class APortGUI(QtWidgets.QGraphicsItem):
         self.pos = QtCore.QPointF(0, 0)
         self.draw_collider = False
 
+        self.__highlight = False
+
+    @property
+    def highlight(self):
+        return self.__highlight
+
+    @highlight.setter
+    def highlight(self, is_highlight):
+        self.__highlight = is_highlight
+        self.update()
+
     def boundingRect(self):
         p = self.scenePos() + QtCore.QPointF(self.x, self.y) + QtCore.QPointF(self.rect.width() / 2,
                                                                               self.rect.height() / 2)
@@ -37,8 +48,6 @@ class APortGUI(QtWidgets.QGraphicsItem):
         self.x = x
         self.y = y
 
-
-
     def paint(self, painter: QtGui.QPainter, style: QtWidgets.QStyleOptionGraphicsItem, widget=None):
         # self.__rect.setX(self.x)
         # self.__rect.setY(self.y)
@@ -52,6 +61,8 @@ class APortGUI(QtWidgets.QGraphicsItem):
         path.addEllipse(x, y, w, h)
 
         brush = QtGui.QBrush(QtGui.QColor(100, 250, 250, 100))
+        if self.__highlight:
+            brush = QtGui.QBrush(QtGui.QColor(250, 250, 250, 200))
         pen = QtGui.QPen(QtGui.QColor(250, 250, 250, 100))
         # if self.isConnected:
         # pen = QtGui.QPen(self.connectedColor)
