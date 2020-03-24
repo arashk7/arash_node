@@ -1,0 +1,9 @@
+[Core]
+Name = Sin
+Module = Sin
+
+[Documentation]
+Author = Ahmad Karambakhsh
+Version = 0.1
+Website = a-karambakhsh.ir
+Description = NP

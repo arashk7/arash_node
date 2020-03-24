@@ -89,11 +89,7 @@ class Window(QtWidgets.QMainWindow):
                 pages[pm.items[i].category].layout().addWidget(label)
 
 
-            # pm.inset_to_widget(item=item)
-            # pm.inset_to_widget(pm.items[0])
-            # pm.inset_to_widget(pm.items[1])
-            # pm.inset_to_widget(pm.items[2])
-            # pm.inset_to_widget(pm.items[2])
+
 
 
 if __name__ == '__main__':
