@@ -7,7 +7,7 @@ from AGraphWidget.AGraphPort import AGraphPort
 from AGraphWidget.AGraphParam import AGraphParam
 from AGraphWidget.ALogger import ALogger
 from AGraphWidget.AGraphLink import AGraphLink
-from AGraphWidget.AUtil import APortType, AParamType, ACache
+from AGraphWidget.AUtil import APortType, AParamType, ACache, ALinkType
 
 
 class AGraph:
@@ -243,8 +243,8 @@ class AGraph:
         self.__num_params_out_created += 1
         return p_out
 
-    # Add Link
-    def add_link(self, node_id_from, port_id_from, node_id_to, port_id_to, link_id=None):
+    # Add Link to port
+    def add_link_to_port(self, node_id_from, port_id_from, node_id_to, port_id_to, link_id=None):
         # Check source and target nodes availability
         if node_id_from not in self.nodes or node_id_to not in self.nodes:
             ALogger.print_error("The node ID does not exist!")
@@ -267,9 +267,42 @@ class AGraph:
         # Instantiate new link object
         link = AGraphLink(link_id=link_id, start=self.nodes[node_id_from].ports_out[port_id_from],
                           end=self.nodes[node_id_to].ports_in[port_id_to])
+
+        link.gui.link_type = ALinkType.PORT
         self.links[link_id] = link
         self.nodes[node_id_from].ports_out[port_id_from].links[link_id] = link
         self.nodes[node_id_to].ports_in[port_id_to].links[link_id] = link
+        self.__num_links_created += 1
+        return link
+
+    # Add Link to param
+    def add_link_to_param(self, node_id_from, param_id_from, node_id_to, param_id_to, link_id=None):
+        # Check source and target nodes availability
+        if node_id_from not in self.nodes or node_id_to not in self.nodes:
+            ALogger.print_error("The node ID does not exist!")
+            return
+        # Check source and target ports availability
+        if param_id_from not in self.nodes[node_id_from].params_out or \
+                        param_id_to not in self.nodes[node_id_to].params_in:
+            ALogger.print_error("The param ID does not exist!")
+            return
+
+        # If user does not give the link ID parameter, it will be generated
+        if link_id is None:
+            i = 0
+            while True:
+                link_id = 'link_' + str(self.__num_links_created + i)
+                if link_id not in self.links:
+                    break
+                i += 1
+
+        # Instantiate new link object
+        link = AGraphLink(link_id=link_id, start=self.nodes[node_id_from].params_out[param_id_from],
+                          end=self.nodes[node_id_to].params_in[param_id_to])
+        link.gui.link_type = ALinkType.PARAM
+        self.links[link_id] = link
+        self.nodes[node_id_from].params_out[param_id_from].links[link_id] = link
+        self.nodes[node_id_to].params_in[param_id_to].links[link_id] = link
         self.__num_links_created += 1
         return link
 

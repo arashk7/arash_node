@@ -325,30 +325,33 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         if event.button() == QtCore.Qt.LeftButton:
             self.__press_node = self.itemAt(event.pos())
             self.__press_point = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
-            if self.__press_node and self.__press_node.data(0) == 'port':
+            if self.__press_node:
                 if self.__key_event.key == QtCore.Qt.Key_Alt:
-                    # self.links[self.__press_node.port.link.link_id]
-                    # self.__press_node
-                    # print(self.__press_node.parentItem().port_id)
-                    # l.gui.hide()
-                    # self.__scene.removeItem(l.gui)
-                    links = dict(self.__press_node.port.links)
-                    for key in links:
-                        l = links[key]
-                        l.gui.hide()
-                        self.__scene.removeItem(l.gui)
-                        temp_list = dict(self.links)
-                        del temp_list[l.link_id]
-                        self.links = temp_list
+                    if self.__press_node.data(0) == 'port':
+                        links = dict(self.__press_node.port.links)
+                        for key in links:
+                            l = links[key]
+                            l.gui.hide()
+                            self.__scene.removeItem(l.gui)
+                            temp_list = dict(self.links)
+                            del temp_list[l.link_id]
+                            self.links = temp_list
 
-                        l.start.links.pop(key)
-                        l.end.links.pop(key)
-                        # del l
-                    # self.__press_node.port.link=list()
-                        # self.__press_node.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable,False)
+                            l.start.links.pop(key)
+                            l.end.links.pop(key)
+                    elif self.__press_node.data(0) == 'param':
+                        links = dict(self.__press_node.param.links)
+                        for key in links:
+                            l = links[key]
+                            l.gui.hide()
+                            self.__scene.removeItem(l.gui)
+                            temp_list = dict(self.links)
+                            del temp_list[l.link_id]
+                            self.links = temp_list
 
-                    # else:
-                    #     self.__press_node.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable)
+                            l.start.links.pop(key)
+                            l.end.links.pop(key)
+
         elif event.button() == QtCore.Qt.MidButton:
             self.setDragMode(True)
             self.viewport().setCursor(QtCore.Qt.ClosedHandCursor)

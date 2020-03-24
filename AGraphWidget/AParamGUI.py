@@ -23,6 +23,17 @@ class AParamGUI(QtWidgets.QGraphicsItem):
         self.pos = QtCore.QPointF(0, 0)
         self.draw_collider = False
 
+        self.__highlight = False
+
+    @property
+    def highlight(self):
+        return self.__highlight
+
+    @highlight.setter
+    def highlight(self, is_highlight):
+        self.__highlight = is_highlight
+        self.update()
+
     def boundingRect(self):
         p = self.scenePos() + QtCore.QPointF(self.x, self.y) + QtCore.QPointF(self.rect.width() / 2,
                                                                               self.rect.height() / 2)
@@ -50,6 +61,8 @@ class AParamGUI(QtWidgets.QGraphicsItem):
         path.addEllipse(x, y, w, h)
 
         brush = QtGui.QBrush(QtGui.QColor(100, 250, 250, 100))
+        if self.__highlight:
+            brush = QtGui.QBrush(QtGui.QColor(250, 250, 250, 200))
         pen = QtGui.QPen(QtGui.QColor(250, 250, 250, 100))
         # if self.isConnected:
         # pen = QtGui.QPen(self.connectedColor)

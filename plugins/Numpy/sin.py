@@ -21,3 +21,8 @@ class Sin(APlugin, IPlugin):
 
     def init_node(self):
         print('Added node: ', self.node_id)
+
+    def run(self):
+        pass
+        # self.params_in['in'].va
+

@@ -12,6 +12,11 @@ class AParamType:
     OUTPUT = 1
 
 
+class ALinkType:
+    PARAM = 0
+    PORT = 1
+
+
 class ACache:
     input_ports_gui = {}
     output_ports_gui = {}

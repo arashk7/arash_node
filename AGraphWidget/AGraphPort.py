@@ -17,7 +17,7 @@ class AGraphPort:
         self.gui.node_id = node.node_id
 
     def is_connected(self):
-        if self.link:
+        if len(self.links) > 0:
             return True
         return False
 
@@ -25,8 +25,9 @@ class AGraphPort:
     @property
     def value(self):
         return self.__value
+
     @value.setter
-    def value(self,new_value):
+    def value(self, new_value):
         self.__value = new_value
 
     # Port ID

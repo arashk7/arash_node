@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from AGraphWidget.ALinkGUI import ALinkGUI
 
-from AGraphWidget.AUtil import APortType, AParamType, AMath, ACache
+from AGraphWidget.AUtil import APortType, AParamType, ALinkType, AMath, ACache
 
 
 class ALinkDrawer:
@@ -34,6 +34,7 @@ class ALinkDrawer:
                         widget.get_scene().removeItem(self.link)
                         del self.link
                         self.link = ALinkGUI('link_drawer', start=pos, end=pos)
+                        self.link.link_type = ALinkType.PORT
                         widget.get_scene().addItem(self.link)
                         # self.link.show()
                         # self.link.start_point = pos
@@ -48,6 +49,7 @@ class ALinkDrawer:
                         widget.get_scene().removeItem(self.link)
                         del self.link
                         self.link = ALinkGUI('link_drawer', start=pos, end=pos)
+                        self.link.link_type = ALinkType.PARAM
                         widget.get_scene().addItem(self.link)
                         self.is_drag_param = True
                         self.end_port_param = None
@@ -81,12 +83,36 @@ class ALinkDrawer:
                 self.end_port_param = None
 
                 self.link.update_line(self.link.start_point, self.link.end_point)
+        elif self.is_drag_param:
+            pos = self.widget.mapToScene(event.pos())
+            mind = 100
+            closest_param = None
+
+            for p in ACache.input_params_gui.values():
+                if p.parentItem() is not self.press_port_param.parentItem():
+                    p.highlight = True
+                    d = AMath.distance(pos, p.pos)
+                    if d < mind:
+                        mind = d
+                        closest_param = p
+            if closest_param:
+                if mind < 50:
+                    self.link.end_point = closest_param.pos
+                    self.end_port_param = closest_param
+                else:
+                    self.link.end_point = pos
+                    self.end_port_param = None
+            else:
+                self.link.end_point = pos
+                self.end_port_param = None
+
+                self.link.update_line(self.link.start_point, self.link.end_point)
 
     def mouse_release_event(self, event: QtGui.QMouseEvent):
         if event.button() == QtCore.Qt.LeftButton:
             if self.is_drag_port:
                 if self.end_port_param:
-                    link = self.widget.add_link(self.press_port_param.node_id, self.press_port_param.port_id,
+                    link = self.widget.add_link_to_port(self.press_port_param.node_id, self.press_port_param.port_id,
                                                 self.end_port_param.node_id, self.end_port_param.port_id)
                     self.widget.add_to_scene(link.gui)
 
@@ -95,6 +121,18 @@ class ALinkDrawer:
 
                 for p in ACache.input_ports_gui.values():
                     p.highlight = False
+            if self.is_drag_param:
+                if self.end_port_param:
+                    link = self.widget.add_link_to_param(self.press_port_param.node_id, self.press_port_param.param_id,
+                                                self.end_port_param.node_id, self.end_port_param.param_id)
+                    self.widget.add_to_scene(link.gui)
+
+                self.link.hide()
+                self.is_drag_param = False
+
+                for p in ACache.input_params_gui.values():
+                    p.highlight = False
+
 
     def key_press_event(self, event):
         self.key = event.key()
