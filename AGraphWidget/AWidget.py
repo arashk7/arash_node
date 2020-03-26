@@ -334,23 +334,36 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                             l.gui.hide()
                             self.__scene.removeItem(l.gui)
                             temp_list = dict(self.links)
+
                             del temp_list[l.link_id]
                             self.links = temp_list
 
                             l.start.links.pop(key)
                             l.end.links.pop(key)
+                            l.start.gui.update()
+                            l.end.gui.update()
                     elif self.__press_node.data(0) == 'param':
                         links = dict(self.__press_node.param.links)
                         for key in links:
+                            print('1')
                             l = links[key]
+                            print('2')
                             l.gui.hide()
+                            print('3')
                             self.__scene.removeItem(l.gui)
+                            print('4')
                             temp_list = dict(self.links)
+                            print('5')
                             del temp_list[l.link_id]
+                            print('6')
                             self.links = temp_list
-
+                            print('7')
                             l.start.links.pop(key)
+                            print('8')
                             l.end.links.pop(key)
+                            l.start.gui.update()
+                            print('9')
+                            l.end.gui.update()
 
         elif event.button() == QtCore.Qt.MidButton:
             self.setDragMode(True)

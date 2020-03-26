@@ -63,6 +63,8 @@ class AParamGUI(QtWidgets.QGraphicsItem):
         brush = QtGui.QBrush(QtGui.QColor(100, 250, 250, 100))
         if self.__highlight:
             brush = QtGui.QBrush(QtGui.QColor(250, 250, 250, 200))
+        elif self.param.is_connected():
+            brush = QtGui.QBrush(QtGui.QColor(100, 100, 100, 150))
         pen = QtGui.QPen(QtGui.QColor(250, 250, 250, 100))
         # if self.isConnected:
         # pen = QtGui.QPen(self.connectedColor)
