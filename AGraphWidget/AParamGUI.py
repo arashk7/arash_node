@@ -78,7 +78,7 @@ class AParamGUI(QtWidgets.QGraphicsItem):
         brush = QtGui.QBrush(color)
         pen = QtGui.QPen(color)
         pen.setWidth(0)
-        font = QtGui.QFont("arial", 5)
+        font = QtGui.QFont("arial", 7)
 
         # br = QtGui.QFontMetrics(font).boundingRect(self.caption)
         # print(str(br.width()))

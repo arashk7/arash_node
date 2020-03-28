@@ -17,7 +17,7 @@ class AGraphPort:
         self.gui.node_id = node.node_id
 
     def is_connected(self):
-        if len(self.links) > 0:
+        if len(self.links.items()) > 0:
             return True
         return False
 

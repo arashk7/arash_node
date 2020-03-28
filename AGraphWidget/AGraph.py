@@ -304,6 +304,7 @@ class AGraph:
         self.nodes[node_id_from].params_out[param_id_from].links[link_id] = link
         self.nodes[node_id_to].params_in[param_id_to].links[link_id] = link
         self.__num_links_created += 1
+        self.nodes[node_id_from].edit_run()
         return link
 
     # Remove Input Port

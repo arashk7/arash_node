@@ -14,8 +14,8 @@
       <file leaf-file-name="main_wnd.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main_wnd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="32" column="44" lean-forward="false" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
+            <state relative-caret-position="95">
+              <caret line="72" column="41" lean-forward="true" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="41" />
               <folding>
                 <element signature="e#0#47#0" expanded="true" />
               </folding>
@@ -23,63 +23,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AWidget.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AGraphWidget/AWidget.py">
+      <file leaf-file-name="Conv2D.py" pinned="false" current-in-tab="false">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8725">
-              <caret line="364" column="38" lean-forward="false" selection-start-line="364" selection-start-column="38" selection-end-line="364" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AKeyboardEvent.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AGraphWidget/AKeyboardEvent.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="725">
-              <caret line="29" column="23" lean-forward="false" selection-start-line="28" selection-start-column="4" selection-end-line="29" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AParamGUI.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AGraphWidget/AParamGUI.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1525">
-              <caret line="66" column="66" lean-forward="false" selection-start-line="65" selection-start-column="8" selection-end-line="66" selection-end-column="66" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AGraphParam.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AGraphWidget/AGraphParam.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="18" column="38" lean-forward="false" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ALinkGUI.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AGraphWidget/ALinkGUI.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5325">
-              <caret line="215" column="24" lean-forward="false" selection-start-line="215" selection-start-column="24" selection-end-line="215" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AGraphLink.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AGraphWidget/AGraphLink.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="71">
+              <caret line="11" column="30" lean-forward="false" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -88,33 +35,61 @@
       <file leaf-file-name="AGraph.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AGraphWidget/AGraph.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6750">
-              <caret line="270" column="43" lean-forward="false" selection-start-line="270" selection-start-column="43" selection-end-line="270" selection-end-column="43" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AUtil.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AGraphWidget/AUtil.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="16" column="12" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+            <state relative-caret-position="3378">
+              <caret line="306" column="43" lean-forward="false" selection-start-line="306" selection-start-column="43" selection-end-line="306" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ALinkDrawer.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AGraphWidget/ALinkDrawer.py">
+      <file leaf-file-name="AWidget.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AGraphWidget/AWidget.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3050">
-              <caret line="125" column="43" lean-forward="false" selection-start-line="125" selection-start-column="43" selection-end-line="125" selection-end-column="43" />
+            <state relative-caret-position="428">
+              <caret line="366" column="49" lean-forward="false" selection-start-line="366" selection-start-column="49" selection-end-line="366" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="array.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plugins/Numpy/array.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="346">
+              <caret line="23" column="25" lean-forward="true" selection-start-line="23" selection-start-column="4" selection-end-line="24" selection-end-column="44" />
               <folding>
-                <element signature="e#0#42#0" expanded="true" />
+                <element signature="e#0#40#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sin.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plugins/Numpy/sin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="421">
+              <caret line="23" column="47" lean-forward="false" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="APlugin.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AGraphWidget/APlugin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-154">
+              <caret line="42" column="42" lean-forward="true" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AGraphParam.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AGraphWidget/AGraphParam.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -149,9 +124,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ArashWidget/ASkin.py" />
-        <option value="$PROJECT_DIR$/ArashWidget/ARubberBand.py" />
-        <option value="$PROJECT_DIR$/ArashWidget/APortGUI.py" />
         <option value="$PROJECT_DIR$/ArashWidget/ANodeGUI.py" />
         <option value="$PROJECT_DIR$/ArashWidget/ALinkDrawer.py" />
         <option value="$PROJECT_DIR$/ArashWidget/AGraphPort.py" />
@@ -178,28 +150,31 @@
         <option value="$PROJECT_DIR$/plugins/LSTM.py" />
         <option value="$PROJECT_DIR$/plugins/MaxPool2D.py" />
         <option value="$PROJECT_DIR$/AGraphWidget/AGraphNode.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/ANodeGUI.py" />
         <option value="$PROJECT_DIR$/AGraphWidget/ASkin.py" />
         <option value="$PROJECT_DIR$/plugins/Conv2D.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/APlugin.py" />
-        <option value="$PROJECT_DIR$/plugins/TensorFlow/Conv2D.py" />
         <option value="$PROJECT_DIR$/plugins/TensorFlow/Conv2D.aplugin" />
         <option value="$PROJECT_DIR$/plugins/Numpy/Transpose.py" />
-        <option value="$PROJECT_DIR$/plugins/Numpy/vstack.py" />
-        <option value="$PROJECT_DIR$/plugins/Numpy/transpose.py" />
         <option value="$PROJECT_DIR$/APlugin/APluginManager.py" />
         <option value="$PROJECT_DIR$/main_wnd.py" />
         <option value="$PROJECT_DIR$/plugins/Numpy/sin.aplugin" />
-        <option value="$PROJECT_DIR$/AGraphWidget/APortGUI.py" />
-        <option value="$PROJECT_DIR$/plugins/Numpy/sin.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/AGraphPort.py" />
         <option value="$PROJECT_DIR$/AGraphWidget/AUtil.py" />
         <option value="$PROJECT_DIR$/AGraphWidget/ALinkDrawer.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/AGraph.py" />
         <option value="$PROJECT_DIR$/AGraphWidget/ALinkGUI.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/AGraphParam.py" />
+        <option value="$PROJECT_DIR$/AGraphWidget/APortGUI.py" />
+        <option value="$PROJECT_DIR$/AGraphWidget/AGraphPort.py" />
+        <option value="$PROJECT_DIR$/plugins/TensorFlow/MaxPool2D.py" />
+        <option value="$PROJECT_DIR$/plugins/TensorFlow/LSTM.py" />
+        <option value="$PROJECT_DIR$/plugins/TensorFlow/Conv2D.py" />
+        <option value="$PROJECT_DIR$/plugins/Numpy/vstack.py" />
+        <option value="$PROJECT_DIR$/plugins/Numpy/transpose.py" />
+        <option value="$PROJECT_DIR$/AGraphWidget/ANodeGUI.py" />
         <option value="$PROJECT_DIR$/AGraphWidget/AParamGUI.py" />
+        <option value="$PROJECT_DIR$/AGraphWidget/AGraphParam.py" />
+        <option value="$PROJECT_DIR$/plugins/Numpy/array.py" />
+        <option value="$PROJECT_DIR$/AGraphWidget/AGraph.py" />
+        <option value="$PROJECT_DIR$/AGraphWidget/APlugin.py" />
         <option value="$PROJECT_DIR$/AGraphWidget/AWidget.py" />
+        <option value="$PROJECT_DIR$/plugins/Numpy/sin.py" />
       </list>
     </option>
   </component>
@@ -224,8 +199,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -269,6 +242,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -451,7 +426,7 @@
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="2070" height="1114" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19059657" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19969666" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32821077" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -541,9 +516,9 @@
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/AGraphWidget/AGraphParam.py</url>
-          <line>18</line>
-          <option name="timeStamp" value="62" />
+          <url>file://$PROJECT_DIR$/AGraphWidget/APlugin.py</url>
+          <line>36</line>
+          <option name="timeStamp" value="64" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -553,20 +528,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="63" />
+      <option name="time" value="65" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/AWidget/ASkin.py" />
-    <entry file="file://$PROJECT_DIR$/AWidget/AWidget.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/ARubberBand.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="17" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/plugins/ATestPlugin.py" />
     <entry file="file://$PROJECT_DIR$/plugins/ATest3.py" />
     <entry file="file://$PROJECT_DIR$/test_plugin.py" />
@@ -636,13 +602,6 @@
     <entry file="file://$PROJECT_DIR$/plugins/MaxPool2D.aplugin" />
     <entry file="file://$PROJECT_DIR$/plugins/LSTM.py" />
     <entry file="file://$PROJECT_DIR$/plugins/MaxPool2D.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/ANodeGUI.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3750">
-          <caret line="152" column="30" lean-forward="false" selection-start-line="136" selection-start-column="8" selection-end-line="152" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AGraphWidget/ASkin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1000">
@@ -658,31 +617,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/AGraphNode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1325">
-          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yapsy/IPlugin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
           <caret line="36" column="6" lean-forward="false" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/TensorFlow/Conv2D.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-79">
-          <caret line="5" column="26" lean-forward="false" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/APlugin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="30" column="25" lean-forward="true" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -707,27 +645,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/Numpy/vstack.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/Numpy/transpose.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="14" column="32" lean-forward="false" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/APlugin/APluginManager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1150">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/plugins/Numpy/sin.aplugin">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="50">
@@ -735,67 +652,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/Numpy/sin.py">
+    <entry file="file://$PROJECT_DIR$/AGraphWidget/ALinkGUI.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="25" column="12" lean-forward="false" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+        <state relative-caret-position="5325">
+          <caret line="215" column="24" lean-forward="false" selection-start-line="215" selection-start-column="24" selection-end-line="215" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/AGraphPort.py">
+    <entry file="file://$PROJECT_DIR$/AGraphWidget/ALinkDrawer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="19" column="25" lean-forward="false" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+        <state relative-caret-position="3050">
+          <caret line="125" column="43" lean-forward="false" selection-start-line="125" selection-start-column="43" selection-end-line="125" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AGraphWidget/AKeyboardEvent.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="725">
+          <caret line="29" column="23" lean-forward="false" selection-start-line="28" selection-start-column="4" selection-end-line="29" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AGraphWidget/APortGUI.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1475">
-          <caret line="64" column="66" lean-forward="false" selection-start-line="63" selection-start-column="8" selection-end-line="64" selection-end-column="66" />
+        <state relative-caret-position="1500">
+          <caret line="65" column="22" lean-forward="false" selection-start-line="65" selection-start-column="22" selection-end-line="65" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AGraphWidget/AGraphPort.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="21" column="20" lean-forward="false" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/TensorFlow/MaxPool2D.py" />
+    <entry file="file://$PROJECT_DIR$/plugins/TensorFlow/LSTM.py" />
+    <entry file="file://$PROJECT_DIR$/plugins/Numpy/vstack.py" />
+    <entry file="file://$PROJECT_DIR$/plugins/Numpy/transpose.py" />
+    <entry file="file://$PROJECT_DIR$/AGraphWidget/AGraphNode.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1325">
+          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AGraphWidget/AUtil.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
+        <state relative-caret-position="-154">
           <caret line="16" column="12" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/AGraph.py">
+    <entry file="file://$PROJECT_DIR$/AGraphWidget/ANodeGUI.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6750">
-          <caret line="270" column="43" lean-forward="false" selection-start-line="270" selection-start-column="43" selection-end-line="270" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/ALinkGUI.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5325">
-          <caret line="215" column="24" lean-forward="false" selection-start-line="215" selection-start-column="24" selection-end-line="215" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/AGraphParam.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="18" column="38" lean-forward="false" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/AParamGUI.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1525">
-          <caret line="66" column="66" lean-forward="false" selection-start-line="65" selection-start-column="8" selection-end-line="66" selection-end-column="66" />
+        <state relative-caret-position="1696">
+          <caret line="167" column="38" lean-forward="false" selection-start-line="167" selection-start-column="38" selection-end-line="167" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -808,36 +725,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/ALinkDrawer.py">
+    <entry file="file://$PROJECT_DIR$/AGraphWidget/AParamGUI.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3050">
-          <caret line="125" column="43" lean-forward="false" selection-start-line="125" selection-start-column="43" selection-end-line="125" selection-end-column="43" />
+        <state relative-caret-position="1875">
+          <caret line="80" column="37" lean-forward="false" selection-start-line="80" selection-start-column="37" selection-end-line="80" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/APlugin/APluginManager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/Numpy/array.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="23" column="25" lean-forward="true" selection-start-line="23" selection-start-column="4" selection-end-line="24" selection-end-column="44" />
           <folding>
-            <element signature="e#0#42#0" expanded="true" />
+            <element signature="e#0#40#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/AKeyboardEvent.py">
+    <entry file="file://$PROJECT_DIR$/plugins/TensorFlow/Conv2D.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="725">
-          <caret line="29" column="23" lean-forward="false" selection-start-line="28" selection-start-column="4" selection-end-line="29" selection-end-column="23" />
+        <state relative-caret-position="71">
+          <caret line="11" column="30" lean-forward="false" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AGraphWidget/AGraph.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3378">
+          <caret line="306" column="43" lean-forward="false" selection-start-line="306" selection-start-column="43" selection-end-line="306" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AGraphWidget/AWidget.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8725">
-          <caret line="364" column="38" lean-forward="false" selection-start-line="364" selection-start-column="38" selection-end-line="364" selection-end-column="38" />
+        <state relative-caret-position="428">
+          <caret line="366" column="49" lean-forward="false" selection-start-line="366" selection-start-column="49" selection-end-line="366" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AGraphWidget/APlugin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-154">
+          <caret line="42" column="42" lean-forward="true" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AGraphWidget/AGraphParam.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/Numpy/sin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="23" column="47" lean-forward="false" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main_wnd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="32" column="44" lean-forward="false" selection-start-line="32" selection-start-column="44" selection-end-line="32" selection-end-column="44" />
+        <state relative-caret-position="95">
+          <caret line="72" column="41" lean-forward="true" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="41" />
           <folding>
             <element signature="e#0#47#0" expanded="true" />
           </folding>

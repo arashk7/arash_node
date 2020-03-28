@@ -1,9 +1,0 @@
-[Core]
-Name = MaxPool2D
-Module = MaxPool2D
-
-[Documentation]
-Author = Ahmad Karambakhsh
-Version = 0.1
-Website = http://a-karambakhsh.ir
-Description = 2D MaxPooling 

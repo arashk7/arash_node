@@ -9,7 +9,7 @@ class Conv2D(APlugin, IPlugin):
         self.node_id = ''
         self.node_type = 'Conv2D'
 
-        APlugin.__init__(self, node_id=self.node_id, node_type=self.node_type, x=x, y=y)
+        APlugin.__init__(self, x=x, y=y)
 
         self.add_in_port('port_1')
         self.add_in_port('port_2')

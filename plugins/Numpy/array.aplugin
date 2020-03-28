@@ -1,6 +1,6 @@
 [Core]
-Name = Transpose
-Module = Transpose
+Name = Array
+Module = Array
 
 [Documentation]
 Author = Ahmad Karambakhsh

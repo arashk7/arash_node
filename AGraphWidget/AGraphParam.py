@@ -11,9 +11,11 @@ class AGraphParam:
         self.data_type = None
         self.__value = None
         self.param_type = param_type
+        self.shape = None
         self.gui = AParamGUI(param=self, param_id=param_id, param_type=param_type)
         self.gui.setParentItem(node.gui)
         self.gui.node_id = node.node_id
+
 
     def is_connected(self):
         if len(self.links.items()) > 0:

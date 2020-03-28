@@ -1,9 +1,0 @@
-[Core]
-Name = VStack
-Module = VStack
-
-[Documentation]
-Author = Ahmad Karambakhsh
-Version = 0.1
-Website = a-karambakhsh.ir
-Description = NP

@@ -1,9 +1,0 @@
-[Core]
-Name = LSTM
-Module = LSTM
-
-[Documentation]
-Author = Ahmad Karambakhsh
-Version = 0.1
-Website = http://a-karambakhsh.ir
-Description = LSTM layer

@@ -342,10 +342,10 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                             l.end.links.pop(key)
                             l.start.gui.update()
                             l.end.gui.update()
+                            l.end.node.edit_run()
                     elif self.__press_node.data(0) == 'param':
                         links = dict(self.__press_node.param.links)
                         for key in links:
-                            print('1')
                             l = links[key]
                             print('2')
                             l.gui.hide()
@@ -364,7 +364,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                             l.start.gui.update()
                             print('9')
                             l.end.gui.update()
-
+                            l.end.node.edit_run()
         elif event.button() == QtCore.Qt.MidButton:
             self.setDragMode(True)
             self.viewport().setCursor(QtCore.Qt.ClosedHandCursor)

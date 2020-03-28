@@ -13,6 +13,7 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
         self.setData(0, 'node')
         self.__selected = False
         self.graph_node = graph_node
+        self.node_info = ''
 
         # Shadow Effect
         shadow = QtWidgets.QGraphicsDropShadowEffect()
@@ -50,33 +51,37 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
         i = 1
         # graph_node.ports_in[0]
         for port in self.graph_node.ports_in.values():
-            port.gui.x=((step * i) + self.rect.x() - 10)
-            port.gui.y=(self.rect.y() - 15)
+            port.gui.x = ((step * i) + self.rect.x() - 10)
+            port.gui.y = (self.rect.y() - 15)
             i += 1
 
         step = self.rect.width() / (len(self.graph_node.ports_out) + 1)
         i = 1
         for port in self.graph_node.ports_out.values():
-            port.gui.x=((step * i) + self.rect.x() - 10)
-            port.gui.y=(self.rect.y() + self.rect.height() - 5)
+            port.gui.x = ((step * i) + self.rect.x() - 10)
+            port.gui.y = (self.rect.y() + self.rect.height() - 5)
             i += 1
 
     def init_params_locations(self):
         init_step = 10
         step = 30
-        i = 1
+        num_in_param = 1
         # graph_node.ports_in[0]
         for param in self.graph_node.params_in.values():
-            param.gui.x=(self.rect.x() - 15)
-            param.gui.y=init_step+((step * i) + self.rect.y() - 10)
-            i += 1
-        self.rect.setHeight(self.rect.height()+(step/2)*(i-1))
+            param.gui.x = (self.rect.x() - 15)
+            param.gui.y = init_step + ((step * num_in_param) + self.rect.y() - 10)
+            num_in_param += 1
 
-        i = 1
+        num_out_param = 1
         for param in self.graph_node.params_out.values():
-            param.gui.x=(self.rect.x() + self.rect.width() - 5)
-            param.gui.y=init_step+((step * i) + self.rect.y() - 10)
-            i += 1
+            param.gui.x = (self.rect.x() + self.rect.width() - 5)
+            param.gui.y = init_step + ((step * num_out_param) + self.rect.y() - 10)
+            num_out_param += 1
+
+        if num_out_param > num_in_param:
+            self.rect.setHeight(self.rect.height() + (step / 2) * (num_out_param - 1))
+        else:
+            self.rect.setHeight(self.rect.height() + (step / 2) * (num_in_param - 1))
 
     def setSelected(self, selected):
         self.__selected = selected
@@ -147,6 +152,20 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
         self.caption = self.graph_node.node_id
         self.id = self.graph_node.node_id
         path.addText(x + 5, y + 15, font, str(self.caption))
+        painter.setFont(font)
+        painter.setPen(pen)
+        painter.setBrush(brush)
+        painter.drawPath(path)
+
+        # add node_info text
+        path = QtGui.QPainterPath()
+        color = ASkin.color(ARole.NODE_WND_CAP_TEXT)
+        brush = QtGui.QBrush(color)
+        pen = QtGui.QPen(color)
+        pen.setWidth(0)
+        font = QtGui.QFont("arial", 6)
+
+        path.addText(x + 5, y + h - 10, font, str(self.node_info))
         painter.setFont(font)
         painter.setPen(pen)
         painter.setBrush(brush)
