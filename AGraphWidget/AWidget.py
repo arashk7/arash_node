@@ -332,7 +332,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                         for key in links:
                             l = links[key]
                             l.gui.hide()
-                            self.__scene.removeItem(l.gui)
+
                             temp_list = dict(self.links)
 
                             del temp_list[l.link_id]
@@ -343,28 +343,23 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                             l.start.gui.update()
                             l.end.gui.update()
                             l.end.node.edit_run()
+                            del l
+                            # self.__scene.removeItem(l.gui)
                     elif self.__press_node.data(0) == 'param':
                         links = dict(self.__press_node.param.links)
                         for key in links:
                             l = links[key]
-                            print('2')
                             l.gui.hide()
-                            print('3')
-                            self.__scene.removeItem(l.gui)
-                            print('4')
                             temp_list = dict(self.links)
-                            print('5')
                             del temp_list[l.link_id]
-                            print('6')
                             self.links = temp_list
-                            print('7')
                             l.start.links.pop(key)
-                            print('8')
                             l.end.links.pop(key)
                             l.start.gui.update()
-                            print('9')
                             l.end.gui.update()
                             l.end.node.edit_run()
+                            del l
+                            # self.__scene.removeItem(l.gui)
         elif event.button() == QtCore.Qt.MidButton:
             self.setDragMode(True)
             self.viewport().setCursor(QtCore.Qt.ClosedHandCursor)
@@ -393,6 +388,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
             if self.__press_node and release_node:
                 if self.__press_node == release_node:
                     pass
+                    # return
                     # anim = QtCore.QTimeLine(200, self)
                     # anim.setUpdateInterval(10)
                     # anim.valueChanged.connect(self.anim_scale)

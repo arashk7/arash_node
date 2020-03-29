@@ -66,11 +66,12 @@ class ALinkDrawer:
 
             for p in ACache.input_ports_gui.values():
                 if p.parentItem() is not self.press_port_param.parentItem():
-                    p.highlight = True
-                    d = AMath.distance(pos, p.pos)
-                    if d < mind:
-                        mind = d
-                        closest_port = p
+                    if not p.port.is_connected():
+                        p.highlight = True
+                        d = AMath.distance(pos, p.pos)
+                        if d < mind:
+                            mind = d
+                            closest_port = p
             if closest_port:
                 if mind < 50:
                     self.link.end_point = closest_port.pos
@@ -90,11 +91,12 @@ class ALinkDrawer:
 
             for p in ACache.input_params_gui.values():
                 if p.parentItem() is not self.press_port_param.parentItem():
-                    p.highlight = True
-                    d = AMath.distance(pos, p.pos)
-                    if d < mind:
-                        mind = d
-                        closest_param = p
+                    if not p.param.is_connected():
+                        p.highlight = True
+                        d = AMath.distance(pos, p.pos)
+                        if d < mind:
+                            mind = d
+                            closest_param = p
             if closest_param:
                 if mind < 50:
                     self.link.end_point = closest_param.pos
@@ -126,7 +128,7 @@ class ALinkDrawer:
                     link = self.widget.add_link_to_param(self.press_port_param.node_id, self.press_port_param.param_id,
                                                 self.end_port_param.node_id, self.end_port_param.param_id)
                     self.widget.add_to_scene(link.gui)
-
+                    self.press_port_param.update()
                 self.link.hide()
                 self.is_drag_param = False
 

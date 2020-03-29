@@ -21,7 +21,7 @@ class AParamGUI(QtWidgets.QGraphicsItem):
         self.rect_collider = QtCore.QRectF(x, y, 20, 20)
 
         self.pos = QtCore.QPointF(0, 0)
-        self.draw_collider = False
+        self.draw_collider = True
 
         self.__highlight = False
 
