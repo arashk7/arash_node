@@ -1,11 +1,16 @@
 from AGraphWidget import AGraphNode, AUtil, AGraph
-from AGraphWidget import AGraphPort, AGraphParam, AWidget
-from AGraphWidget.AUtil import ASharedItems
+from AGraphWidget import AGraphPort, AGraphParam, AWidget, AGraphProperty
+from AGraphWidget.AUtil import APropertyType,APropertyLocation
 
 
 class APlugin(AGraphNode.AGraphNode):
     def __init__(self, x=0, y=0):
         AGraphNode.AGraphNode.__init__(self, node_id='', node_type=self.__class__.__name__, x=x, y=y)
+
+
+    def add_property(self,property_name, property_type,property_location):
+
+        self.add_prop(AGraphProperty.AGraphProperty(property_name,property_type,property_location,self))
 
     def set_in_param(self, param_name, val):
         self.params_in[param_name].value = val

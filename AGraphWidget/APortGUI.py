@@ -66,11 +66,20 @@ class APortGUI(QtWidgets.QGraphicsItem):
         elif self.port.is_connected():
             brush = QtGui.QBrush(QtGui.QColor(100, 100, 100, 150))
         pen = QtGui.QPen(QtGui.QColor(250, 250, 250, 100))
-        # if self.isConnected:
-        # pen = QtGui.QPen(self.connectedColor)
+
         painter.setPen(pen)
         painter.setBrush(brush)
         painter.drawPath(path)
+
+        # Connect circle
+        if self.port.is_connected():
+            path = QtGui.QPainterPath()
+            path.addEllipse(x + w / 2 - 5, y + h / 2 - 5, 10, 10)
+            brush = QtGui.QBrush(QtGui.QColor(250, 250, 250, 100))
+            pen = QtGui.QPen(QtGui.QColor(250, 250, 250, 100))
+            painter.setBrush(brush)
+            painter.setPen(pen)
+            painter.drawPath(path)
 
         if self.draw_collider:
             brush = QtGui.QBrush(QtGui.QColor(250, 250, 250, 50))

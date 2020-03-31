@@ -43,7 +43,7 @@ class Window(QtWidgets.QMainWindow):
 
         # Instantiate AWinode.ports_indget No data returned (timeout while sending data).t
         self.awidget = AWidget(self, graph_id='graph_1')
-
+        ASharedItems.awidget = self.awidget
         uic.loadUi('ui/mainForm.ui', self)
         self.setCentralWidget(self.awidget)
 

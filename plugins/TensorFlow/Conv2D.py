@@ -1,4 +1,4 @@
-from AGraphWidget.APlugin import APlugin
+from AGraphWidget.APlugin import APlugin, APropertyLocation, APropertyType
 from yapsy.IPlugin import IPlugin
 from AGraphWidget import AGraphPort
 
@@ -16,6 +16,8 @@ class Conv2D(APlugin, IPlugin):
         self.add_in_param('param_1')
         self.add_out_port('port_1')
         self.ports_in['port_1'].value = 5
+
+        self.add_property('prop', APropertyType.BOOL, APropertyLocation.NODE)
 
     def init_plugin(self):
         print("Init plugin " + self.node_type)

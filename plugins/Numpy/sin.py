@@ -1,6 +1,5 @@
-from AGraphWidget.APlugin import APlugin
+from AGraphWidget.APlugin import APlugin, APropertyLocation, APropertyType
 from yapsy.IPlugin import IPlugin
-from AGraphWidget import AGraphPort
 
 
 class Sin(APlugin, IPlugin):
@@ -10,6 +9,7 @@ class Sin(APlugin, IPlugin):
 
         self.add_in_param('in')
         self.add_out_param('out')
+        # self.add_property('prop', APropertyType.BOOL, APropertyLocation.NODE)
 
     def init_plugin(self):
         print("Init plugin " + self.node_type)

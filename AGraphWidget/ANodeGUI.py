@@ -62,11 +62,21 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
             port.gui.y = (self.rect.y() + self.rect.height() - 5)
             i += 1
 
-    def init_params_locations(self):
+    def init_params_props_locations(self):
         init_step = 10
         step = 30
+
+        prop_step = 0
+        num_prop = 0
+        for prop in self.graph_node.props.values():
+            num_prop += 1
+            prop.gui.x = (self.rect.x() )
+            prop.gui.y = init_step + ((step * num_prop) + self.rect.y() -10)
+            prop_step += step
+
+        init_step += prop_step
+
         num_in_param = 1
-        # graph_node.ports_in[0]
         for param in self.graph_node.params_in.values():
             param.gui.x = (self.rect.x() - 15)
             param.gui.y = init_step + ((step * num_in_param) + self.rect.y() - 10)
@@ -79,9 +89,9 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
             num_out_param += 1
 
         if num_out_param > num_in_param:
-            self.rect.setHeight(self.rect.height() + (step / 2) * (num_out_param - 1))
+            self.rect.setHeight(self.rect.height() + (step / 2) * (num_out_param - 1) + prop_step)
         else:
-            self.rect.setHeight(self.rect.height() + (step / 2) * (num_in_param - 1))
+            self.rect.setHeight(self.rect.height() + (step / 2) * (num_in_param - 1) + prop_step)
 
     def setSelected(self, selected):
         self.__selected = selected

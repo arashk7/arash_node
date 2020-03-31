@@ -31,11 +31,4 @@ class AGraphParam:
     def value(self, new_value):
         self.__value = new_value
 
-    # param ID
-    @property
-    def id(self):
-        return self.__id
 
-    @id.setter
-    def id(self, param_id):
-        self.__id = param_id

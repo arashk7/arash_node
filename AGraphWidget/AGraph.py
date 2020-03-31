@@ -5,9 +5,10 @@ from AGraphWidget.AGraphNode import AGraphNode
 
 from AGraphWidget.AGraphPort import AGraphPort
 from AGraphWidget.AGraphParam import AGraphParam
+from AGraphWidget.AGraphProperty import AGraphProperty
 from AGraphWidget.ALogger import ALogger
 from AGraphWidget.AGraphLink import AGraphLink
-from AGraphWidget.AUtil import APortType, AParamType, ACache, ALinkType
+from AGraphWidget.AUtil import APortType, AParamType, ACache, ALinkType, APropertyType, APropertyLocation
 
 
 class AGraph:
@@ -23,6 +24,7 @@ class AGraph:
         self.__num_ports_out_created = 0
         self.__num_params_in_created = 0
         self.__num_params_out_created = 0
+        self.__num_props_created = 0
         self.__num_nodes_active = 0
 
     def copy_node(self, node: AGraphNode):
@@ -38,10 +40,21 @@ class AGraph:
         new_node = AGraphNode(node_id, node.gui.pos.x(), node.gui.pos.y())
         self.nodes[node_id] = new_node
 
+        # Copy ports
         for p in node.ports_in.values():
             self.add_port_in(node_id=node_id, port_id=p.port_id)
         for p in node.ports_out.values():
             self.add_port_out(node_id=node_id, port_id=p.port_id)
+
+        # Copy Params
+        for p in node.params_in.values():
+            self.add_param_in(node_id=node_id, param_id=p.param_id)
+        for p in node.params_out.values():
+            self.add_param_out(node_id=node_id, param_id=p.param_id)
+
+        # Copy Properties
+        for p in node.props.values():
+            self.add_prop(node_id=node_id, property_id=p.property_id)
 
         self.__num_nodes_created += 1
         return new_node
@@ -113,9 +126,17 @@ class AGraph:
             ACache.output_params_gui[_param.param_id + '_' + node_id] = _param.gui
             self.__num_params_out_created += 1
 
+        # Add properties
+        for _prop in node.props.values():
+            _prop.node_id = node_id
+            _prop.gui.node_id = node_id
+            _prop.gui.init()
+            # ACache.input_params_gui[_param.param_id + '_' + node_id] = _param.gui
+            self.__num_props_created += 1
+
         self.nodes[node_id] = node
         self.__num_nodes_created += 1
-        self.nodes[node_id].gui.init_params_locations()
+        self.nodes[node_id].gui.init_params_props_locations()
         self.nodes[node_id].gui.init_ports_locations()
         return node
 
@@ -242,6 +263,36 @@ class AGraph:
         self.nodes[node_id].gui.init_params_locations()
         self.__num_params_out_created += 1
         return p_out
+
+    # Add Output Param to the Node
+    def add_prop(self, node_id, property_id=None, property_type=APropertyType.INT, property_location=APropertyLocation.TOOLBAR):
+        # Check node ID existence
+        if node_id not in self.nodes:
+            ALogger.print_error("The node ID does not exist!")
+            return
+
+        # property ID has to be exclusive
+        # Check dict to make sure there is no other Prop with ID
+        if self.nodes[node_id].is_prop_exist(prop_id=property_id):
+            ALogger.print_error("The property ID is already taken!")
+            return
+
+        # If user does not give the ID parameter, it will be generated
+        if property_id is None:
+            i = 0
+            while True:
+                property_id = 'prop_' + str(self.__num_props_created + i)
+                if property_id not in self.nodes[node_id].props:
+                    break
+                i += 1
+
+        # Instantiate new Port object
+        prop = AGraphProperty(property_id, property_type, property_location, self.nodes[node_id])
+        self.nodes[node_id].add_property_out(prop)
+        # ACache.output_params_gui[property_id + '_' + node_id] = prop.gui
+        # self.nodes[node_id].gui.init_params_locations()
+        self.__num_props_created += 1
+        return prop
 
     # Add Link to port
     def add_link_to_port(self, node_id_from, port_id_from, node_id_to, port_id_to, link_id=None):

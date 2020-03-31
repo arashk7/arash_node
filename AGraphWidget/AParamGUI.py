@@ -21,7 +21,7 @@ class AParamGUI(QtWidgets.QGraphicsItem):
         self.rect_collider = QtCore.QRectF(x, y, 20, 20)
 
         self.pos = QtCore.QPointF(0, 0)
-        self.draw_collider = True
+        self.draw_collider = False
 
         self.__highlight = False
 
@@ -71,6 +71,17 @@ class AParamGUI(QtWidgets.QGraphicsItem):
         painter.setPen(pen)
         painter.setBrush(brush)
         painter.drawPath(path)
+
+        # Connected circle
+        if self.param.is_connected():
+            path = QtGui.QPainterPath()
+            path.addEllipse(x+w/2-5, y+h/2-5, 10, 10)
+            brush = QtGui.QBrush(QtGui.QColor(250, 250, 250, 100))
+            pen = QtGui.QPen(QtGui.QColor(250, 250, 250, 100))
+            painter.setBrush(brush)
+            painter.setPen(pen)
+            painter.drawPath(path)
+
 
         # add param label
         path = QtGui.QPainterPath()

@@ -11,6 +11,17 @@ class AParamType:
     INPUT = 0
     OUTPUT = 1
 
+class APropertyType:
+    BOOL = 0
+    TEXT = 1
+    COLOR = 2
+    VECTOR3 = 3
+    VECTOR2 = 4
+    INT = 5
+    COMBO = 6
+class APropertyLocation:
+    NODE = 0
+    TOOLBAR = 1
 
 class ALinkType:
     PARAM = 0

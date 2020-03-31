@@ -5,7 +5,7 @@ from AGraphWidget.AGraphPort import AGraphPort
 
 
 class AGraphNode:
-    def __init__(self, node_id,node_type='', x=100, y=100):
+    def __init__(self, node_id, node_type='', x=100, y=100):
         self.__node_id = node_id
         self.__caption = node_id
         self.node_type = node_type
@@ -14,11 +14,22 @@ class AGraphNode:
         self.__params_out = {}
         self.__ports_in = {}
         self.__ports_out = {}
+        self.__props = {}
         self.__num_params_in_created = 0
         self.__num_params_out_created = 0
         self.num_ports_in_created = 0
         self.num_ports_out_created = 0
         self.gui = ANodeGUI(graph_node=self, x=x, y=y)
+
+    # Add Property
+    def add_prop(self, prop):
+        self.__props[prop.property_id] = prop
+
+    # Check dict to make sure there is no other prop with ID
+    def is_prop_exist(self, prop_id):
+        if prop_id in self.__props:
+            return True
+        return False
 
     # Adding port to the entry node
     def add_port_in(self, port):
@@ -41,7 +52,7 @@ class AGraphNode:
         return False
 
     # Adding param to the node
-    def add_param_in(self,param):
+    def add_param_in(self, param):
         self.__params_in[param.param_id] = param
 
     # Check dict to make sure there is no other param with the param_id
@@ -59,6 +70,7 @@ class AGraphNode:
         if param_id in self.__params_out:
             return True
         return False
+
     # Node ID
     @property
     def node_id(self):
@@ -91,3 +103,8 @@ class AGraphNode:
     @property
     def params_out(self):
         return self.__params_out
+
+    # Properties
+    @property
+    def props(self):
+        return self.__props

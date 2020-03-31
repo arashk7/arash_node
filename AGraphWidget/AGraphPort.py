@@ -30,11 +30,4 @@ class AGraphPort:
     def value(self, new_value):
         self.__value = new_value
 
-    # Port ID
-    @property
-    def id(self):
-        return self.__id
 
-    @id.setter
-    def id(self, port_id):
-        self.__id = port_id
