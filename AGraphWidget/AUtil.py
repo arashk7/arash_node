@@ -19,6 +19,8 @@ class APropertyType:
     VECTOR2 = 4
     INT = 5
     COMBO = 6
+    SLIDER = 7
+    FILE = 8
 class APropertyLocation:
     NODE = 0
     TOOLBAR = 1

@@ -21,6 +21,10 @@ class ALinkGUI(QtWidgets.QGraphicsItem):
 
         self.setEnabled(False)
 
+        self.draw_collider = False
+        # if isinstance(self.start,type(APortGUI))
+        # self.setParentItem(self.start)
+
     def update_line(self, start=None, end=None):
         # check exact type of the object "if type(o) is str:"
         # check whether instance or subclass of our type "isinstance(..,..)"
@@ -62,7 +66,6 @@ class ALinkGUI(QtWidgets.QGraphicsItem):
         elif self.link_type == ALinkType.PARAM:
             self.draw_link_param(painter, self.start_point, self.end_point)
 
-
     def boundingRect(self):
         if self.start_point and self.end_point:
             start = self.start_point
@@ -83,6 +86,18 @@ class ALinkGUI(QtWidgets.QGraphicsItem):
         return dist
 
     def draw_link_port(self, painter: QtGui.QPainter, start, end):
+
+        # draw collider
+        if self.draw_collider:
+            path = QtGui.QPainterPath()
+            path.addRect(self.boundingRect().x(), self.boundingRect().y(), self.boundingRect().width(),
+                         self.boundingRect().height())
+            brush = QtGui.QBrush(QtGui.QColor(100, 250, 100, 100))
+            pen = QtGui.QPen()
+            painter.setPen(pen)
+            painter.setBrush(brush)
+            painter.drawPath(path)
+
         path = QtGui.QPainterPath()
         path.moveTo(start.x(), start.y())
 
@@ -111,8 +126,8 @@ class ALinkGUI(QtWidgets.QGraphicsItem):
             path.cubicTo(mx2, my2, end.x(), end.y() - dist_y / 2, end.x(), end.y())
         else:
             dist = dist_y
-            if abs(dist_y)>abs(dist_x/2):
-                dist = -abs(dist_x/2)
+            if abs(dist_y) > abs(dist_x / 2):
+                dist = -abs(dist_x / 2)
 
             p2_x = start.x()
             p2_y = start.y() - dist / 2
@@ -158,7 +173,6 @@ class ALinkGUI(QtWidgets.QGraphicsItem):
         painter.setBrush(brush)
         painter.drawPath(path)
 
-
     def draw_link_param(self, painter: QtGui.QPainter, start, end):
         path = QtGui.QPainterPath()
         path.moveTo(start.x(), start.y())
@@ -184,14 +198,14 @@ class ALinkGUI(QtWidgets.QGraphicsItem):
         dist_y = end.y() - start.y()
 
         if dist_x > 0:
-            path.cubicTo(start.x(), start.y(), start.x()+ dist_x/2, start.y(), mx1, my1)
-            path.cubicTo(mx2, my2, end.x()-dist_x/2, end.y(), end.x(), end.y())
+            path.cubicTo(start.x(), start.y(), start.x() + dist_x / 2, start.y(), mx1, my1)
+            path.cubicTo(mx2, my2, end.x() - dist_x / 2, end.y(), end.x(), end.y())
         else:
             dist = dist_x
-            if abs(dist_x)>abs(dist_y/2):
-                dist = -abs(dist_y/2)
+            if abs(dist_x) > abs(dist_y / 2):
+                dist = -abs(dist_y / 2)
 
-            p2_x = start.x()- dist / 2
+            p2_x = start.x() - dist / 2
             p2_y = start.y()
 
             p3_x = start.x() - dist / 2

@@ -4,7 +4,6 @@ from AGraphWidget.AConfig import AConfig
 from APlugin.APluginManager import APluginManager
 from AGraphWidget.AUtil import ASharedItems
 
-
 class DraggableLabel(QtWidgets.QLabel):
     def __init__(self, text, item_id):
         super(QtWidgets.QLabel, self).__init__(text)
@@ -48,27 +47,7 @@ class Window(QtWidgets.QMainWindow):
         self.setCentralWidget(self.awidget)
 
         self.toolBox = self.findChild(QtWidgets.QToolBox, 'toolBox')
-        # page1 = QtWidgets.QWidget(self)
-        #
-        # page = self.toolBox.addItem(page1, 'page_test')
-        #
-        # if page:
-        #     print('ok')
-        # else:
-        #     print('nok')
-        # page1.setLayout(QtWidgets.QVBoxLayout())
-        # page1.layout().setAlignment(QtCore.Qt.AlignTop)
-        # page1.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
-        #
-        # label1 = DraggableLabel('testttt', 1)
-        # #
-        # page1.layout().addWidget(label1)
-        # w=self.toolBox.findChild(QtWidgets.QWidget,'page_2')
 
-        # if w:
-        #     print('ok')
-        # else:
-        #     print('nok')
 
         pm = APluginManager(self.awidget)
         pm.load_dir()
@@ -97,6 +76,6 @@ if __name__ == '__main__':
 
     app = QtWidgets.QApplication(sys.argv)
     window = Window()
-    window.setGeometry(300, 300, 1768, 874)
+    window.setGeometry(150, 150, 1768, 874)
     window.show()
     sys.exit(app.exec_())

@@ -20,6 +20,8 @@ class ARole(Enum):
     NODE_WND_CAP_TEXT = 'NodeWindowCaptionText'
     NODE_WND_PARAM_TEXT = 'NodeWindowParamText'
 
+    NODE_PROPERTY = 'NodeProperty'
+
     GRID = 'Grid'
     RUBBER_BAND = 'RubberBand'
     SELECT_HIGHLIGHT = 'SelectHighlight'
@@ -42,6 +44,7 @@ class ASkin:
         ASkin.set_role_color(ARole.NODE_WND_CAP_BAR, AGroup.NORMAL, QtGui.QColor(20, 20, 20, 250))
         ASkin.set_role_color(ARole.NODE_WND_CAP_TEXT, AGroup.NORMAL, QtGui.QColor(200, 200, 200, 200))
         ASkin.set_role_color(ARole.NODE_WND_PARAM_TEXT, AGroup.NORMAL, QtGui.QColor(30, 30, 30, 200))
+        ASkin.set_role_color(ARole.NODE_PROPERTY, AGroup.NORMAL, QtGui.QColor(200,200,200,150))
 
         ASkin.save_skin()
 
