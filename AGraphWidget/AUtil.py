@@ -21,6 +21,7 @@ class APropertyType:
     COMBO = 6
     SLIDER = 7
     FILE = 8
+    IMAGE = 9
 class APropertyLocation:
     NODE = 0
     TOOLBAR = 1

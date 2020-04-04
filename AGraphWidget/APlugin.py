@@ -38,6 +38,9 @@ class APlugin(AGraphNode.AGraphNode):
         prop.gui.set_text(default_value)
         self.add_prop(prop)
 
+    def add_property_image(self,property_name):
+        prop = AGraphProperty.AGraphProperty(property_name, APropertyType.IMAGE, APropertyLocation.NODE, self)
+        self.add_prop(prop)
     def get_property(self, property_name):
         return self.props[property_name].value
 

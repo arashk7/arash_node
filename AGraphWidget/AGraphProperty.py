@@ -1,4 +1,4 @@
-from AGraphWidget import APropertyCombo, APropertyText, APropertyBool, APropertySlider,APropertyFile
+from AGraphWidget import APropertyCombo, APropertyText, APropertyBool, APropertySlider, APropertyFile, APropertyImage
 from AGraphWidget.AUtil import APropertyType
 
 
@@ -29,7 +29,10 @@ class AGraphProperty:
                                                        property_location=property_location)
         elif property_type == APropertyType.FILE:
             self.gui = APropertyFile.APropertyFile(property=self, property_id=property_id,
-                                                       property_location=property_location)
+                                                   property_location=property_location)
+        elif property_type == APropertyType.IMAGE:
+            self.gui = APropertyImage.APropertyImage(property=self, property_id=property_id,
+                                                     property_location=property_location)
         self.gui.setParentItem(node.gui)
         self.gui.node_id = node.node_id
 

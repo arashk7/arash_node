@@ -16,6 +16,7 @@ class APropertyGUI(QtWidgets.QGraphicsItem):
         self.property_location = property_location
         self.setData(0, 'property')
         self.setZValue(1)
+        self.property_height = 30
         self.value = None
 
         self.setFlag(QtWidgets.QGraphicsItem.ItemIsMovable, False)

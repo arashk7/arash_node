@@ -11,6 +11,7 @@ class APropertyFile(APropertyGUI.APropertyGUI):
         self.control = QtWidgets.QPushButton()
         self.control.clicked.connect(self.open_click)
         self.control.setMinimumWidth(10)
+        self.control.setMinimumHeight(10)
         layout = QtWidgets.QHBoxLayout()
         label = QtWidgets.QLabel()
         label.setText(self.property_id)

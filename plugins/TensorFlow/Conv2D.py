@@ -17,6 +17,7 @@ class Conv2D(APlugin, IPlugin):
         self.add_property_text('edit1', 'type here')
         self.add_property_slider('slider1', 40)
         self.add_property_file('load file','open')
+        self.add_property_image('image1')
         self.add_property_combobox('combo1', self.items)
 
     def init_node(self):
