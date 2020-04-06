@@ -2,7 +2,7 @@ from AGraphWidget import AGraphNode, AUtil, AGraph
 from AGraphWidget import AGraphPort, AGraphParam, AWidget, AGraphProperty, APropertyCombo
 from AGraphWidget.AUtil import APropertyType, APropertyLocation
 from yapsy.IPlugin import IPlugin
-
+import threading
 
 class IPlugin(IPlugin):
     pass
@@ -12,16 +12,30 @@ class APlugin(AGraphNode.AGraphNode):
     def __init__(self, x=0, y=0):
         AGraphNode.AGraphNode.__init__(self, node_id='', node_type=self.__class__.__name__, x=x, y=y)
         self.default_text = ''
+        self.events = dict()
 
+
+    def add_property_change_event(self, prop_id, func_name):
+        self.events[prop_id] = func_name
+
+    def change_event(self,prop_id):
+        func = getattr(self,self.events[prop_id])
+        func()
+
+
+        pass
     def add_property_combobox(self, property_name, items):
-        prop = AGraphProperty.AGraphProperty(property_id=property_name, property_type=APropertyType.COMBO, property_location=APropertyLocation.NODE,node=self)
+        prop = AGraphProperty.AGraphProperty(property_id=property_name, property_type=APropertyType.COMBO,
+                                             property_location=APropertyLocation.NODE, node=self)
         prop.gui.add_items(items)
         self.add_prop(prop)
+        return prop
 
     def add_property_text(self, property_name, default_text):
         prop = AGraphProperty.AGraphProperty(property_name, APropertyType.TEXT, APropertyLocation.NODE, self)
         prop.gui.set_text(default_text)
         self.add_prop(prop)
+        return prop
 
     def add_property_bool(self, property_name, default_state):
         prop = AGraphProperty.AGraphProperty(property_name, APropertyType.BOOL, APropertyLocation.NODE, self)
@@ -32,16 +46,20 @@ class APlugin(AGraphNode.AGraphNode):
         prop = AGraphProperty.AGraphProperty(property_name, APropertyType.SLIDER, APropertyLocation.NODE, self)
         prop.gui.set_value(default_value)
         self.add_prop(prop)
+        return prop
 
     def add_property_file(self, property_name, default_value):
         prop = AGraphProperty.AGraphProperty(property_name, APropertyType.FILE, APropertyLocation.NODE, self)
-        prop.gui.set_text(default_value)
+        prop.gui.set_file_path(default_value)
         self.add_prop(prop)
+        return prop
 
-    def add_property_image(self,property_name):
+    def add_property_image(self, property_name):
         prop = AGraphProperty.AGraphProperty(property_name, APropertyType.IMAGE, APropertyLocation.NODE, self)
         self.add_prop(prop)
-    def get_property(self, property_name):
+        return prop
+
+    def get_property_value(self, property_name):
         return self.props[property_name].value
 
     def set_in_param(self, param_name, val):
@@ -85,10 +103,17 @@ class APlugin(AGraphNode.AGraphNode):
                 # link.end.value =
                 link.end.node.edit_run()
 
-    def run(self):
+    def start(self):
         print('run')
+        thread = threading.Thread(target=self.thread_func)
+        thread.start()
         pass
-
+    def run(self):
+        pass
+    def thread_func(self):
+        print('run thread')
+        self.run()
+        pass
     def init_node(self):
         print('init_node: ' + self.node_id)
         # if self.prop

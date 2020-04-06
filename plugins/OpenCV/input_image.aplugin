@@ -1,0 +1,9 @@
+[Core]
+Name = input_image
+Module = input_image
+
+[Documentation]
+Author = Ahmad Karambakhsh
+Version = 0.1
+Website = a-karambakhsh.ir
+Description = OpenCV 3.3.1

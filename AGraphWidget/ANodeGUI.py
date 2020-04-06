@@ -68,7 +68,7 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
 
         prop_step = 0
         num_prop = 0
-        init_step = self.rect.y()+step
+        init_step = self.rect.y() + step
         for prop in self.graph_node.props.values():
             num_prop += 1
             prop.gui.x = (self.rect.x())
@@ -77,14 +77,15 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
             # prop.gui.y = init_step + ((step * num_prop) + self.rect.y() - 10)
 
             prop_step += prop.gui.property_height
+            prop.gui.init()
 
         init_step -= step
-
+        copy_init_step = init_step
         num_in_param = 1
         for param in self.graph_node.params_in.values():
             param.gui.x = (self.rect.x() - 15)
-            init_step += step
-            param.gui.y = init_step
+            copy_init_step += step
+            param.gui.y = copy_init_step
             num_in_param += 1
 
         num_out_param = 1
@@ -95,9 +96,9 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
             num_out_param += 1
 
         if num_out_param > num_in_param:
-            self.rect.setHeight(self.rect.height() + (step / 2) * (num_out_param - 1) + prop_step)
+            self.rect.setHeight(50 + (step / 2) * (num_out_param - 1) + prop_step)
         else:
-            self.rect.setHeight(self.rect.height() + (step / 2) * (num_in_param - 1) + prop_step)
+            self.rect.setHeight(50 + (step / 2) * (num_in_param - 1) + prop_step)
 
     def setSelected(self, selected):
         self.__selected = selected

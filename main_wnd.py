@@ -3,6 +3,8 @@ from AGraphWidget.AWidget import AWidget
 from AGraphWidget.AConfig import AConfig
 from APlugin.APluginManager import APluginManager
 from AGraphWidget.AUtil import ASharedItems
+import numpy as np
+import cv2 as cv
 
 class DraggableLabel(QtWidgets.QLabel):
     def __init__(self, text, item_id):

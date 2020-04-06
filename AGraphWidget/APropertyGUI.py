@@ -38,13 +38,11 @@ class APropertyGUI(QtWidgets.QGraphicsItem):
         self.first = True
 
     def init(self):
-        self.control = QtWidgets.QLineEdit()
-        self.control.setText(self.property_id)
-        self.control.setFixedSize(self.rect.width(), self.rect.height())
-        self.control_proxy: QtWidgets.QGraphicsProxyWidget = ASharedItems.awidget.scene().addWidget(self.control)
-        self.control_proxy.setZValue(2)
+        self.first = True
+        print('first')
 
-        ASharedItems.awidget.mouse_press_event.connect()
+        # ASharedItems.awidget.mouse_press_event.connect()
+
 
     def boundingRect(self):
         p = self.scenePos() + QtCore.QPointF(self.x, self.y) + QtCore.QPointF(self.rect.width() / 2,
@@ -58,7 +56,9 @@ class APropertyGUI(QtWidgets.QGraphicsItem):
         # print(str(p.x())+' , '+str(p.y()))
         if self.first:
             self.control_proxy.setPos(p.x(), p.y())
+
             self.first = False
+            print('update '+ str(p.y()))
 
         return self.rect_collider
 
@@ -81,6 +81,7 @@ class APropertyGUI(QtWidgets.QGraphicsItem):
         painter.setPen(pen)
         painter.setBrush(brush)
         painter.drawPath(path)
+
 
         # draw collider
         if self.draw_collider:

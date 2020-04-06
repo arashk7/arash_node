@@ -130,7 +130,7 @@ class AGraph:
         for _prop in node.props.values():
             _prop.node_id = node_id
             _prop.gui.node_id = node_id
-            _prop.gui.init()
+            # _prop.gui.init()
             # ACache.input_params_gui[_param.param_id + '_' + node_id] = _param.gui
             self.__num_props_created += 1
 

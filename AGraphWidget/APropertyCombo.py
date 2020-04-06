@@ -24,9 +24,12 @@ class APropertyCombo(APropertyGUI.APropertyGUI):
         self.widget.layout().setContentsMargins(0, 0, 0, 0)
 
     def init(self):
+
         self.control_proxy: QtWidgets.QGraphicsProxyWidget = ASharedItems.awidget.scene().addWidget(self.widget)
         self.control_proxy.setParentItem(self)
         self.control_proxy.setZValue(2)
+        self.first=True
+        print('init combo')
 
     def change_event(self, value):
         print('change combo: ' + value)

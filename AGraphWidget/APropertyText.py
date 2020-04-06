@@ -27,6 +27,7 @@ class APropertyText(APropertyGUI.APropertyGUI):
         self.control_proxy: QtWidgets.QGraphicsProxyWidget = ASharedItems.awidget.scene().addWidget(self.widget)
         self.control_proxy.setParentItem(self)
         self.control_proxy.setZValue(1)
+        super(APropertyText, self).init()
 
     def change_event(self, value):
         print('change text: ' + value)

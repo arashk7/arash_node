@@ -25,6 +25,7 @@ class APropertyBool(APropertyGUI.APropertyGUI):
         self.widget.layout().setContentsMargins(0, 0, 0, 0)
 
     def init(self):
+        super(APropertyBool, self).init()
         self.control_proxy: QtWidgets.QGraphicsProxyWidget = ASharedItems.awidget.scene().addWidget(self.widget)
         self.control_proxy.setParentItem(self)
         self.control_proxy.setZValue(1)
