@@ -4,6 +4,7 @@ from AGraphWidget.AUtil import APropertyType, APropertyLocation
 from yapsy.IPlugin import IPlugin
 import threading
 
+
 class IPlugin(IPlugin):
     pass
 
@@ -13,17 +14,17 @@ class APlugin(AGraphNode.AGraphNode):
         AGraphNode.AGraphNode.__init__(self, node_id='', node_type=self.__class__.__name__, x=x, y=y)
         self.default_text = ''
         self.events = dict()
-
+        self.is_starter = False
 
     def add_property_change_event(self, prop_id, func_name):
         self.events[prop_id] = func_name
 
-    def change_event(self,prop_id):
-        func = getattr(self,self.events[prop_id])
+    def change_event(self, prop_id):
+        func = getattr(self, self.events[prop_id])
         func()
 
-
         pass
+
     def add_property_combobox(self, property_name, items):
         prop = AGraphProperty.AGraphProperty(property_id=property_name, property_type=APropertyType.COMBO,
                                              property_location=APropertyLocation.NODE, node=self)
@@ -65,8 +66,14 @@ class APlugin(AGraphNode.AGraphNode):
     def set_in_param(self, param_name, val):
         self.params_in[param_name].value = val
 
+    def get_in_param(self, param_name):
+        return self.params_in[param_name].value
+
     def set_out_param(self, param_name, val):
         self.params_out[param_name].value = val
+
+    def get_out_param(self, param_name):
+        return self.params_out[param_name].value
 
     def add_in_port(self, port_name):
         self.add_port_in(port=AGraphPort.AGraphPort(port_name, AGraphPort.APortType.INPUT, self))
@@ -108,12 +115,18 @@ class APlugin(AGraphNode.AGraphNode):
         thread = threading.Thread(target=self.thread_func)
         thread.start()
         pass
+
     def run(self):
         pass
+
     def thread_func(self):
         print('run thread')
         self.run()
-        pass
+        self.finish()
+
+    def finish(self):
+        print('finish')
+
     def init_node(self):
         print('init_node: ' + self.node_id)
         # if self.prop
