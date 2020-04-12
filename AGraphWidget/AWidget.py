@@ -327,6 +327,11 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
             self.__press_node = self.itemAt(event.pos())
             self.__press_point = self.mapToScene(QtCore.QPoint(event.x(), event.y()))
             if self.__press_node:
+                if self.__press_node.data(0) == 'node':
+                    # If the node is clicked, it is taken at the top layer
+                    [i.setZValue(2) for i in self.__scene.items()]
+                    self.__press_node.setZValue(3)
+
                 if self.__key_event.key == QtCore.Qt.Key_Alt:
                     if self.__press_node.data(0) == 'port':
                         links = dict(self.__press_node.port.links)
@@ -388,46 +393,43 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
             if self.__press_node and release_node:
                 if self.__press_node == release_node:
-
-
-                    # print(str(release_point.x()) + ' , '+str(release_point.y()))
                     pass
-                    # return
-                    # anim = QtCore.QTimeLine(200, self)
-                    # anim.setUpdateInterval(10)
-                    # anim.valueChanged.connect(self.anim_scale)
-                    # anim.start()
+
 
             # If the mouse pressed on grid or any other items means all the Nodes have to be deselected
-            if not self.__press_node or self.__press_node.data(0) == 'grid':
-                if not release_node or release_node.data(0) == 'grid':
-                    # Deselect all the Node items
-                    [i.setSelected(False) for i in self.__scene.items()]
-                    [i.update() for i in self.__scene.items()]
+            # if not self.__press_node or self.__press_node.data(0) == 'grid':
+            #     if not release_node or release_node.data(0) == 'grid':
+            #         # Deselect all the Node items
+            #         [i.setSelected(False) for i in self.__scene.items()]
+            #         [i.update() for i in self.__scene.items()]
 
             # If mouse button pressed on a node and release at the same place means the node has to be selected
-            if self.__press_node and self.__press_node.data(0) == 'node':
-                if release_node and release_node.data(0) == 'node':
-                    if self.__press_node == release_node:
-                        if self.distance(release_point, self.__press_point) < 2:
-                            # Deselect all the Node items
-                            [i.setSelected(False) for i in self.__scene.items()]
-                            [i.update() for i in self.__scene.items()]
-                            release_node.setSelected(True)
-                            release_node.update()
-                            print('ok')
-
-                            return
+            # if self.__press_node and self.__press_node.data(0) == 'node':
+            #     if release_node and release_node.data(0) == 'node':
+            #         if self.__press_node == release_node:
+            #             if self.distance(release_point, self.__press_point) < 2:
+            #                 # Deselect all the Node items
+            #                 [i.setSelected(False) for i in self.__scene.items()]
+            #                 [i.update() for i in self.__scene.items()]
+            #                 release_node.setSelected(True)
+            #                 release_node.update()
+            #                 print('ok')
+            #
+            #                 return
 
             # RubberBand
-            rubber_rect = self.__rubber_band.get_rect()
-            if rubber_rect.width() > 10:
-                rect = self.mapToScene(rubber_rect)
-                items = self.__scene.items(rect)
-                for i in items:
-                    if i.data(0) == 'node':
-                        i.setSelected(True)
-                        i.update()
+            # rubber_rect = self.__rubber_band.get_rect()
+            # if rubber_rect.width() > 10:
+            #     # Deselect all the Node items
+            #     [i.setSelected(False) for i in self.__scene.items()]
+            #     [i.update() for i in self.__scene.items()]
+            #
+            #     rect = self.mapToScene(rubber_rect)
+            #     items = self.__scene.items(rect)
+            #     for i in items:
+            #         if i.data(0) == 'node':
+            #             i.setSelected(True)
+            #             i.update()
 
                 return
         elif event.button() == QtCore.Qt.MidButton:

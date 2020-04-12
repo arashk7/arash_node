@@ -36,7 +36,7 @@ class Conv2D(APlugin, IPlugin):
         print(self.get_property_value('file'))
         # pix = pix.scaledToHeight(90)
         self.image.gui.set_image_file(self.get_property_value('file'))
-        self.start()
+
 
     def run(self):
         print('run Conv2D')

@@ -2,97 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b855265-4af2-4056-a2fa-29a4c717bfe8" name="Default" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main_wnd.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main_wnd.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="15" column="31" lean-forward="true" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#47#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ANodePlayer.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AGraphWidget/ANodePlayer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="APluginManager.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/APlugin/APluginManager.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
-              <caret line="51" column="26" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AScene.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AGraphWidget/AScene.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cvtColor.aplugin" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plugins/OpenCV/cvtColor.aplugin">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cvtColor.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plugins/OpenCV/cvtColor.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#74#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="APlugin.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AGraphWidget/APlugin.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="input_image.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plugins/OpenCV/input_image.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -119,130 +32,32 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/plugins/PluginOne.py" />
-        <option value="$PROJECT_DIR$/plugins/did_plugin.py" />
-        <option value="$PROJECT_DIR$/plugins/Conv2D.aplugin" />
-        <option value="$PROJECT_DIR$/plugins/LSTM.aplugin" />
-        <option value="$PROJECT_DIR$/APlugin/AToolManager.py" />
-        <option value="$PROJECT_DIR$/main2.py" />
-        <option value="$PROJECT_DIR$/plugins/LSTM.py" />
-        <option value="$PROJECT_DIR$/plugins/MaxPool2D.py" />
-        <option value="$PROJECT_DIR$/plugins/Conv2D.py" />
-        <option value="$PROJECT_DIR$/plugins/TensorFlow/Conv2D.aplugin" />
-        <option value="$PROJECT_DIR$/plugins/Numpy/Transpose.py" />
-        <option value="$PROJECT_DIR$/plugins/Numpy/sin.aplugin" />
-        <option value="$PROJECT_DIR$/plugins/TensorFlow/MaxPool2D.py" />
-        <option value="$PROJECT_DIR$/plugins/TensorFlow/LSTM.py" />
-        <option value="$PROJECT_DIR$/plugins/Numpy/vstack.py" />
-        <option value="$PROJECT_DIR$/plugins/Numpy/transpose.py" />
-        <option value="$PROJECT_DIR$/plugins/Numpy/array.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/ALinkDrawer.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/AGraphParam.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/AGraphPort.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/AGraphNode.py" />
-        <option value="$PROJECT_DIR$/plugins/Numpy/sin.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/AParamGUI.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/APortGUI.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/ASkin.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/AWidget.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/ALinkGUI.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/AUtil.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/APropertyImgViewer.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/AGraphProperty.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/AGraph.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/APropertyBool.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/APropertySlider.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/APropertyText.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/APropertyGUI.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/APropertyCombo.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/APropertyImage.py" />
-        <option value="$PROJECT_DIR$/plugins/OpenCV_3.3.1/input_image.py" />
-        <option value="$PROJECT_DIR$/plugins/OpenCV/inputimage.aplugin" />
-        <option value="$PROJECT_DIR$/plugins/TensorFlow/Conv2D.py" />
-        <option value="$PROJECT_DIR$/plugins/OpenCV/input_image.aplugin" />
-        <option value="$PROJECT_DIR$/AGraphWidget/ANodeGUI.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/APropertyFile.py" />
-        <option value="$PROJECT_DIR$/plugins/OpenCV/cvtColor.aplugin" />
-        <option value="$PROJECT_DIR$/plugins/OpenCV/cvtColor.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/AScene.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/APlugin.py" />
-        <option value="$PROJECT_DIR$/main_wnd.py" />
-        <option value="$PROJECT_DIR$/AGraphWidget/ANodePlayer.py" />
-        <option value="$PROJECT_DIR$/plugins/OpenCV/input_image.py" />
-        <option value="$PROJECT_DIR$/APlugin/APluginManager.py" />
-      </list>
-    </option>
-  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="arash_node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="arash_node" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="arash_node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="arash_node" type="462c0819:PsiDirectoryNode" />
-              <item name="APlugin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="arash_node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="arash_node" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="arash_node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="arash_node" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-              <item name="OpenCV" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectId" id="1aNwxqXHPZES7UVc0Nwli5RCeO9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\MyGit\arash_node\AGraphWidget" />
-      <recent name="D:\MyGit\arash_node" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\MyGit\arash_node\ANodeRunner" />
       <recent name="E:\MyGit\arash_node\AGraphWidget" />
       <recent name="E:\MyGit\arash_node\ArashWidget" />
       <recent name="E:\MyGit\arash_node\logs" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\MyGit\arash_node\AGraphWidget" />
+      <recent name="D:\MyGit\arash_node" />
+    </key>
   </component>
   <component name="RunManager" selected="Python.main_wnd">
     <configuration name="ALinkDrawer" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -262,6 +77,9 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="AWidget" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="arash_node" />
@@ -280,6 +98,9 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="arash_node" />
@@ -298,6 +119,9 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="input_image (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="arash_node" />
@@ -316,6 +140,9 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="input_image" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="arash_node" />
@@ -334,6 +161,9 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="main_wnd" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="arash_node" />
@@ -352,6 +182,9 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Python.main_wnd" />
@@ -363,10 +196,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main_wnd" />
+        <item itemvalue="Python.AWidget" />
         <item itemvalue="Python.input_image (1)" />
         <item itemvalue="Python.input_image" />
         <item itemvalue="Python.ALinkDrawer" />
-        <item itemvalue="Python.AWidget" />
       </list>
     </recent_temporary>
   </component>
@@ -397,51 +230,27 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17604166" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32731137" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32857144" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39956093" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" id="Data View" order="3" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32930845" />
-    </layout>
-    <layout-to-restore>
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23508595" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Data View" order="3" />
-      <window_info id="Structure" order="1" weight="0.25" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32821077" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32930845" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39956093" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32857144" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Python Console" order="9" />
-    </layout-to-restore>
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="WindowStateProjectService">
+    <state width="949" height="279" key="GridCell.Tab.0.bottom" timestamp="1586617992940">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="949" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1586617992940" />
+    <state width="949" height="279" key="GridCell.Tab.0.center" timestamp="1586617992940">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="949" height="279" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1586617992940" />
+    <state width="949" height="279" key="GridCell.Tab.0.left" timestamp="1586617992940">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="949" height="279" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1586617992940" />
+    <state width="949" height="279" key="GridCell.Tab.0.right" timestamp="1586617992940">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="949" height="279" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1586617992940" />
+    <state x="461" y="165" key="SettingsEditor" timestamp="1586592542915">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1586592542915" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -481,12 +290,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/AGraphWidget/AWidget.py</url>
-          <line>331</line>
+          <line>336</line>
           <option name="timeStamp" value="56" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/AGraphWidget/AWidget.py</url>
-          <line>349</line>
+          <line>354</line>
           <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -501,7 +310,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/AGraphWidget/APlugin.py</url>
-          <line>23</line>
+          <line>25</line>
           <option name="timeStamp" value="85" />
         </line-breakpoint>
       </breakpoints>
@@ -512,117 +321,6 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="88" />
     </breakpoint-manager>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/yapsy/IPluginLocator.py" />
-    <entry file="file://$PROJECT_DIR$/yapsy/IPlugin.py" />
-    <entry file="file://$PROJECT_DIR$/plugins/TensorFlow/Conv2D.aplugin" />
-    <entry file="file://$PROJECT_DIR$/yapsy/PluginFileLocator.py" />
-    <entry file="file://$PROJECT_DIR$/plugins/Numpy/sin.aplugin" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/AKeyboardEvent.py" />
-    <entry file="file://$PROJECT_DIR$/plugins/TensorFlow/MaxPool2D.py" />
-    <entry file="file://$PROJECT_DIR$/plugins/TensorFlow/LSTM.py" />
-    <entry file="file://$PROJECT_DIR$/plugins/Numpy/vstack.py" />
-    <entry file="file://$PROJECT_DIR$/plugins/Numpy/transpose.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/AGraphLink.py" />
-    <entry file="file://$PROJECT_DIR$/plugins/Numpy/array.py" />
-    <entry file="file://$USER_HOME$/.PyCharmCE2017.2/system/python_stubs/-1157457246/builtins.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/AGraphPort.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/AGraphParam.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/AParamGUI.py" />
-    <entry file="file://E:/ProgramData/Anaconda3/Lib/enum.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/ASkin.py" />
-    <entry file="file://$PROJECT_DIR$/yapsy/PluginManager.py" />
-    <entry file="file://E:/ProgramData/Anaconda3/Lib/site-packages/PyQt5/QtCore.pyi" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/ALinkGUI.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/APropertyImgViewer.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/AUtil.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/AGraphNode.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/ALinkDrawer.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/AWidget.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/AGraphProperty.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/AGraph.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/APropertyText.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/APropertyBool.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/APropertyCombo.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/APropertyGUI.py" />
-    <entry file="file://$PROJECT_DIR$/plugins/OpenCV_3.3.1/input_image.py" />
-    <entry file="file://$PROJECT_DIR$/plugins/Numpy/sin.py" />
-    <entry file="file://$PROJECT_DIR$/plugins/OpenCV/inputimage.aplugin" />
-    <entry file="file://$PROJECT_DIR$/plugins/OpenCV/inputimage.py" />
-    <entry file="file://$PROJECT_DIR$/plugins/OpenCV/input_image.aplugin" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/APortGUI.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/APropertySlider.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/ANodeGUI.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/APropertyFile.py" />
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/APropertyImage.py" />
-    <entry file="file://$PROJECT_DIR$/plugins/TensorFlow/Conv2D.py" />
-    <entry file="file://$PROJECT_DIR$/plugins/OpenCV/cvtColor.aplugin">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/OpenCV/cvtColor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="30" column="26" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#74#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/AScene.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plugins/OpenCV/input_image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/APlugin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="16" column="31" selection-start-line="16" selection-start-column="31" selection-end-line="16" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/APlugin/APluginManager.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="51" column="26" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AGraphWidget/ANodePlayer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main_wnd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="15" column="31" lean-forward="true" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>

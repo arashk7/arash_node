@@ -15,6 +15,8 @@ class APlugin(AGraphNode.AGraphNode):
         self.default_text = ''
         self.events = dict()
         self.is_starter = False
+        self.run_in_thread = False
+        self.thread = None
 
     def add_property_change_event(self, prop_id, func_name):
         self.events[prop_id] = func_name
@@ -110,22 +112,34 @@ class APlugin(AGraphNode.AGraphNode):
                 # link.end.value =
                 link.end.node.edit_run()
 
-    def start(self):
+    def run_main(self):
         print('run')
-        thread = threading.Thread(target=self.thread_func)
-        thread.start()
-        pass
+        if self.run_in_thread:
+            self.thread = threading.Thread(target=self.exec)
+            self.thread.start()
+        else:
+            self.exec()
+
+        if self.thread:
+            while self.thread.isAlive():
+                pass
+
+
+
 
     def run(self):
         pass
 
-    def thread_func(self):
-        print('run thread')
-        self.run()
-        self.finish()
+    def init(self):
+        print('init run')
 
-    def finish(self):
-        print('finish')
+    def exec(self):
+        self.init()
+        self.run()
+        self.end()
+
+    def end(self):
+        print('end')
 
     def init_node(self):
         print('init_node: ' + self.node_id)

@@ -1,11 +1,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from AGraphWidget.AWidget import AWidget
-from AGraphWidget.AConfig import AConfig
 from APlugin.APluginManager import APluginManager
 from AGraphWidget.AUtil import ASharedItems
-from AGraphWidget.ANodePlayer import ANodePlayer
-import numpy as np
-import cv2 as cv
+from ANodeRunner.ANodePlayer import ANodePlayer
+
 
 class DraggableLabel(QtWidgets.QLabel):
     def __init__(self, text, item_id):
@@ -49,14 +47,14 @@ class Window(QtWidgets.QMainWindow):
         uic.loadUi('ui/mainForm.ui', self)
         self.setCentralWidget(self.awidget)
 
-        node_player = ANodePlayer()
-        self.toolBox = self.findChild(QtWidgets.QToolBox, 'toolBox')
+        # Node Player
+        # node_player = ANodePlayer(self.awidget)
+        # self.toolBox = self.findChild(QtWidgets.QToolBox, 'toolBox')
+        # self.act_play = self.findChild(QtWidgets.QPushButton, 'pushButton')
+        # if self.act_play:
+        #     print ('found')
+        #     self.act_play.clicked.connect(node_player.exec_recursive)
 
-        self.act_play = self.findChild(QtWidgets.QAction, 'actionRun')
-        if self.act_play:
-            print ('found')
-
-            self.act_play.changed.connect(node_player.run_all)
 
         pm = APluginManager(self.awidget)
         pm.load_dir()
