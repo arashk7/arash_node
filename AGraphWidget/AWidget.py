@@ -329,8 +329,9 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
             if self.__press_node:
                 if self.__press_node.data(0) == 'node':
                     # If the node is clicked, it is taken at the top layer
-                    [i.setZValue(2) for i in self.__scene.items()]
+                    [i.gui.setZValue(2) for i in self.nodes.values()]
                     self.__press_node.setZValue(3)
+                    pass
 
                 if self.__key_event.key == QtCore.Qt.Key_Alt:
                     if self.__press_node.data(0) == 'port':

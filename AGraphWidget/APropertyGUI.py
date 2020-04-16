@@ -38,7 +38,7 @@ class APropertyGUI(QtWidgets.QGraphicsItem):
         self.first = True
 
     def init(self):
-        self.first = True
+        # self.first = True
         print('first')
 
         # ASharedItems.awidget.mouse_press_event.connect()
