@@ -51,8 +51,8 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         # Setting up all the parameters regards QGraphicsView
         self.setTransformationAnchor(QtWidgets.QGraphicsView.AnchorUnderMouse)
         self.setResizeAnchor(QtWidgets.QGraphicsView.AnchorUnderMouse)
-        self.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
-        self.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
+        self.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOn)
         self.setBackgroundBrush(QtGui.QBrush(ASkin.color(ARole.BACKGROUND)))
         self.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.setDragMode(False)
@@ -199,19 +199,11 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         copy_action = menu.addAction("Copy")
         paste_action = menu.addAction("Paste")
 
-
         # quit_action = menu.addAction("quit")
-        press_node = self.itemAt(event.pos())
-
-        for i in self.__scene.items():
-            i.setSelected(False)
-            i.update()
-        if press_node:
-            if press_node.data(0) == 'node':
-                press_node.setSelected(True)
         action = menu.exec_(self.mapToGlobal(event.pos()))
-
+        # node = self.itemAt(event.pos())
         if action == delete_action:
+
             for n in self.nodes.values():
                 if n.gui.isSelected():
                     print(n.node_id)
@@ -245,8 +237,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
             # for n in ACache.agraphnode_list:
             #     node_list.append(copy.copy(n))
             for n in ACache.agraphnode_list:
-                nn = self.copy_node(n,event.pos().x(),event.pos().y())
-                print('1')
+                nn = self.copy_node(n)
                 self.__scene.addItem(nn.gui)
                 [i.gui.setSelected(False) for i in self.nodes.values()]
                 print(nn.node_id)
@@ -409,11 +400,11 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
 
             # If the mouse pressed on grid or any other items means all the Nodes have to be deselected
-            if not self.__press_node or self.__press_node.data(0) == 'grid':
-                if not release_node or release_node.data(0) == 'grid':
-                    # Deselect all the Node items
-                    [i.setSelected(False) for i in self.__scene.items()]
-                    [i.update() for i in self.__scene.items()]
+            # if not self.__press_node or self.__press_node.data(0) == 'grid':
+            #     if not release_node or release_node.data(0) == 'grid':
+            #         # Deselect all the Node items
+            #         [i.setSelected(False) for i in self.__scene.items()]
+            #         [i.update() for i in self.__scene.items()]
 
             # If mouse button pressed on a node and release at the same place means the node has to be selected
             # if self.__press_node and self.__press_node.data(0) == 'node':

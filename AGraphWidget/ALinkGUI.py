@@ -22,8 +22,7 @@ class ALinkGUI(QtWidgets.QGraphicsItem):
         self.setEnabled(False)
 
         self.draw_collider = False
-        # if isinstance(self.start,type(APortGUI))
-        # self.setParentItem(self.start)
+
 
     def update_line(self, start=None, end=None):
         # check exact type of the object "if type(o) is str:"
@@ -101,23 +100,13 @@ class ALinkGUI(QtWidgets.QGraphicsItem):
         path = QtGui.QPainterPath()
         path.moveTo(start.x(), start.y())
 
-        dist_p = end - start
 
-        # dist_y = (end.y() - start.y())
-        # p1
-        # path.quadTo(30, 30, 30, 200)
         mx1 = (end.x() + start.x()) / 2
         my1 = (end.y() + start.y()) / 2
         mx2 = (end.x() + start.x()) / 2
         my2 = (end.y() + start.y()) / 2
 
-        # dx1 = (end.x()-start.x())/4+start.x()
-        # dy1 = (end.y()-start.y())/4+start.y()
-        # dx2 = (end.x()-start.x())/4-end.x()
-        # dy2 = (end.y()-start.y())/4-end.y()
-        # dx = (end.x()-start.x())/4
-        # dist = self.distance(start, end) / 4
-        # dist = 100 #if dist > 100 else dist
+
         dist_x = end.x() - start.x()
         dist_y = end.y() - start.y()
 
@@ -160,12 +149,7 @@ class ALinkGUI(QtWidgets.QGraphicsItem):
 
             path.cubicTo(p6_x, p6_y, p7_x, p7_y, p8_x, p8_y)
             path.cubicTo(p8_x, p8_y, p9_x, p9_y, end.x(), end.y())
-        # path.cubicTo(start.x(), start.y(), p1_x, p1_y, mx1, my1)
-        # path.cubicTo(mx2, my2, end.x(), my2, end.x(), end.y() - d)
 
-        # else:
-        #     path.cubicTo(start.x(), start.y(), mx1, start.y(), mx1, my1)
-        #     path.cubicTo(mx2, my2, mx2, end.y(), end.x(), end.y())
         color = QtGui.QColor(255, 255, 255, 200)
         pen = QtGui.QPen(color, 3, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 0))
@@ -179,21 +163,12 @@ class ALinkGUI(QtWidgets.QGraphicsItem):
 
         dist_p = end - start
 
-        # dist_y = (end.y() - start.y())
-        # p1
-        # path.quadTo(30, 30, 30, 200)
+
         mx1 = (end.x() + start.x()) / 2
         my1 = (end.y() + start.y()) / 2
         mx2 = (end.x() + start.x()) / 2
         my2 = (end.y() + start.y()) / 2
 
-        # dx1 = (end.x()-start.x())/4+start.x()
-        # dy1 = (end.y()-start.y())/4+start.y()
-        # dx2 = (end.x()-start.x())/4-end.x()
-        # dy2 = (end.y()-start.y())/4-end.y()
-        # dx = (end.x()-start.x())/4
-        # dist = self.distance(start, end) / 4
-        # dist = 100 #if dist > 100 else dist
         dist_x = end.x() - start.x()
         dist_y = end.y() - start.y()
 
@@ -236,12 +211,7 @@ class ALinkGUI(QtWidgets.QGraphicsItem):
 
             path.cubicTo(p6_x, p6_y, p7_x, p7_y, p8_x, p8_y)
             path.cubicTo(p8_x, p8_y, p9_x, p9_y, end.x(), end.y())
-        # path.cubicTo(start.x(), start.y(), p1_x, p1_y, mx1, my1)
-        # path.cubicTo(mx2, my2, end.x(), my2, end.x(), end.y() - d)
 
-        # else:
-        #     path.cubicTo(start.x(), start.y(), mx1, start.y(), mx1, my1)
-        #     path.cubicTo(mx2, my2, mx2, end.y(), end.x(), end.y())
         color = QtGui.QColor(255, 255, 255, 200)
         pen = QtGui.QPen(color, 3, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap)
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 0, 0))

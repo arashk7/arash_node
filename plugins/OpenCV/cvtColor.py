@@ -3,6 +3,7 @@ from yapsy.IPlugin import IPlugin
 import numpy as np
 import cv2 as cv
 
+
 class cvtColor(APlugin, IPlugin):
     def __init__(self, x=0, y=0):
         APlugin.__init__(self, x=x, y=y)
@@ -11,7 +12,8 @@ class cvtColor(APlugin, IPlugin):
         self.add_out_param('out')
 
         self.img = self.add_property_image('viewer')
-
+        items = {'RGB2GRAY', 'BGR2GRAY', 'GRAY2RGB', 'GRAY2BGR', 'BGR2HSV', 'HSV2BGR'}
+        self.add_property_combobox('type', items=items)
 
     def init_plugin(self):
         print("Init plugin " + self.node_type)
@@ -32,6 +34,5 @@ class cvtColor(APlugin, IPlugin):
 
     def change_event1(self):
         self.img.gui.set_image_file(self.get_property_value('image_file'))
-
 
         # self.params_in['in'].va

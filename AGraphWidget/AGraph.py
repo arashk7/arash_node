@@ -27,7 +27,7 @@ class AGraph:
         self.__num_props_created = 0
         self.__num_nodes_active = 0
 
-    def copy_node(self, node: AGraphNode,x,y):
+    def copy_node(self, node: AGraphNode):
         node_id = node.node_id
         if node.node_id in self.nodes:
             i = 0
@@ -37,24 +37,24 @@ class AGraph:
                     break
                 i += 1
 
-        new_node = AGraphNode(node_id,'void' , x, y)
+        new_node = AGraphNode(node_id, node.gui.pos.x(), node.gui.pos.y())
         self.nodes[node_id] = new_node
-        print('1')
+
         # Copy ports
         for p in node.ports_in.values():
             self.add_port_in(node_id=node_id, port_id=p.port_id)
         for p in node.ports_out.values():
             self.add_port_out(node_id=node_id, port_id=p.port_id)
-        print('2')
+
         # Copy Params
         for p in node.params_in.values():
             self.add_param_in(node_id=node_id, param_id=p.param_id)
         for p in node.params_out.values():
             self.add_param_out(node_id=node_id, param_id=p.param_id)
-        print('3')
+
         # Copy Properties
-        # for p in node.props.values():
-        #     self.add_prop(node_id=node_id, property_id=p.property_id)
+        for p in node.props.values():
+            self.add_prop(node_id=node_id, property_id=p.property_id)
 
         self.__num_nodes_created += 1
         return new_node

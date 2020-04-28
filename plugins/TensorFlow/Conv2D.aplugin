@@ -1,7 +1,7 @@
 [Core]
 Name = Conv2D
 Module = Conv2D
-Cat = TF
+
 
 [Documentation]
 Author = Ahmad Karambakhsh

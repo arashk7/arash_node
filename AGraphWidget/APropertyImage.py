@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets
-from qtconsole.qt import QtCore, QtGui
+from PyQt5 import QtCore, QtGui
 
 from AGraphWidget.ASkin import *
 from AGraphWidget import APropertyGUI
