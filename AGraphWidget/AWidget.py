@@ -97,7 +97,6 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         # self.render_sample_rect()
         p = self.__scene.sceneRect().center()
 
-
         # node = self.add_node(node_id='node_1', x=p.x(), y=p.y())
         #
         # self.add_node('node_2', p.x(), p.y() + 300)
@@ -133,8 +132,6 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         #
         # self.__scene.addItem(link.gui)
 
-
-
         self.loaded = False
         # Deselect all the Node items
         # [i.setSelected(False) for i in self.__scene.items()]
@@ -144,7 +141,6 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
 
         # Accept Drop
         self.setAcceptDrops(True)
-
 
         # self.load_links()
         # anim = QtCore.QTimeLine(500, self)
@@ -199,52 +195,57 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         copy_action = menu.addAction("Copy")
         paste_action = menu.addAction("Paste")
 
-        # quit_action = menu.addAction("quit")
-        action = menu.exec_(self.mapToGlobal(event.pos()))
-        # node = self.itemAt(event.pos())
-        if action == delete_action:
 
-            for n in self.nodes.values():
-                if n.gui.isSelected():
-                    print(n.node_id)
-                    for l in self.links.values():
+        node = self.itemAt(event.pos())
+        action = None
+        if node:
+            if node.data(0) == 'node':
+                action = menu.exec_(self.mapToGlobal(event.pos()))
 
-                        if l.start.node.node_id == n.node_id or l.end.node.node_id == n.node_id:
-                            l.gui.hide()
-                            self.__scene.removeItem(l.gui)
-                            temp_list = dict(self.links)
-                            del temp_list[l.link_id]
-                            self.links = temp_list
+        if action:
+            if action == delete_action:
 
-                    n.gui.hide()
-                    self.__scene.removeItem(n.gui)
-                    d = dict(self.nodes)
-                    del d[n.node_id]
-                    self.nodes = d
-                    self.__scene.update()
-                    self.update()
+                for n in self.nodes.values():
+                    if n.gui.isSelected():
+                        print(n.node_id)
+                        for l in self.links.values():
+
+                            if l.start.node.node_id == n.node_id or l.end.node.node_id == n.node_id:
+                                l.gui.hide()
+                                self.__scene.removeItem(l.gui)
+                                temp_list = dict(self.links)
+                                del temp_list[l.link_id]
+                                self.links = temp_list
+
+                        n.gui.hide()
+                        self.__scene.removeItem(n.gui)
+                        d = dict(self.nodes)
+                        del d[n.node_id]
+                        self.nodes = d
+                        self.__scene.update()
+                        self.update()
 
 
-        elif action == copy_action:
-            ACache.agraphnode_list = list()
-            for n in self.nodes.values():
-                if n.gui.isSelected():
-                    ACache.agraphnode_list.append(n)
-                    print(n.node_id)
-            pass
-        elif action == paste_action:
-            # node_list = list()
-            # for n in ACache.agraphnode_list:
-            #     node_list.append(copy.copy(n))
-            for n in ACache.agraphnode_list:
-                nn = self.copy_node(n)
-                self.__scene.addItem(nn.gui)
-                [i.gui.setSelected(False) for i in self.nodes.values()]
-                print(nn.node_id)
-                # self.__scene.addItem(n)
+            elif action == copy_action:
+                ACache.agraphnode_list = list()
+                for n in self.nodes.values():
+                    if n.gui.isSelected():
+                        ACache.agraphnode_list.append(n)
+                        print(n.node_id)
+                pass
+            elif action == paste_action:
+                # node_list = list()
+                # for n in ACache.agraphnode_list:
+                #     node_list.append(copy.copy(n))
+                for n in ACache.agraphnode_list:
+                    nn = self.copy_node(n)
+                    self.__scene.addItem(nn.gui)
+                    [i.gui.setSelected(False) for i in self.nodes.values()]
+                    print(nn.node_id)
+                    # self.__scene.addItem(n)
 
-            print('paste')
-            pass
+                print('paste')
+                pass
 
     def get_scene(self):
         return self.__scene
@@ -398,41 +399,40 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                 if self.__press_node == release_node:
                     pass
 
+                # If the mouse pressed on grid or any other items means all the Nodes have to be deselected
+                # if not self.__press_node or self.__press_node.data(0) == 'grid':
+                #     if not release_node or release_node.data(0) == 'grid':
+                #         # Deselect all the Node items
+                #         [i.setSelected(False) for i in self.__scene.items()]
+                #         [i.update() for i in self.__scene.items()]
 
-            # If the mouse pressed on grid or any other items means all the Nodes have to be deselected
-            # if not self.__press_node or self.__press_node.data(0) == 'grid':
-            #     if not release_node or release_node.data(0) == 'grid':
-            #         # Deselect all the Node items
-            #         [i.setSelected(False) for i in self.__scene.items()]
-            #         [i.update() for i in self.__scene.items()]
+                # If mouse button pressed on a node and release at the same place means the node has to be selected
+                # if self.__press_node and self.__press_node.data(0) == 'node':
+                #     if release_node and release_node.data(0) == 'node':
+                #         if self.__press_node == release_node:
+                #             if self.distance(release_point, self.__press_point) < 2:
+                #                 # Deselect all the Node items
+                #                 [i.setSelected(False) for i in self.__scene.items()]
+                #                 [i.update() for i in self.__scene.items()]
+                #                 release_node.setSelected(True)
+                #                 release_node.update()
+                #                 print('ok')
+                #
+                #                 return
 
-            # If mouse button pressed on a node and release at the same place means the node has to be selected
-            # if self.__press_node and self.__press_node.data(0) == 'node':
-            #     if release_node and release_node.data(0) == 'node':
-            #         if self.__press_node == release_node:
-            #             if self.distance(release_point, self.__press_point) < 2:
-            #                 # Deselect all the Node items
-            #                 [i.setSelected(False) for i in self.__scene.items()]
-            #                 [i.update() for i in self.__scene.items()]
-            #                 release_node.setSelected(True)
-            #                 release_node.update()
-            #                 print('ok')
-            #
-            #                 return
-
-            # RubberBand
-            # rubber_rect = self.__rubber_band.get_rect()
-            # if rubber_rect.width() > 10:
-            #     # Deselect all the Node items
-            #     [i.setSelected(False) for i in self.__scene.items()]
-            #     [i.update() for i in self.__scene.items()]
-            #
-            #     rect = self.mapToScene(rubber_rect)
-            #     items = self.__scene.items(rect)
-            #     for i in items:
-            #         if i.data(0) == 'node':
-            #             i.setSelected(True)
-            #             i.update()
+                # RubberBand
+                # rubber_rect = self.__rubber_band.get_rect()
+                # if rubber_rect.width() > 10:
+                #     # Deselect all the Node items
+                #     [i.setSelected(False) for i in self.__scene.items()]
+                #     [i.update() for i in self.__scene.items()]
+                #
+                #     rect = self.mapToScene(rubber_rect)
+                #     items = self.__scene.items(rect)
+                #     for i in items:
+                #         if i.data(0) == 'node':
+                #             i.setSelected(True)
+                #             i.update()
 
                 return
         elif event.button() == QtCore.Qt.MidButton:

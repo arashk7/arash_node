@@ -10,9 +10,6 @@ class DraggableLabel(QtWidgets.QLabel):
         super(QtWidgets.QLabel, self).__init__(text)
         self.item_id = item_id
 
-    #     self.setText(text)
-    #     self.setAcceptDrops(True)
-    #     self.show()
 
 
     def mousePressEvent(self, event):
