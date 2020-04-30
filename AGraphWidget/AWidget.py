@@ -205,25 +205,41 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         if action:
             if action == delete_action:
 
-                for n in self.nodes.values():
-                    if n.gui.isSelected():
-                        print(n.node_id)
-                        for l in self.links.values():
+                for l in self.links.values():
+                    if l.start.node.node_id == node.id or l.end.node.node_id == node.id:
+                        l.gui.hide()
+                        self.__scene.removeItem(l.gui)
+                        temp_list = dict(self.links)
+                        del temp_list[l.link_id]
+                        self.links = temp_list
+                        
+                node.hide()
+                self.__scene.removeItem(node)
+                d = dict(self.nodes)
+                del d[node.id]
+                self.nodes = d
+                self.__scene.update()
+                self.update()
 
-                            if l.start.node.node_id == n.node_id or l.end.node.node_id == n.node_id:
-                                l.gui.hide()
-                                self.__scene.removeItem(l.gui)
-                                temp_list = dict(self.links)
-                                del temp_list[l.link_id]
-                                self.links = temp_list
-
-                        n.gui.hide()
-                        self.__scene.removeItem(n.gui)
-                        d = dict(self.nodes)
-                        del d[n.node_id]
-                        self.nodes = d
-                        self.__scene.update()
-                        self.update()
+                # for n in self.nodes.values():
+                #     if n.gui.isSelected():
+                #         print(n.node_id)
+                #         for l in self.links.values():
+                #
+                #             if l.start.node.node_id == n.node_id or l.end.node.node_id == n.node_id:
+                #                 l.gui.hide()
+                #                 self.__scene.removeItem(l.gui)
+                #                 temp_list = dict(self.links)
+                #                 del temp_list[l.link_id]
+                #                 self.links = temp_list
+                #
+                #         n.gui.hide()
+                #         self.__scene.removeItem(n.gui)
+                #         d = dict(self.nodes)
+                #         del d[n.node_id]
+                #         self.nodes = d
+                #         self.__scene.update()
+                #         self.update()
 
 
             elif action == copy_action:
@@ -232,7 +248,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                     if n.gui.isSelected():
                         ACache.agraphnode_list.append(n)
                         print(n.node_id)
-                pass
+
             elif action == paste_action:
                 # node_list = list()
                 # for n in ACache.agraphnode_list:
