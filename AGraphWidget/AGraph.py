@@ -27,7 +27,7 @@ class AGraph:
         self.__num_props_created = 0
         self.__num_nodes_active = 0
 
-    def copy_node(self, node: AGraphNode):
+    def copy_node(self, node: AGraphNode,x=100,y=100):
         node_id = node.node_id
         if node.node_id in self.nodes:
             i = 0
@@ -37,7 +37,7 @@ class AGraph:
                     break
                 i += 1
 
-        new_node = AGraphNode(node_id, node.gui.pos.x(), node.gui.pos.y())
+        new_node = AGraphNode(node_id=node_id,node_type=node.node_type, x=int(x), y=int(y))
         self.nodes[node_id] = new_node
 
         # Copy ports
@@ -260,7 +260,7 @@ class AGraph:
         p_out = AGraphParam(param_id, AParamType.OUTPUT, self.nodes[node_id])
         self.nodes[node_id].add_param_out(p_out)
         ACache.output_params_gui[param_id + '_' + node_id] = p_out.gui
-        self.nodes[node_id].gui.init_params_locations()
+        self.nodes[node_id].gui.init_params_props_locations()
         self.__num_params_out_created += 1
         return p_out
 

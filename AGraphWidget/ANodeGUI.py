@@ -168,7 +168,7 @@ class ANodeGUI(QtWidgets.QGraphicsItem):
         # print(str(br.width()))
         self.caption = self.graph_node.node_id
         self.id = self.graph_node.node_id
-        path.addText(x + 5, y + 15, font, str(self.caption))
+        path.addText(x + 5, y + 15, font, str(self.caption+' : '+self.graph_node.node_type))
         painter.setFont(font)
         painter.setPen(pen)
         painter.setBrush(brush)

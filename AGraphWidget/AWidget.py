@@ -191,27 +191,40 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
         menu = QtWidgets.QMenu(self)
 
         # cut_action = menu.addAction("Cut")
-        delete_action = menu.addAction("Delete")
-        copy_action = menu.addAction("Copy")
-        paste_action = menu.addAction("Paste")
+
 
 
         node = self.itemAt(event.pos())
+        point = self.mapToScene(QtCore.QPoint(event.pos().x(), event.pos().y()))
+
         action = None
         if node:
             if node.data(0) == 'node':
+                delete_action = menu.addAction("Delete")
+                copy_action = menu.addAction("Copy")
+                paste_action = menu.addAction("Paste")
                 action = menu.exec_(self.mapToGlobal(event.pos()))
+        else:
+            delete_action = None
+            copy_action = None
+            paste_action = menu.addAction("Paste")
+            action = menu.exec_(self.mapToGlobal(event.pos()))
 
         if action:
             if action == delete_action:
 
                 for l in self.links.values():
                     if l.start.node.node_id == node.id or l.end.node.node_id == node.id:
+                        del l.start.links[l.link_id]
+                        del l.end.links[l.link_id]
+
                         l.gui.hide()
                         self.__scene.removeItem(l.gui)
                         temp_list = dict(self.links)
                         del temp_list[l.link_id]
                         self.links = temp_list
+                        l.start.gui.update()
+                        l.end.gui.update()
                         
                 node.hide()
                 self.__scene.removeItem(node)
@@ -221,47 +234,29 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                 self.__scene.update()
                 self.update()
 
-                # for n in self.nodes.values():
-                #     if n.gui.isSelected():
-                #         print(n.node_id)
-                #         for l in self.links.values():
-                #
-                #             if l.start.node.node_id == n.node_id or l.end.node.node_id == n.node_id:
-                #                 l.gui.hide()
-                #                 self.__scene.removeItem(l.gui)
-                #                 temp_list = dict(self.links)
-                #                 del temp_list[l.link_id]
-                #                 self.links = temp_list
-                #
-                #         n.gui.hide()
-                #         self.__scene.removeItem(n.gui)
-                #         d = dict(self.nodes)
-                #         del d[n.node_id]
-                #         self.nodes = d
-                #         self.__scene.update()
-                #         self.update()
-
-
             elif action == copy_action:
                 ACache.agraphnode_list = list()
-                for n in self.nodes.values():
-                    if n.gui.isSelected():
-                        ACache.agraphnode_list.append(n)
-                        print(n.node_id)
-
+                ACache.agraphnode_list.append(node.graph_node)
+                # for n in self.nodes.values():
+                #     if n.gui.isSelected():
+                #         ACache.agraphnode_list.append(n)
+                #         print(n.node_id)
+                print('copy')
             elif action == paste_action:
                 # node_list = list()
                 # for n in ACache.agraphnode_list:
                 #     node_list.append(copy.copy(n))
                 for n in ACache.agraphnode_list:
-                    nn = self.copy_node(n)
+                    print(point.x())
+                    print(point.y())
+                    nn = self.copy_node(n,point.x(),point.y())
                     self.__scene.addItem(nn.gui)
-                    [i.gui.setSelected(False) for i in self.nodes.values()]
-                    print(nn.node_id)
+                    # [i.gui.setSelected(False) for i in self.nodes.values()]
+                    # print(nn.node_id)
                     # self.__scene.addItem(n)
 
                 print('paste')
-                pass
+                # pass
 
     def get_scene(self):
         return self.__scene
