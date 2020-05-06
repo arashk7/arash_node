@@ -57,6 +57,9 @@ class AGraph:
         for p in node.ports_out.values():
             self.add_port_out(node_id=node_id, port_id=p.port_id)
 
+
+        self.nodes[node_id].gui.init_params_props_locations()
+        self.nodes[node_id].gui.init_ports_locations()
         self.__num_nodes_created += 1
         return new_node
 
@@ -171,7 +174,7 @@ class AGraph:
         p_in = AGraphPort(port_id, APortType.INPUT, self.nodes[node_id])
         self.nodes[node_id].add_port_in(p_in)
         ACache.input_ports_gui[port_id + '_' + node_id] = p_in.gui
-        self.nodes[node_id].gui.init_ports_locations()
+        # self.nodes[node_id].gui.init_ports_locations()
         self.__num_ports_in_created += 1
         return p_in
 
@@ -202,7 +205,7 @@ class AGraph:
         self.nodes[node_id].add_port_out(p_out)
         ACache.output_ports_gui[port_id + '_' + node_id] = p_out.gui
 
-        self.nodes[node_id].gui.init_ports_locations()
+        # self.nodes[node_id].gui.init_ports_locations()
         self.__num_ports_out_created += 1
         return p_out
 
@@ -232,7 +235,7 @@ class AGraph:
         p_in = AGraphParam(param_id, AParamType.INPUT, self.nodes[node_id])
         self.nodes[node_id].add_param_in(p_in)
         ACache.input_params_gui[param_id + '_' + node_id] = p_in.gui
-        self.nodes[node_id].gui.init_params_props_locations()
+        # self.nodes[node_id].gui.init_params_props_locations()
         self.__num_params_in_created += 1
         return p_in
 
@@ -262,7 +265,7 @@ class AGraph:
         p_out = AGraphParam(param_id, AParamType.OUTPUT, self.nodes[node_id])
         self.nodes[node_id].add_param_out(p_out)
         ACache.output_params_gui[param_id + '_' + node_id] = p_out.gui
-        self.nodes[node_id].gui.init_params_props_locations()
+        # self.nodes[node_id].gui.init_params_props_locations()
         self.__num_params_out_created += 1
         return p_out
 
@@ -292,7 +295,7 @@ class AGraph:
         prop = AGraphProperty(property_id=property_id, property_type=property_type, property_location=property_location, node=self.nodes[node_id])
         self.nodes[node_id].add_prop(prop)
         # ACache.output_params_gui[property_id + '_' + node_id] = prop.gui
-        self.nodes[node_id].gui.init_params_props_locations()
+        # self.nodes[node_id].gui.init_params_props_locations()
         self.__num_props_created += 1
         return prop
 
