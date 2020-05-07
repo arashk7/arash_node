@@ -1,0 +1,10 @@
+[Core]
+Name = MaxPool2D
+Module = MaxPool2D
+
+
+[Documentation]
+Author = Ahmad Karambakhsh
+Version = 0.1
+Website = a-karambakhsh.ir
+Description = Merge layer

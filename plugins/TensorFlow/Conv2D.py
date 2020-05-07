@@ -1,4 +1,5 @@
-from AGraphWidget.APlugin import *
+from AGraphWidget.APlugin import APlugin, APropertyLocation, APropertyType
+from yapsy.IPlugin import IPlugin
 
 class Conv2D(APlugin, IPlugin):
     def __init__(self, x=0, y=0):
@@ -24,9 +25,10 @@ class Conv2D(APlugin, IPlugin):
         self.add_property_file('file', 'open')
         self.add_property_change_event('file', "change_event1")
 
+
     def init_node(self):
-        super(Conv2D, self).init_node()
-        self.gui.update()
+        # super(Conv2D).init_node()
+        # self.gui.update()
         # self.change_event('file')
         # print(self.get_property('prop'))
         print('Added node: ', self.node_id)

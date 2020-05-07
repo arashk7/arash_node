@@ -1,0 +1,10 @@
+[Core]
+Name = Merge
+Module = Merge
+
+
+[Documentation]
+Author = Ahmad Karambakhsh
+Version = 0.1
+Website = a-karambakhsh.ir
+Description = Merge layer

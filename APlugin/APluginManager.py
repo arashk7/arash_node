@@ -27,6 +27,7 @@ class APluginManager:
             print(cat)
             # Loop round the plugins and add them to item list
             for plugin in self.manager.getAllPlugins():
+                # print(plugin.plugin_object.node_id)
                 plugin.plugin_object.init_plugin()
                 plugin.plugin_object.category = cat
                 self.items.append(plugin.plugin_object)

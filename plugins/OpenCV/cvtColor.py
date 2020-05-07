@@ -15,8 +15,6 @@ class cvtColor(APlugin, IPlugin):
         items = {'RGB2GRAY', 'BGR2GRAY', 'GRAY2RGB', 'GRAY2BGR', 'BGR2HSV', 'HSV2BGR'}
         self.add_property_combobox('type', items=items)
 
-    def init_plugin(self):
-        print("Init plugin " + self.node_type)
 
     def init_node(self):
         print('Added node: ', self.node_id)

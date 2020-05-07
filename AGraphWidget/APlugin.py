@@ -5,9 +5,6 @@ from yapsy.IPlugin import IPlugin
 import threading
 
 
-class IPlugin(IPlugin):
-    pass
-
 
 class APlugin(AGraphNode.AGraphNode):
     def __init__(self, x=0, y=0):

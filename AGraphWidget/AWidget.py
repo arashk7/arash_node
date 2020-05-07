@@ -363,7 +363,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                             l.end.links.pop(key)
                             l.start.gui.update()
                             l.end.gui.update()
-                            l.end.node.edit_run()
+                            # l.end.node.edit_run()
                             del l
                             # self.__scene.removeItem(l.gui)
                     elif self.__press_node.data(0) == 'param':
@@ -378,7 +378,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                             l.end.links.pop(key)
                             l.start.gui.update()
                             l.end.gui.update()
-                            l.end.node.edit_run()
+                            # l.end.node.edit_run()
                             del l
                             # self.__scene.removeItem(l.gui)
         elif event.button() == QtCore.Qt.MidButton:
