@@ -1,0 +1,10 @@
+[Core]
+Name = Dense
+Module = Dense
+
+
+[Documentation]
+Author = Ahmad Karambakhsh
+Version = 0.1
+Website = a-karambakhsh.ir
+Description = Fully Connected Layer (Dense)

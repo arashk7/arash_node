@@ -1,0 +1,10 @@
+[Core]
+Name = TFModel
+Module = TFModel
+
+
+[Documentation]
+Author = Ahmad Karambakhsh
+Version = 0.1
+Website = a-karambakhsh.ir
+Description = Network Model
