@@ -1,6 +1,6 @@
 [Core]
-Name = Conv2D
-Module = Conv2D
+Name = SampleUI
+Module = SampleUI
 
 
 [Documentation]

@@ -1,7 +1,7 @@
 from AGraphWidget.APlugin import APlugin, APropertyLocation, APropertyType
 from yapsy.IPlugin import IPlugin
 
-class Conv2D(APlugin, IPlugin):
+class SampleUI(APlugin, IPlugin):
     def __init__(self, x=0, y=0):
         APlugin.__init__(self, x=x, y=y)
 
