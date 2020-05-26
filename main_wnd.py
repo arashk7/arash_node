@@ -34,6 +34,15 @@ class DraggableLabel(QtWidgets.QLabel):
         drag.exec_(QtCore.Qt.CopyAction)
 
 
+class Color(QtWidgets.QWidget):
+    def __init__(self, color, *args, **kwargs):
+        super(Color, self).__init__(*args, **kwargs)
+        self.setAutoFillBackground(True)
+
+        palette = self.palette()
+        palette.setColor(QtGui.QPalette.Window, QtGui.QColor(color))
+        self.setPalette(palette)
+
 class Window(QtWidgets.QMainWindow):
     def __init__(self):
         super(Window, self).__init__()
@@ -62,6 +71,7 @@ class Window(QtWidgets.QMainWindow):
             if pm.items[i].category not in pages:
                 pages[pm.items[i].category] = QtWidgets.QWidget(self)
                 self.toolBox.addItem(pages[pm.items[i].category], pm.items[i].category)
+                self.verticalLayout_PropertyBar.addWidget(Color('red'))
                 pages[pm.items[i].category].setLayout(QtWidgets.QVBoxLayout())
                 pages[pm.items[i].category].layout().setAlignment(QtCore.Qt.AlignTop)
                 pages[pm.items[i].category].setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
@@ -70,6 +80,11 @@ class Window(QtWidgets.QMainWindow):
             else:
                 label = DraggableLabel(pm.items[i].node_type, str(i))
                 pages[pm.items[i].category].layout().addWidget(label)
+
+        verticalSpacer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_PropertyBar.addItem(verticalSpacer)
+
+
 
 
 
