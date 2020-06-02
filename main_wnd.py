@@ -3,7 +3,7 @@ from AGraphWidget.AWidget import AWidget
 from APlugin.APluginManager import APluginManager
 from AGraphWidget.AUtil import ASharedItems
 from ANodeRunner.ANodePlayer import ANodePlayer
-
+from AGraphWidget.APropertyManager import APropertyManager
 
 class DraggableLabel(QtWidgets.QLabel):
     def __init__(self, text, item_id):
@@ -82,49 +82,49 @@ class Window(QtWidgets.QMainWindow):
                 pages[pm.items[i].category].layout().addWidget(label)
 
 
-
+        property_manager = APropertyManager(self)
+        property_manager.update()
         # Test Property bar
-        self.tw = QtWidgets.QTreeWidget(self)
-        self.verticalLayout_PropertyBar.addWidget(self.tw)
-        self.tw.setColumnCount(2)
-        self.tw.setHeaderLabels(["Properties", "Value"])
+        # self.tw = QtWidgets.QTreeWidget(self)
+        # self.verticalLayout_PropertyBar.addWidget(self.tw)
+        # self.tw.setColumnCount(2)
+        # self.tw.setHeaderLabels(["Properties", "Value"])
+        #
+        # root_1 = QtWidgets.QTreeWidgetItem(self.tw)
+        # root_1.setText(0, "Option_1")
+        # root_1.setText(1, "Option_1 Description")
+        #
+        # item_1 = QtWidgets.QTreeWidgetItem()
+        # item_1.setText(0, "enabled")
+        # item_1.setFlags(item_1.flags() | QtCore.Qt.ItemIsUserCheckable)
+        # item_1.setCheckState(1, QtCore.Qt.Checked)
+        # root_1.addChild(item_1)
+        #
+        # item_1 = QtWidgets.QTreeWidgetItem()
+        # item_1.setText(0, "height")
+        # root_1.addChild(item_1)
+        # self.tw.setItemWidget(item_1, 1, QtWidgets.QSpinBox())
+        #
+        # root_2 = QtWidgets.QTreeWidgetItem(self.tw)
+        # root_2.setText(0, "Option_2")
+        # root_2.setText(1, "Option_2 Description")
+        #
+        # item_2 = QtWidgets.QTreeWidgetItem()
+        # item_2.setText(0, "width")
+        # item_2.setText(1, "300")
+        # root_2.addChild(item_2)
+        #
+        # item_2 = QtWidgets.QTreeWidgetItem()
+        # item_2.setText(0, "height")
+        # item_2.setText(1, "200")
+        # root_2.addChild(item_2)
+        #
+        # btnNext = QtWidgets.QPushButton("Next")
+        #
+        # self.verticalLayout_PropertyBar.addWidget(btnNext)
+        # self.verticalLayout_PropertyBar.setAlignment(QtCore.Qt.AlignTop)
 
-        root_1 = QtWidgets.QTreeWidgetItem(self.tw)
-        root_1.setText(0, "Option_1")
-        root_1.setText(1, "Option_1 Description")
 
-        item_1 = QtWidgets.QTreeWidgetItem()
-        item_1.setText(0, "enabled")
-        item_1.setFlags(item_1.flags() | QtCore.Qt.ItemIsUserCheckable)
-        item_1.setCheckState(1, QtCore.Qt.Checked)
-        root_1.addChild(item_1)
-
-        item_1 = QtWidgets.QTreeWidgetItem()
-        item_1.setText(0, "height")
-        root_1.addChild(item_1)
-        self.tw.setItemWidget(item_1, 1, QtWidgets.QSpinBox())
-
-        root_2 = QtWidgets.QTreeWidgetItem(self.tw)
-        root_2.setText(0, "Option_2")
-        root_2.setText(1, "Option_2 Description")
-
-        item_2 = QtWidgets.QTreeWidgetItem()
-        item_2.setText(0, "width")
-        item_2.setText(1, "300")
-        root_2.addChild(item_2)
-
-        item_2 = QtWidgets.QTreeWidgetItem()
-        item_2.setText(0, "height")
-        item_2.setText(1, "200")
-        root_2.addChild(item_2)
-
-        btnNext = QtWidgets.QPushButton("Next")
-
-        self.verticalLayout_PropertyBar.addWidget(btnNext)
-        self.verticalLayout_PropertyBar.setAlignment(QtCore.Qt.AlignTop)
-
-        # verticalSpacer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
-        # self.verticalLayout_PropertyBar.addItem(verticalSpacer)
 
 
 
