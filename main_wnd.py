@@ -81,8 +81,8 @@ class Window(QtWidgets.QMainWindow):
                 label = DraggableLabel(pm.items[i].node_type, str(i))
                 pages[pm.items[i].category].layout().addWidget(label)
 
-        verticalSpacer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
-        self.verticalLayout_PropertyBar.addItem(verticalSpacer)
+        # verticalSpacer = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        # self.verticalLayout_PropertyBar.addItem(verticalSpacer)
 
 
 
