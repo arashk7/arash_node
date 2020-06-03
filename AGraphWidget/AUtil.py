@@ -24,7 +24,7 @@ class APropertyType:
     IMAGE = 9
 class APropertyLocation:
     NODE = 0
-    TOOLBAR = 1
+    PROPERTYBAR = 1
 
 class ALinkType:
     PARAM = 0
@@ -43,6 +43,7 @@ class ACache:
 class ASharedItems:
     awidget = None
     aPluginManager = None
+    aPropertyManager = None
 
 
 class AMath:

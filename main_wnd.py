@@ -84,6 +84,7 @@ class Window(QtWidgets.QMainWindow):
 
         property_manager = APropertyManager(self)
         property_manager.update()
+        ASharedItems.aPropertyManager = property_manager
         # Test Property bar
         # self.tw = QtWidgets.QTreeWidget(self)
         # self.verticalLayout_PropertyBar.addWidget(self.tw)
