@@ -83,7 +83,7 @@ class Window(QtWidgets.QMainWindow):
 
 
         property_manager = APropertyManager(self)
-        property_manager.update()
+        # property_manager.update_property_bar()
         ASharedItems.aPropertyManager = property_manager
         # Test Property bar
         # self.tw = QtWidgets.QTreeWidget(self)
