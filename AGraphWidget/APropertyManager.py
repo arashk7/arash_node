@@ -29,8 +29,7 @@ class APropertyManager:
         for prop in self.graph_node.props.values():
             if prop.property_location == APropertyLocation.PROPERTYBAR:
                 print(prop.property_id)
-
-        # item_1 = QtWidgets.QTreeWidgetItem()
-        # item_1.setText(0, "enabled")
-        # item_1.setFlags(item_1.flags() | QtCore.Qt.ItemIsUserCheckable)
-        # item_1.setCheckState(1, QtCore.Qt.Checked)
+                item_1 = QtWidgets.QTreeWidgetItem()
+                item_1.setText(0, prop.property_id)
+                item_1.setFlags(item_1.flags() | QtCore.Qt.ItemIsUserCheckable)
+                item_1.setCheckState(1, QtCore.Qt.Checked)
