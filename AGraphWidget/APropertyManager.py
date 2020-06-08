@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets, QtCore
-from AGraphWidget.AUtil import APropertyLocation
+from AGraphWidget.AUtil import APropertyLocation,APropertyType
 
 
 class APropertyManager:
@@ -11,6 +11,9 @@ class APropertyManager:
         print(agraphnode.node_type)
         self.graph_node = agraphnode
         self.update_property_bar()
+    def update_node(self,item,column):
+        print(item.text(1))
+        print(str(column))
 
     def update_property_bar(self):
         for i in reversed(range(self.window.verticalLayout_PropertyBar.count())):
@@ -21,15 +24,28 @@ class APropertyManager:
         self.window.verticalLayout_PropertyBar.addWidget(self.tw)
         self.tw.setColumnCount(2)
         self.tw.setHeaderLabels(["Properties", "Value"])
+        self.tw.itemChanged.connect(self.update_node)
 
         root_1 = QtWidgets.QTreeWidgetItem(self.tw)
+        root_1.setExpanded(True)
         root_1.setText(0, "Option_1")
         root_1.setText(1, "Option_1 Description")
 
         for prop in self.graph_node.props.values():
-            if prop.property_location == APropertyLocation.PROPERTYBAR:
-                print(prop.property_id)
-                item_1 = QtWidgets.QTreeWidgetItem()
-                item_1.setText(0, prop.property_id)
-                item_1.setFlags(item_1.flags() | QtCore.Qt.ItemIsUserCheckable)
-                item_1.setCheckState(1, QtCore.Qt.Checked)
+            if prop.property_location == APropertyLocation.NODE:
+                if prop.property_type == APropertyType.BOOL:
+                    item_1 = QtWidgets.QTreeWidgetItem()
+                    item_1.setText(0, prop.property_id)
+                    item_1.setFlags(item_1.flags() | QtCore.Qt.ItemIsUserCheckable)
+                    item_1.setCheckState(1, QtCore.Qt.Checked)
+                    root_1.addChild(item_1)
+                elif prop.property_type == APropertyType.TEXT:
+                    item_1 = QtWidgets.QTreeWidgetItem()
+                    item_1.setText(0, prop.property_id)
+                    item_1.setText(1, 'prop.property_id')
+                    item_1.setFlags(item_1.flags() | QtCore.Qt.ItemIsEditable)
+
+                    # item_1.setCheckState(1, QtCore.Qt.Checked)
+                    root_1.addChild(item_1)
+
+
