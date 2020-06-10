@@ -64,7 +64,10 @@ class APlugin(AGraphNode.AGraphNode):
         self.add_prop(prop)
         return prop
 
-    def get_property_value(self, property_name):
+    def get_property_pm_value(self, property_name):
+        return self.props_ext[property_name].value
+
+    def get_property_node_value(self, property_name):
         return self.props[property_name].value
 
     def set_in_param(self, param_name, val):

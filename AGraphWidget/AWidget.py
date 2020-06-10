@@ -411,6 +411,7 @@ class AWidget(QtWidgets.QGraphicsView, AGraph):
                     if release_node.data(0) == 'node':
                         # print(release_node.graph_node.node_type)
                         ASharedItems.aPropertyManager.connect(release_node.graph_node)
+                        release_node.graph_node.run()
                         pass
 
                 # If the mouse pressed on grid or any other items means all the Nodes have to be deselected

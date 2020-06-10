@@ -1,0 +1,10 @@
+[Core]
+Name = Input
+Module = Input
+
+
+[Documentation]
+Author = Ahmad Karambakhsh
+Version = 0.1
+Website = a-karambakhsh.ir
+Description = Input Layer

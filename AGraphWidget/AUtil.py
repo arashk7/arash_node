@@ -11,6 +11,7 @@ class AParamType:
     INPUT = 0
     OUTPUT = 1
 
+
 class APropertyType:
     BOOL = 0
     TEXT = 1
@@ -23,9 +24,12 @@ class APropertyType:
     SLIDER = 8
     FILE = 9
     IMAGE = 10
+
+
 class APropertyLocation:
     NODE = 0
     PROPERTYBAR = 1
+
 
 class ALinkType:
     PARAM = 0
@@ -52,3 +56,14 @@ class AMath:
     def distance(p1: QtCore.QPointF, p2: QtCore.QPointF):
         dist = math.hypot(p2.x() - p1.x(), p2.y() - p1.y())
         return dist
+
+
+class ATools:
+    @staticmethod
+    def str2tuple(str_shape):
+        tup = tuple(map(int, str_shape.split(',')))
+        return tup
+
+    @staticmethod
+    def remove_brackets(str_tuple):
+        return str_tuple.replace('(', '').replace(')', '')
