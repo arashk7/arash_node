@@ -51,7 +51,8 @@ class APluginManager:
         node.init_node()
         if node.is_starter:
             print('starter')
-        self.awidget.scene().addItem(node.gui)
+        if node.gui:
+            self.awidget.scene().addItem(node.gui)
 
         # node= APlugin(self.awidget,'ttttt',1000,1000)
 

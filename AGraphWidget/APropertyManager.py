@@ -14,6 +14,8 @@ class APropertyManager:
     def update_node(self,item,column):
         print(item.text(1))
         print(str(column))
+        if self.graph_node.is_prop_ext_exist(item.text(0)):
+            self.graph_node.props_ext[item.text(0)].value = item.text(1)
 
     def update_property_bar(self):
         for i in reversed(range(self.window.verticalLayout_PropertyBar.count())):
@@ -31,8 +33,8 @@ class APropertyManager:
         root_1.setText(0, "Option_1")
         root_1.setText(1, "Option_1 Description")
 
-        for prop in self.graph_node.props.values():
-            if prop.property_location == APropertyLocation.NODE:
+        for prop in self.graph_node.props_ext.values():
+            if prop.property_location == APropertyLocation.PROPERTYBAR:
                 if prop.property_type == APropertyType.BOOL:
                     item_1 = QtWidgets.QTreeWidgetItem()
                     item_1.setText(0, prop.property_id)
@@ -42,7 +44,7 @@ class APropertyManager:
                 elif prop.property_type == APropertyType.TEXT:
                     item_1 = QtWidgets.QTreeWidgetItem()
                     item_1.setText(0, prop.property_id)
-                    item_1.setText(1, 'prop.property_id')
+                    item_1.setText(1, prop.value)
                     item_1.setFlags(item_1.flags() | QtCore.Qt.ItemIsEditable)
 
                     # item_1.setCheckState(1, QtCore.Qt.Checked)

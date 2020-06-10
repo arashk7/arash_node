@@ -102,6 +102,8 @@ class Window(QtWidgets.QMainWindow):
         # root_1.addChild(item_1)
         #
         # item_1 = QtWidgets.QTreeWidgetItem()
+
+
         # item_1.setText(0, "height")
         # root_1.addChild(item_1)
         # self.tw.setItemWidget(item_1, 1, QtWidgets.QSpinBox())

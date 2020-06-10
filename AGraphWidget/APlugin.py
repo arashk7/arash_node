@@ -31,10 +31,15 @@ class APlugin(AGraphNode.AGraphNode):
         self.add_prop(prop)
         return prop
 
-    def add_property_text(self, property_name, default_text):
-        prop = AGraphProperty.AGraphProperty(property_name, APropertyType.TEXT, APropertyLocation.NODE, self)
-        prop.gui.set_text(default_text)
-        self.add_prop(prop)
+    def add_property_text(self, property_name, value,property_location=APropertyLocation.NODE):
+        prop = AGraphProperty.AGraphProperty(property_name, APropertyType.TEXT, property_location, self)
+        prop.value = value
+        if property_location == APropertyLocation.NODE:
+            prop.gui.set_text(value)
+            self.add_prop(prop)
+        else:
+            self.add_prop_ext(prop)
+
         return prop
 
     def add_property_bool(self, property_name, default_state):

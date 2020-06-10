@@ -15,6 +15,7 @@ class AGraphNode:
         self.__ports_in = {}
         self.__ports_out = {}
         self.__props = {}
+        self.__props_ext = {}
         self.__num_params_in_created = 0
         self.__num_params_out_created = 0
         self.num_ports_in_created = 0
@@ -25,12 +26,18 @@ class AGraphNode:
     def add_prop(self, prop):
         self.__props[prop.property_id] = prop
 
+        # Add Property
+    def add_prop_ext(self, prop):
+        self.__props_ext[prop.property_id] = prop
     # Check dict to make sure there is no other prop with ID
     def is_prop_exist(self, prop_id):
         if prop_id in self.__props:
             return True
         return False
-
+    def is_prop_ext_exist(self, prop_id):
+        if prop_id in self.__props_ext:
+            return True
+        return False
     # Adding port to the entry node
     def add_port_in(self, port):
         self.__ports_in[port.port_id] = port
@@ -108,3 +115,8 @@ class AGraphNode:
     @property
     def props(self):
         return self.__props
+
+    # Properties
+    @property
+    def props_ext(self):
+        return self.__props_ext

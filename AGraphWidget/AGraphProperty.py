@@ -1,5 +1,5 @@
 from AGraphWidget import APropertyCombo, APropertyText, APropertyBool, APropertySlider, APropertyFile, APropertyImage
-from AGraphWidget.AUtil import APropertyType
+from AGraphWidget.AUtil import APropertyType, APropertyLocation
 
 
 class AGraphProperty:
@@ -15,26 +15,28 @@ class AGraphProperty:
 
         self.shape = None
         self.gui = None
-        if property_type == APropertyType.COMBO:
-            self.gui = APropertyCombo.APropertyCombo(property=self, property_id=property_id,
-                                                     property_location=property_location)
-        elif property_type == APropertyType.TEXT:
-            self.gui = APropertyText.APropertyText(property=self, property_id=property_id,
-                                                   property_location=property_location)
-        elif property_type == APropertyType.BOOL:
-            self.gui = APropertyBool.APropertyBool(property=self, property_id=property_id,
-                                                   property_location=property_location)
-        elif property_type == APropertyType.SLIDER:
-            self.gui = APropertySlider.APropertySlider(property=self, property_id=property_id,
+        if property_location == APropertyLocation.NODE:
+            if property_type == APropertyType.COMBO:
+                self.gui = APropertyCombo.APropertyCombo(property=self, property_id=property_id,
+                                                         property_location=property_location)
+            elif property_type == APropertyType.TEXT:
+                self.gui = APropertyText.APropertyText(property=self, property_id=property_id,
                                                        property_location=property_location)
-        elif property_type == APropertyType.FILE:
-            self.gui = APropertyFile.APropertyFile(property=self, property_id=property_id,
-                                                   property_location=property_location)
-        elif property_type == APropertyType.IMAGE:
-            self.gui = APropertyImage.APropertyImage(property=self, property_id=property_id,
-                                                     property_location=property_location)
-        self.gui.setParentItem(node.gui)
-        self.gui.node_id = node.node_id
+            elif property_type == APropertyType.BOOL:
+                self.gui = APropertyBool.APropertyBool(property=self, property_id=property_id,
+                                                       property_location=property_location)
+            elif property_type == APropertyType.SLIDER:
+                self.gui = APropertySlider.APropertySlider(property=self, property_id=property_id,
+                                                           property_location=property_location)
+            elif property_type == APropertyType.FILE:
+                self.gui = APropertyFile.APropertyFile(property=self, property_id=property_id,
+                                                       property_location=property_location)
+            elif property_type == APropertyType.IMAGE:
+                self.gui = APropertyImage.APropertyImage(property=self, property_id=property_id,
+                                                         property_location=property_location)
+
+            self.gui.setParentItem(node.gui)
+            self.gui.node_id = node.node_id
 
     # def add_combo_items(self, items):
     #     if self.gui:

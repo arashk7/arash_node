@@ -14,7 +14,7 @@ class SampleUI(APlugin, IPlugin):
         self.items = {'item_1', 'item_2', 'item_3'}
 
         self.add_property_bool('checkbox', False)
-        self.add_property_text('edit1', 'type here')
+        self.add_property_text(property_name='edit1', value='type here')
         self.add_property_slider('slider1', 40)
 
 

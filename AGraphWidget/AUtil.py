@@ -18,10 +18,11 @@ class APropertyType:
     VECTOR3 = 3
     VECTOR2 = 4
     INT = 5
-    COMBO = 6
-    SLIDER = 7
-    FILE = 8
-    IMAGE = 9
+    FLOAT = 6
+    COMBO = 7
+    SLIDER = 8
+    FILE = 9
+    IMAGE = 10
 class APropertyLocation:
     NODE = 0
     PROPERTYBAR = 1
