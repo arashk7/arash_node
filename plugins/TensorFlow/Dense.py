@@ -1,6 +1,6 @@
 from AGraphWidget.APlugin import APlugin, APropertyLocation, APropertyType
 from yapsy.IPlugin import IPlugin
-from keras.layers import Input, Dense
+from keras import layers
 
 
 class Dense(APlugin, IPlugin):
@@ -17,5 +17,5 @@ class Dense(APlugin, IPlugin):
         print('Added node: ', self.node_id)
 
     def run(self):
-        Dense_3 = Dense(name='Output', output_dim=40, activation='softmax')
+        Dense_3 = layers.Dense(name='Output', output_dim=40, activation='softmax')
         print(Dense_3)
