@@ -20,8 +20,6 @@ class Input(APlugin, IPlugin):
     def run(self):
         str = self.get_property_pm_value('Shape')
         print(str)
-        str = ATools.remove_brackets(str)
-        print(str)
         tup= ATools.str2tuple(str)
         print(tup)
 

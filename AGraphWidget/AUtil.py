@@ -61,6 +61,7 @@ class AMath:
 class ATools:
     @staticmethod
     def str2tuple(str_shape):
+        str_shape = ATools.remove_brackets(str_shape)
         tup = tuple(map(int, str_shape.split(',')))
         return tup
 
