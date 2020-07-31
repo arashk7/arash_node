@@ -17,7 +17,8 @@ class Dense(APlugin, IPlugin):
         print('Added node: ', self.node_id)
 
     def run(self):
-        port_1 = self.get_in_param('port_1')
-        if port_1 != None:
-            Dense_1 = layers.Dense(name=self.node_id, output_dim=40, activation='softmax')(port_1)
-            print(Dense_1)
+        # port_1 = self.get_in_param('port_1')
+        # if port_1 != None:
+        #     Dense_1 = layers.Dense(name=self.node_id, output_dim=40, activation='softmax')(port_1)
+        #     print(Dense_1)
+        pass

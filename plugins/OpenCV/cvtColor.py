@@ -31,6 +31,6 @@ class cvtColor(APlugin, IPlugin):
             print('ok gray')
 
     def change_event1(self):
-        self.img.gui.set_image_file(self.get_property_value('image_file'))
+        self.img.gui.set_image_file(self.get_property_node_value('image_file'))
 
         # self.params_in['in'].va

@@ -1,0 +1,10 @@
+[Core]
+Name = Output
+Module = Output
+
+
+[Documentation]
+Author = Ahmad Karambakhsh
+Version = 0.1
+Website = a-karambakhsh.ir
+Description = Network Output

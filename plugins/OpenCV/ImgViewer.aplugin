@@ -1,0 +1,9 @@
+[Core]
+Name = ImgViewer
+Module = ImgViewer
+
+[Documentation]
+Author = Ahmad Karambakhsh
+Version = 0.1
+Website = a-karambakhsh.ir
+Description = OpenCV 3.3.1

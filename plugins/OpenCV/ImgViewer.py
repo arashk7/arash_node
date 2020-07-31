@@ -4,12 +4,12 @@ import numpy as np
 import cv2 as cv
 
 
-class input_image(APlugin, IPlugin):
+class ImgViewer(APlugin, IPlugin):
     def __init__(self, x=0, y=0):
         APlugin.__init__(self, x=x, y=y)
 
         # self.is_starter = True
-        self.add_out_param('out')
+        self.add_in_port('in')
 
         self.img = self.add_property_image('viewer')
         self.add_property_file('image_file', '')
@@ -21,10 +21,6 @@ class input_image(APlugin, IPlugin):
     def init_node(self):
         print('Added node: ', self.node_id)
 
-    def update_output_shape(self):
-        img = self.params_out['out'].value
-        if img:
-            self.params_out['out'].shape = img.shape
 
     def run(self):
         print('input run')

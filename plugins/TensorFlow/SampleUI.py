@@ -35,9 +35,9 @@ class SampleUI(APlugin, IPlugin):
 
     def change_event1(self):
         # pix = QtGui.QPixmap(self.get_property_value('file'))
-        print(self.get_property_value('file'))
+        print(self.get_property_node_value('file'))
         # pix = pix.scaledToHeight(90)
-        self.image.gui.set_image_file(self.get_property_value('file'))
+        self.image.gui.set_image_file(self.get_property_node_value('file'))
 
 
     def run(self):

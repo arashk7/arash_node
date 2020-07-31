@@ -1,0 +1,10 @@
+[Core]
+Name = Efficientnet_pretrain
+Module = Efficientnet_pretrain
+
+
+[Documentation]
+Author = Ahmad Karambakhsh
+Version = 0.1
+Website = a-karambakhsh.ir
+Description = pretrain Efficientnet
